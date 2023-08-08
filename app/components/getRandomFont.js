@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import {useWindowSize} from "rooks"
 
-const getRandomSize = () => Math.floor(Math.random() * ((900-400) - 500 + 1)) + 500;
+const getRandomSize = () => Math.floor(Math.random() * ((innerWidth-400) - 500 + 1)) + 500;
 const getRandomColor = () => {
   var colors = ['#b30536', '#229b63', '#12918b', '#f25d0a', '#380d54'];
   let color = "#";
@@ -67,13 +67,15 @@ const RandomSquare = () => {
         (position.x = innerWidth - position.x + position.x - objectSize/2),
           (position.y = innerHeight - position.y + position.y - objectSize/2);
     };
-
-    // window.addEventListener("resize", handleResize);
-    
+    if (typeof window !== "undefined") {
+     window.addEventListener("resize", handleResize);
+    };
   const interval = setInterval(moveSquare, 2); // Adjust interval as needed
 
     return () => {
-    //   window.removeEventListener("resize", handleResize);
+      if (typeof window !== "undefined") {
+    window.removeEventListener("resize", handleResize);
+      };
       clearInterval(interval);
      };
  
@@ -88,7 +90,7 @@ const RandomSquare = () => {
         backgroundColor: color,
         opacity: "0.75",
         borderRadius: "50%",
-        // filter: "blur(100px)",
+        filter: "blur(100px)",
         transform: `translate(${position.x}px, ${position.y}px)`,
       }}
     />
