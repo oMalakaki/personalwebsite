@@ -74,7 +74,7 @@ const RandomSquare = () => {
     if (typeof window !== "undefined") {
       window.addEventListener("resize", handleResize);
     }
-    const interval = setInterval(moveSquare, 2); // Adjust interval as needed
+    const interval = setInterval(moveSquare, 10); // Adjust interval as needed
 
     return () => {
       if (typeof window !== "undefined") {
