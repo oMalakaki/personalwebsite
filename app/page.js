@@ -3,8 +3,7 @@ import RandomSquare from "./components/getRandomFont";
 
   
 const GenerateBackground = () => {
-  if (typeof window === "undefined") {
-  
+
   const squares = [];
 
   for (let i = 0; i <= 15; i++) {
@@ -12,7 +11,7 @@ const GenerateBackground = () => {
   }
   
   return squares;
-  }
+  
 };
 
 const HomePage = () => {

@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 
 
+
+
+
+
 const getRandomSize = () => Math.floor(Math.random() * ((900-400) - 500 + 1)) + 500;
-
-
 const getRandomColor = () => {
   var colors = ['#b30536', '#229b63', '#12918b', '#f25d0a', '#380d54'];
   let color = "#";
@@ -14,7 +16,9 @@ const getRandomColor = () => {
 };
 
 const RandomSquare = () => {
+  
   const [objectSize] = useState(getRandomSize());
+
   
   const [position, setPosition] = useState({
     x: Math.random() * (window.innerWidth - objectSize),
@@ -33,51 +37,51 @@ const RandomSquare = () => {
       return { x, y };
     };
 
-    const moveSquare = () => {
-      const newPosition = {
-        x: position.x + direction.x * 1, // Adjust speed as needed
-        y: position.y + direction.y * 1,
-      };
+  //   const moveSquare = () => {
+      
+  //     const newPosition = {
+  //       x: position.x + direction.x * 1, // Adjust speed as needed
+  //       y: position.y + direction.y * 1,
+  //     };
+      
+  //     if (
+  //       newPosition.x < 0- objectSize/2 ||
+  //       newPosition.x > window.innerWidth - objectSize/2 ||
+  //       newPosition.y < 0-objectSize/2 ||
+  //       newPosition.y > window.innerHeight - objectSize/2
+  //     && typeof window !== "undefined") {
+  //       // If hitting the edge, change direction and continue moving
+  //       const newDirection = getRandomDirection();
+  //       setDirection(newDirection);
+  //     } else {
+  //       setPosition(newPosition);
+  //     }
+  //   };
+  //   if (typeof window !== "undefined") {
+  //   const handleResize = () => {
 
-      if (
-        newPosition.x < 0- objectSize/2 ||
-        newPosition.x > window.innerWidth - objectSize/2 ||
-        newPosition.y < 0-objectSize/2 ||
-        newPosition.y > window.innerHeight - objectSize/2
-      ) {
-        // If hitting the edge, change direction and continue moving
-        const newDirection = getRandomDirection();
-        setDirection(newDirection);
-      } else {
-        setPosition(newPosition);
-      }
-    };
+  //     if (position.x > window.innerWidth - objectSize/2) {
+  //       // If over the boundary, keep inside
+  //       position.x = window.innerWidth - position.x + position.x - objectSize/2;
+  //     } else if (position.y > window.innerHeight - objectSize/2) {
+  //       // If over the boundary, keep inside
+  //       position.y = window.innerHeight - position.y + position.y - objectSize/2;
+  //     } else if (position.y > window.innerHeight - objectSize/2 && position.x > window.innerWidth - objectSize/2)
+  //       (position.x = window.innerWidth - position.x + position.x - objectSize/2),
+  //         (position.y = window.innerHeight - position.y + position.y - objectSize/2);
+  //   };
 
-    const handleResize = () => {
-
-      if (position.x > window.innerWidth - objectSize/2) {
-        // If over the boundary, keep inside
-        position.x = window.innerWidth - position.x + position.x - objectSize/2;
-      } else if (position.y > window.innerHeight - objectSize/2) {
-        // If over the boundary, keep inside
-        position.y = window.innerHeight - position.y + position.y - objectSize/2;
-      } else if (position.y > window.innerHeight - objectSize/2 && position.x > window.innerWidth - objectSize/2)
-        (position.x = window.innerWidth - position.x + position.x - objectSize/2),
-          (position.y = window.innerHeight - position.y + position.y - objectSize/2);
-    };
-
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
     
-    const interval = setInterval(moveSquare, 2); // Adjust interval as needed
+  //   const interval = setInterval(moveSquare, 2); // Adjust interval as needed
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      clearInterval(interval);
-    };
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //     clearInterval(interval);
+  //   };
+  // };
   }, [position, direction]);
-  if (typeof window === "undefined") {
-    return null; // Don't render anything during server-side rendering
-  }
+
   return (
     <div
       style={{
