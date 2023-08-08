@@ -39,8 +39,8 @@ const RandomSquare = () => {
 
     const moveSquare = () => {
       const newPosition = {
-        x: position.x + direction.x * 1, // Adjust speed as needed
-        y: position.y + direction.y * 1,
+        x: position.x + direction.x * .5, // Adjust speed as needed
+        y: position.y + direction.y * .5,
       };
 
       if (
@@ -74,7 +74,7 @@ const RandomSquare = () => {
     if (typeof window !== "undefined") {
       window.addEventListener("resize", handleResize);
     }
-    const interval = setInterval(moveSquare, 10); // Adjust interval as needed
+    const interval = setInterval(moveSquare, 30); // Adjust interval as needed
 
     return () => {
       if (typeof window !== "undefined") {
