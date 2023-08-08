@@ -1,10 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-
-
-
-
-
+import {useWindowSize} from "rooks"
 
 const getRandomSize = () => Math.floor(Math.random() * ((900-400) - 500 + 1)) + 500;
 const getRandomColor = () => {
@@ -16,14 +12,15 @@ const getRandomColor = () => {
 };
 
 const RandomSquare = () => {
-  
+  const { innerWidth, innerHeight} = useWindowSize();
   const [objectSize] = useState(getRandomSize());
 
   
   const [position, setPosition] = useState({
-    x: Math.random() * (window.innerWidth - objectSize),
-    y: Math.random() * (window.innerHeight - objectSize),
+    x: Math.random() * (innerWidth - objectSize),
+    y: Math.random() * (innerHeight - objectSize),
   });
+
   const [direction, setDirection] = useState({
     x: Math.random() > 0.5 ? 1 : -1,
     y: Math.random() > 0.5 ? 1 : -1,
@@ -37,49 +34,49 @@ const RandomSquare = () => {
       return { x, y };
     };
 
-  //   const moveSquare = () => {
+    const moveSquare = () => {
       
-  //     const newPosition = {
-  //       x: position.x + direction.x * 1, // Adjust speed as needed
-  //       y: position.y + direction.y * 1,
-  //     };
+      const newPosition = {
+        x: position.x + direction.x * 1, // Adjust speed as needed
+        y: position.y + direction.y * 1,
+      };
       
-  //     if (
-  //       newPosition.x < 0- objectSize/2 ||
-  //       newPosition.x > window.innerWidth - objectSize/2 ||
-  //       newPosition.y < 0-objectSize/2 ||
-  //       newPosition.y > window.innerHeight - objectSize/2
-  //     && typeof window !== "undefined") {
-  //       // If hitting the edge, change direction and continue moving
-  //       const newDirection = getRandomDirection();
-  //       setDirection(newDirection);
-  //     } else {
-  //       setPosition(newPosition);
-  //     }
-  //   };
-  //   if (typeof window !== "undefined") {
-  //   const handleResize = () => {
+      if (
+        newPosition.x < 0- objectSize/2 ||
+        newPosition.x > innerWidth - objectSize/2 ||
+        newPosition.y < 0-objectSize/2 ||
+        newPosition.y > innerHeight - objectSize/2
+     ) {
+        // If hitting the edge, change direction and continue moving
+        const newDirection = getRandomDirection();
+        setDirection(newDirection);
+      } else {
+        setPosition(newPosition);
+      }
+    };
+   
+    const handleResize = () => {
 
-  //     if (position.x > window.innerWidth - objectSize/2) {
-  //       // If over the boundary, keep inside
-  //       position.x = window.innerWidth - position.x + position.x - objectSize/2;
-  //     } else if (position.y > window.innerHeight - objectSize/2) {
-  //       // If over the boundary, keep inside
-  //       position.y = window.innerHeight - position.y + position.y - objectSize/2;
-  //     } else if (position.y > window.innerHeight - objectSize/2 && position.x > window.innerWidth - objectSize/2)
-  //       (position.x = window.innerWidth - position.x + position.x - objectSize/2),
-  //         (position.y = window.innerHeight - position.y + position.y - objectSize/2);
-  //   };
+      if (position.x > innerWidth - objectSize/2) {
+        // If over the boundary, keep inside
+        position.x = innerWidth - position.x + position.x - objectSize/2;
+      } else if (position.y > innerHeight - objectSize/2) {
+        // If over the boundary, keep inside
+        position.y = innerHeight - position.y + position.y - objectSize/2;
+      } else if (position.y > innerHeight - objectSize/2 && position.x > innerWidth - objectSize/2)
+        (position.x = innerWidth - position.x + position.x - objectSize/2),
+          (position.y = innerHeight - position.y + position.y - objectSize/2);
+    };
 
-  //   window.addEventListener("resize", handleResize);
+    // window.addEventListener("resize", handleResize);
     
-  //   const interval = setInterval(moveSquare, 2); // Adjust interval as needed
+  const interval = setInterval(moveSquare, 2); // Adjust interval as needed
 
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //     clearInterval(interval);
-  //   };
-  // };
+    return () => {
+    //   window.removeEventListener("resize", handleResize);
+      clearInterval(interval);
+     };
+ 
   }, [position, direction]);
 
   return (

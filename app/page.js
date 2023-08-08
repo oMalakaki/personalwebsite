@@ -1,6 +1,5 @@
 import RandomSquare from "./components/getRandomFont";
 
-
   
 const GenerateBackground = () => {
 
@@ -11,7 +10,7 @@ const GenerateBackground = () => {
   }
   
   return squares;
-  
+
 };
 
 const HomePage = () => {
