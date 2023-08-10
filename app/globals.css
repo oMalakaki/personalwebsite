@@ -4,29 +4,125 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
+  scroll-behavior: smooth;
 }
 
-h1 { 
-
-  font-size: 6rem;
- 
- 
-  
+.titleText h1 {
+  font-size: 12rem;
+  line-height: 0.8em;
 }
 .cut-out-text {
+  color: #c0c0c0; /* Text color */
 
+  background-color: transparent; /* Transparent text background */
+  z-index: 2;
+
+  mix-blend-mode: difference;
+  background-clip: text; /* Clip background to the text */
+}
+
+.pageContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+}
+.noise {
+  z-index: 9999999;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.7;
+  filter: brightness(150%);
+  background-image: url("https://uploads-ssl.webflow.com/604e45bd21701352c1131f56/604e45bd217013478e131f6a_5ffddb954a49ee060a580d5a_ezgif.com-gif-maker.gif");
+  background-position: 0 0;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  filter: brightness(120%);
+  background-size: 100px;
+  top: 0%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+
+  align-items: center;
+  justify-content: center;
+}
+.menu h2 {
+  font-size: 2em;
+  transition: .1s ease-in-out;
+  cursor: pointer;
+}
+.menu h2:hover {
+  scale: 1.05;
+
+}
+
+.titleText {
+  display: flex;
+  z-index: 2;
+  gap: 4em;
+  flex-direction: row;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #C0C0C0; /* Text color */
-
-  background-color: transparent; /* Transparent text background */
-  z-index: 2;
-  
-
-  mix-blend-mode: difference;
-            background-clip: text; /* Clip background to the text */
 }
+.name {
+  display: flex;
+  flex-direction: column;
+}
+.name .alex {
+  letter-spacing: 0.05em;
+}
+.sectionHeader {
+  width: 7.6em;
+  background-color: pink;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graffiti {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.about {
+  color: white;
+  flex-direction: column;
+  position: relative;
+}
+.about h2{
+  font-size: 4em;
+}
+.about p{
+  font-size: 1em;
+  width: 50vw;
+}
+
+.container {
+  width: 100%;
+  position: relative;
+  scroll-behavior: smooth;
+  padding: 0 4em 0 4em;
+  overflow-x: hidden;
+}
+
 

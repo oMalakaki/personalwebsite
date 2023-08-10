@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { useWindowSize } from "rooks";
 
 
-const getRandomSize = () =>
-  Math.floor(Math.random() * (1200 - 250 + 1 ) + 250);
-
 const getRandomColor = () => {
   var colors = ["#0e0502", "#229b63", "#12918b", "#f25d0a", "#380d54"];
   let color = "#";
@@ -17,7 +14,7 @@ const getRandomColor = () => {
 const RandomSquare = () => {
   const { innerWidth, innerHeight } = useWindowSize();
 
-  const [objectSize] = useState(getRandomSize());
+  const [objectSize] = useState(Math.floor(Math.random() * ((1200 - 500) + 500)));
 
   const [position, setPosition] = useState({
     x: Math.random() * (innerWidth - objectSize),
@@ -29,6 +26,7 @@ const RandomSquare = () => {
     y: Math.random() > 0.5 ? 1 : -1,
   });
   const [color] = useState(getRandomColor());
+  const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
   useEffect(() => {
     const getRandomDirection = () => {
@@ -38,15 +36,16 @@ const RandomSquare = () => {
     };
 
     const moveSquare = () => {
+      if (!isTranslationsEnabled) return; // Check if translations are enabled
       const newPosition = {
-        x: position.x + direction.x * .5, // Adjust speed as needed
-        y: position.y + direction.y * .5,
+        x: position.x + direction.x * 1, // Adjust speed as needed
+        y: position.y + direction.y * 1,
       };
 
       if (
-        newPosition.x < 0 - objectSize / 2 ||
+        newPosition.x < 0 - (objectSize / 2) ||
         newPosition.x > innerWidth - objectSize / 2 ||
-        newPosition.y < 0 - objectSize / 2 ||
+        newPosition.y < 0 - (objectSize / 2) ||
         newPosition.y > innerHeight - objectSize / 2
       ) {
         // If hitting the edge, change direction and continue moving
@@ -71,18 +70,36 @@ const RandomSquare = () => {
         (position.x = innerWidth - position.x + position.x - objectSize / 2),
           (position.y = innerHeight - position.y + position.y - objectSize / 2);
     };
+
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
+
+      if (window.scrollY > 300) {
+        // Stop translations
+        setTranslationsEnabled(false);
+      } else {
+        // Enable translations again
+        setTranslationsEnabled(true);
+      }}
+    };
+
+
     if (typeof window !== "undefined") {
+      
       window.addEventListener("resize", handleResize);
+      window.addEventListener("scroll", handleScroll); // Add scroll event listener
     }
+
     const interval = setInterval(moveSquare, 30); // Adjust interval as needed
 
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", handleResize);
+        window.removeEventListener("scroll", handleScroll); // Remove scroll event listener
       }
       clearInterval(interval);
     };
-  }, [position, direction]);
+  }, [position, direction, isTranslationsEnabled]);
 
   return (
     <div
@@ -91,9 +108,9 @@ const RandomSquare = () => {
         width: objectSize,
         height: objectSize,
         backgroundColor: color,
-        opacity: "0.75",
-        borderRadius: "50%",
-        filter: "blur(100px)",
+      
+        borderRadius: "100%",
+        
         transform: `translate(${position.x}px, ${position.y}px)`,
       }}
     />

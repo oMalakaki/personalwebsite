@@ -1,0 +1,55 @@
+.image {
+  position: absolute;
+  top:0;
+  object-fit: cover;
+  object-position: 100% center;
+  width: 115%;
+  height: 100%;
+    transform: translateX(0%);
+
+  transition: transform 0.3s ease-out;
+}
+
+.imageTrack {
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  /* margin-top: 0.5em; */
+  overflow-x: scroll;
+  height: 100%;
+  position: absolute;
+
+  transform: translate(0%, 0%);
+  user-select: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+.imageTrack:active {
+  cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.imageTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.cardTemp {
+  position: relative;
+  color:white;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+  height: 30em;
+
+  background-color: black;
+}
+
+
