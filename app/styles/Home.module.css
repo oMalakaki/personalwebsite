@@ -19,8 +19,6 @@
   overflow-x: scroll;
   height: 100%;
   width:fit-content;
-
-  touch-action: pan-y; /* Allow vertical panning */
   transform: translate(0%, 0%);
   user-select: none;
   -webkit-overflow-scrolling: touch;

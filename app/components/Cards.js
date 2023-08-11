@@ -3,71 +3,81 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useRef, useState } from "react";
 import Cardo from "./CardTemplate";
 
-
 export default function Cards() {
   const trackRef = useRef(null);
-  const [mouseDownAt, setMouseDownAt] = useState(0);
+  const [interactionStart, setInteractionStart] = useState(null);
   const [prevPercentage, setPrevPercentage] = useState(0);
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
-    
     const track = trackRef.current;
-   
 
-    const handleMouseDown = (e) => {
-
-      setMouseDownAt(e.clientX);
+    const handleInteractionStart = (e) => {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      setInteractionStart(clientX);
     };
 
-    const handleMouseUp = () => {
-      setMouseDownAt(0);
+    const handleInteractionEnd = () => {
+      setInteractionStart(null);
       setPrevPercentage(percentage);
-      
     };
 
-    const handleMouseMove = (e) => {
-      if (mouseDownAt === 0) return;
+    const handleInteractionMove = (e) => {
+      if (interactionStart === null) return;
 
-      var mouseDelta = mouseDownAt - e.clientX,
-        maxDelta = track.scrollWidth;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const interactionDelta = interactionStart - clientX;
+      const maxDelta = track.scrollWidth;
 
-      const percentage = (mouseDelta / maxDelta) * -100,
-        nextPercentageUnconstrained = prevPercentage + percentage,
-        nextPercentage = Math.max(
-          Math.min(nextPercentageUnconstrained, 0),
-          -(100-(window.innerWidth / track.scrollWidth)*93)
-        );
+      const percentage = (interactionDelta / maxDelta) * -100;
+      const nextPercentageUnconstrained = prevPercentage + percentage;
+      const nextPercentage = Math.max(
+        Math.min(nextPercentageUnconstrained, 0),
+        -(100 - (window.innerWidth / track.scrollWidth) * 93)
+      );
 
       setPercentage(nextPercentage);
 
-      track.animate(
-        {
-          transform: `translate(${nextPercentage}%, 0%)`,
-        },
-        { duration: 1200, fill: "forwards" }
-      );
-            const images = track.querySelectorAll(".image");
-            images.forEach((img) => {
-              img.style.transform = `translateX(${nextPercentage*100}%)`;
-            });
+      track.style.transform = `translate(${nextPercentage}%, 0%)`;
 
+      const images = track.querySelectorAll(".image");
+      images.forEach((img) => {
+        img.style.transform = `translateX(${nextPercentage * 100}%)`;
+      });
     };
 
-       
-    
+    const handleMouseOrTouchEnd = () => {
+      if (interactionStart !== null) {
+        handleInteractionEnd();
+      }
+    };
 
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
-    track.addEventListener("mousemove", handleMouseMove);
+    const handleMouseOrTouchMove = (e) => {
+      if (interactionStart !== null) {
+        handleInteractionMove(e);
+      }
+    };
+
+    window.addEventListener("mousedown", handleInteractionStart);
+    window.addEventListener("touchstart", handleInteractionStart);
+
+    window.addEventListener("mouseup", handleMouseOrTouchEnd);
+    window.addEventListener("touchend", handleMouseOrTouchEnd);
+
+    track.addEventListener("mousemove", handleMouseOrTouchMove);
+    track.addEventListener("touchmove", handleMouseOrTouchMove);
 
     return () => {
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
-      track.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [mouseDownAt, prevPercentage, percentage]);
+      window.removeEventListener("mousedown", handleInteractionStart);
+      window.removeEventListener("touchstart", handleInteractionStart);
 
+      window.removeEventListener("mouseup", handleMouseOrTouchEnd);
+      window.removeEventListener("touchend", handleMouseOrTouchEnd);
+
+      track.removeEventListener("mousemove", handleMouseOrTouchMove);
+      track.removeEventListener("touchmove", handleMouseOrTouchMove);
+    };
+  }, [interactionStart, prevPercentage, percentage]);
 
 
   return (

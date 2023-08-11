@@ -12,6 +12,7 @@ const GenerateBackground = () => {
   return squares;
 };
 
+
 const HomePage = () => {
   return (
     <>
