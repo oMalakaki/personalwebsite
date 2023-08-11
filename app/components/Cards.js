@@ -38,12 +38,14 @@ export default function Cards() {
 
       setPercentage(nextPercentage);
 
-      track.style.transform = `translate(${nextPercentage}%, 0%)`;
+      if (window.innerWidth > 744) {
+        track.style.transform = `translate(${nextPercentage}%, 0%)`;
 
-      const images = track.querySelectorAll(".image");
-      images.forEach((img) => {
-        img.style.transform = `translateX(${nextPercentage * 100}%)`;
-      });
+        const images = track.querySelectorAll(".image");
+        images.forEach((img) => {
+          img.style.transform = `translateX(${nextPercentage * 100}%)`;
+        });
+      }
     };
 
     const handleMouseOrTouchEnd = () => {
@@ -78,7 +80,6 @@ export default function Cards() {
       track.removeEventListener("touchmove", handleMouseOrTouchMove);
     };
   }, [interactionStart, prevPercentage, percentage]);
-
 
   return (
     <div className={styles.imageTrack} id="imageTrack" ref={trackRef}>
