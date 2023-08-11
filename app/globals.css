@@ -6,7 +6,9 @@
   margin: 0;
   scroll-behavior: smooth;
 }
-
+body{
+  background-color: black;
+}
 .titleText h1 {
   font-size: 12rem;
   line-height: 0.8em;
