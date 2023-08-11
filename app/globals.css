@@ -12,24 +12,26 @@
   line-height: 0.8em;
 }
 .cut-out-text {
-  color: #c0c0c0; /* Text color */
-
+  color: white; /* Text color */
   background-color: transparent; /* Transparent text background */
   z-index: 2;
-
   mix-blend-mode: difference;
   background-clip: text; /* Clip background to the text */
 }
 
-.pageContainer {
+.pageContainerSplash {
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .noise {
   z-index: 9999999;
+
   width: 100%;
   height: 100vh;
   opacity: 0.7;
@@ -54,18 +56,16 @@
   display: flex;
   flex-direction: column;
   gap: 4em;
-
   align-items: center;
   justify-content: center;
 }
 .menu h2 {
   font-size: 2em;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
   cursor: pointer;
 }
 .menu h2:hover {
   scale: 1.05;
-
 }
 
 .titleText {
@@ -73,18 +73,44 @@
   z-index: 2;
   gap: 4em;
   flex-direction: row;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
 }
 .name {
   display: flex;
   flex-direction: column;
 }
 .name .alex {
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
+
+/* Add a media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .titleText h1 {
+    font-size: 5rem;
+    line-height: 0.8em;
+    text-align: center;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .menu h2 {
+    font-size: 1.5em;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+  }
+  .titleText {
+    display: flex;
+    z-index: 2;
+    gap: 2em;
+    flex-direction: column-reverse;
+
+  }
+}
+
 .sectionHeader {
   width: 7.6em;
   background-color: pink;
@@ -106,23 +132,62 @@
 
 .about {
   color: white;
+  display: flex;
   flex-direction: column;
-  position: relative;
+  justify-content: space-between;
+  width: 100%;
 }
-.about h2{
+.about h2 {
   font-size: 4em;
 }
-.about p{
+.about p {
   font-size: 1em;
-  width: 50vw;
+  width: 50%;
 }
 
 .container {
-  width: 100%;
   position: relative;
-  scroll-behavior: smooth;
-  padding: 0 4em 0 4em;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  padding: 4em 4em 0 4em;
+  width: 100%;
+  max-width: 1440px;
+  flex-wrap: wrap;
+}
+.aboutText {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
+.pageContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
 
+/* Add a media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Switch container to column layout */
+    align-items: center; /* Center-align content in column layout */
+    padding: 4em;
+  }
+
+  .aboutText {
+    flex-direction: column; /* Switch aboutText to column layout */
+    align-items: center; /* Center-align content in column layout */
+  }
+
+  /* Adjust .about p width for smaller screens */
+  .about p {
+    width: 100%; /* Make the paragraph full width */
+    min-width: unset; /* Remove the minimum width */
+  }
+}

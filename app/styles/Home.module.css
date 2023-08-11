@@ -1,5 +1,5 @@
 .image {
-  position: absolute;
+  position: relative;
   top:0;
   object-fit: cover;
   object-position: 100% center;
@@ -11,17 +11,19 @@
 }
 
 .imageTrack {
-
+  padding-top: 2em;
   display: flex;
   flex-direction: row;
   gap: 0.5em;
   /* margin-top: 0.5em; */
   overflow-x: scroll;
   height: 100%;
-  position: absolute;
+  width:fit-content;
+
 
   transform: translate(0%, 0%);
   user-select: none;
+  -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   cursor: move; /* fallback if grab cursor is unsupported */
@@ -40,16 +42,9 @@
 }
 
 .cardTemp {
-  position: relative;
-  color:white;
   overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
   width: 30em;
   height: 30em;
-
-  background-color: black;
 }
 
 

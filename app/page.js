@@ -15,8 +15,9 @@ const GenerateBackground = () => {
 const HomePage = () => {
   return (
     <>
-      <div className="noise"></div>
-      <div className="pageContainer">
+      <div className="noise" />
+      <div className="pageContainerSplash">
+
         <div className="titleText cut-out-text">
           <div className="menu">
             <h2>About</h2>
@@ -27,15 +28,14 @@ const HomePage = () => {
             <h1 className="alex">Alex</h1>
             <h1 className="canfield">Canfield</h1>
           </div>
-        </div>
-        <div
+        </div>        <div
           style={{
-            position: "relative",
-            width: "100vw",
+            position: "absolute",
+            width: "100%",
             scale: "1.4",
-            height: "100vh",
-            left: "0vw",
-            top: "0vh",
+            height: "100%",
+            left: "0",
+            top: "0",
             overflow: "hidden",
             filter: "blur(100px)",
             backgroundColor: "#e61f3a",
@@ -49,6 +49,7 @@ const HomePage = () => {
       </div>
       <div className="pageContainer about">
         <div className="container">
+          <div className="aboutText">
           <h2>About</h2>
           <p>
             I am a motivated and experienced graduate in Information Systems
@@ -66,6 +67,7 @@ const HomePage = () => {
             within rapidly evolving business landscapes, while infusing
             creativity and pragmatism.
           </p>
+        </div>
         </div>
         <Cards />
       </div>
