@@ -74,7 +74,7 @@ const RandomSquare = () => {
     const handleScroll = () => {
       if (typeof window !== "undefined") {
 
-      if (window.scrollY > 300) {
+      if (window.scrollY > 200) {
         // Stop translations
         setTranslationsEnabled(false);
       } else {
