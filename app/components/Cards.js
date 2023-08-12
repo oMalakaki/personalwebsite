@@ -33,19 +33,14 @@ export default function Cards() {
       const nextPercentageUnconstrained = prevPercentage + percentage;
       const nextPercentage = Math.max(
         Math.min(nextPercentageUnconstrained, 0),
-        -(100 - (window.innerWidth / track.scrollWidth) * 93)
+        -(100 - (window.innerWidth / track.scrollWidth) * 100)
       );
 
       setPercentage(nextPercentage);
 
-      if (window.innerWidth > 744) {
-        track.style.transform = `translate(${nextPercentage}%, 0%)`;
+      track.style.transform = `translate(${nextPercentage}%, 0%)`;
 
-        const images = track.querySelectorAll(".image");
-        images.forEach((img) => {
-          img.style.transform = `translateX(${nextPercentage * 100}%)`;
-        });
-      }
+      
     };
 
     const handleMouseOrTouchEnd = () => {
@@ -83,35 +78,16 @@ export default function Cards() {
 
   return (
     <div className={styles.imageTrack} id="imageTrack" ref={trackRef}>
-      <Cardo
-        source="/selfPhotos/IMG-0092.jpg"
-        percentage={percentage}
-      />
-      <Cardo
-        source="/selfPhotos/IMG-0199.jpg"
-        percentage={percentage}
-      />
-      <Cardo
-        source="/selfPhotos/IMG-2111.JPEG"
-        percentage={percentage}
-      />
-      <Cardo
-        source="/selfPhotos/IMG-3922.jpg"
-        percentage={percentage}
-      />
-      <Cardo
-        source="/selfPhotos/IMG-4304.JPEG"
-        percentage={percentage}
-      />
-      <Cardo
-        source="/selfPhotos/IMG-4881.jpg"
-        percentage={percentage}
-      />
+      <Cardo source="/selfPhotos/IMG-0092.jpg" />
+      <Cardo source="/selfPhotos/IMG-0199.jpg" />
+      <Cardo source="/selfPhotos/IMG-2111.JPEG" />
+      <Cardo source="/selfPhotos/IMG-3922.jpg" />
+      <Cardo source="/selfPhotos/IMG-4304.JPEG" />
+      <Cardo source="/selfPhotos/IMG-4881.jpg" />
       <Cardo
         source="/selfPhotos/IMG-8084-Original.jpg"
-        percentage={percentage}
+       
       />
-
     </div>
   );
 }
