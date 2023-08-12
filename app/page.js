@@ -29,7 +29,7 @@ const HomePage = () => {
             Alex <br />
             Canfield
           </h1>
-        </div>{" "}
+        </div>
         <div
           style={{
             position: "absolute",
@@ -85,7 +85,7 @@ const HomePage = () => {
         <div className="container">
           <h2>Projects</h2>
           <div className="projectsText">
-            <p>// projects here</p>
+            <p> projects here</p>
           </div>
         </div>
       </div>
