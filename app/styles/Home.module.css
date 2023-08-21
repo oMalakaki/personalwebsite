@@ -1,14 +1,5 @@
-.image {
-  position: relative;
-  top:0;
-  object-fit: cover;
-  object-position: 100% center;
-  width: 115%;
-  height: 100%;
-    transform: translateX(0%);
 
-  transition: transform 0.3s ease-out;
-}
+
 
 .imageTrack {
   padding-top: 5em;
@@ -16,19 +7,21 @@
   flex-direction: row;
   gap: 0.5em;
   /* margin-top: 0.5em; */
-  overflow-x: scroll;
+
   height: 100%;
-  width:fit-content;
-  transform: translate(0%, 0%);
-  user-select: none;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+width: fit-content;
+
+
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
+
 .imageTrack:active {
   cursor: grabbing;
     cursor: -moz-grabbing;
@@ -39,10 +32,24 @@
   display: none;
 }
 
-.cardTemp {
-  overflow: hidden;
+.cardTemp img{
+
+  object-fit: cover;
+  object-position: 100% center;
   width: 30em;
   height: 30em;
 }
+.cardTemp {
+  overflow: hidden; 
+
+  width: 30em;
+  height: 30em;
+
+}
 
 
+.scrollContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  overflow: auto;
+}

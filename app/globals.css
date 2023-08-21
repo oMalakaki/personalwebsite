@@ -141,6 +141,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  
 }
 .pageContainer h2 {
   font-size: 4em;
@@ -160,6 +161,7 @@ p {
   padding: 4em 4em 0 4em;
   max-width: 1440px;
   width: 100%;
+  
 }
 .aboutText {
   position: relative;
@@ -177,6 +179,7 @@ p {
   color: white;
   display: flex;
   justify-content: center;
+  overflow-x: auto; /* Enable horizontal scrolling on mobile */
 }
 
 /* Add a media query for smaller screens */

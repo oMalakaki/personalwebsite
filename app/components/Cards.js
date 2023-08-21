@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Cardo from "./CardTemplate";
 
 export default function Cards() {
+ 
   const trackRef = useRef(null);
   const [interactionStart, setInteractionStart] = useState(null);
   const [prevPercentage, setPrevPercentage] = useState(0);
@@ -16,12 +17,21 @@ export default function Cards() {
   });
 
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
-  useEffect(() => {
-    const track = trackRef.current;
 
+  useEffect(() => {
+   
+    const track = trackRef.current;
+    // Check if a position is stored in localStorage
+    const storedPosition = localStorage.getItem('initialPosition');
+
+    
+    
     const handleInteractionStart = (e) => {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       setInteractionStart(clientX);
+    };
+    const handleTouchInteractionStart = (e) => {
+      setTranslationsEnabled(false);
     };
     
     const handleInteractionEnd = () => {
@@ -47,7 +57,7 @@ export default function Cards() {
       setPercentage(nextPercentage);
       setTranslationsEnabled(false);
 
-      track.style.transform = `translate(${nextPercentage}%, 0%)`;
+      track.style.transform = `translateX(${nextPercentage}%)`;
     };
 
     const handleMouseOrTouchEnd = () => {
@@ -63,11 +73,11 @@ export default function Cards() {
     };
 
     window.addEventListener("mousedown", handleInteractionStart);
-    window.addEventListener("touchstart", handleInteractionStart);
+    window.addEventListener("touchstart", handleTouchInteractionStart);
     window.addEventListener("mouseup", handleMouseOrTouchEnd);
-    window.addEventListener("touchend", handleMouseOrTouchEnd);
+    // window.addEventListener("touchend", handleMouseOrTouchEnd);
     track.addEventListener("mousemove", handleMouseOrTouchMove);
-    track.addEventListener("touchmove", handleMouseOrTouchMove);
+    // track.addEventListener("touchmove", handleMouseOrTouchMove);
 
     const getNewDirection = () => {
       return { x: direction.x === -1 ? 1 : -1 };
@@ -99,10 +109,11 @@ export default function Cards() {
       window.removeEventListener("mousedown", handleInteractionStart);
       window.removeEventListener("touchstart", handleInteractionStart);
       window.removeEventListener("mouseup", handleMouseOrTouchEnd);
-      window.removeEventListener("touchend", handleMouseOrTouchEnd);
+      // window.removeEventListener("touchend", handleMouseOrTouchEnd);
       track.removeEventListener("mousemove", handleMouseOrTouchMove);
-      track.removeEventListener("touchmove", handleMouseOrTouchMove);
+      // track.removeEventListener("touchmove", handleMouseOrTouchMove);
     };
+
   }, [
     interactionStart,
     prevPercentage,
@@ -113,12 +124,13 @@ export default function Cards() {
   ]);
 
   return (
+<div className={styles.scrollContainer}>
     <div
       className={styles.imageTrack}
       id="imageTrack"
       ref={trackRef}
       style={{
-        transform: `translate(${position.x}%, 0px)`,
+        transform: `translateX(${position.x}%)`, transition: "transform 0s ease-in-out",
       }}
     >
       <Cardo source="/selfPhotos/IMG-0092.jpg" />
@@ -136,5 +148,6 @@ export default function Cards() {
       <Cardo source="/selfPhotos/IMG-8084-Original.jpg" />
       <Cardo source="/selfPhotos/IMG-5450.JPG" />
     </div>
+</div>
   );
 }

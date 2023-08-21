@@ -106,7 +106,7 @@ const HomePage = () => {
         <div className="container">
           <h2>Projects</h2>
           <div className="projectsText">
-            <ImageCarousel  images={images} />
+
           </div>
         </div>
       </div>
