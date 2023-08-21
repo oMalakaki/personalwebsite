@@ -1,38 +1,10 @@
-import RandomSquare from "./components/getRandomFont";
+
 import Image from "next/image";
 import Cards from "./components/Cards";
 import MakeBox from "./components/MakeBox";
 import ImageCarousel from "./components/ImageCarousel";
+import GenerateBackground from "./components/GenerateBackground"; // Make sure to provide the correct path
 
-const images = [
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-  "https://source.unsplash.com/random",
-];
-
-const GenerateBackground = () => {
-  
-  const squares = [];
-
-  for (let i = 0; i <= 10; i++) {
-    squares.push(<RandomSquare key={i} />);
-  }
-  
-  return squares;
-  
-};
 
 const HomePage = () => {
   return (
