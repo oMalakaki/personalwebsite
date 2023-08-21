@@ -5,94 +5,87 @@ import Cardo from "./CardTemplate";
 
 export default function Cards() {
   const scrollRef = useRef(null);
-  const [userInteracted, setUserInteracted] = useState(false);
-
-  let direction = 1;
-
-
+  const [direction, setDirection] = useState(1); // Initialize direction state
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
   useEffect(() => {
+    
     const container = scrollRef.current;
-
-
     let pos = { top: 0, left: 0, x: 0, y: 0 };
 
     const mouseDownHandler = function (e) {
-      
-        pos = {
-            left: container.scrollLeft,
-            
-            // Get the current mouse position
-            x: e.clientX,
-            
-        };
 
-        container.addEventListener('mousemove', mouseMoveHandler);
-        container.addEventListener('mouseup', mouseUpHandler);
-        setTranslationsEnabled(false);
+      pos = {
+        left: container.scrollLeft,
+        x: e.clientX,
+      };
+      container.addEventListener('mousemove', mouseMoveHandler);
+      container.addEventListener('mouseup', mouseUpHandler);
+      setTranslationsEnabled(false);
     };
 
     const mouseMoveHandler = function (e) {
-        // How far the mouse has been moved
-        const dx = e.clientX - pos.x;
-        
-
-        // Scroll the element
-        
-        container.scrollLeft = pos.left - dx;
+      const dx = e.clientX - pos.x;
+      container.scrollLeft = pos.left - dx;
     };
 
     const mouseUpHandler = function () {
-   
-        container.removeEventListener('mousemove', mouseMoveHandler);
-        container.removeEventListener('mouseup', mouseUpHandler);
+      container.removeEventListener('mousemove', mouseMoveHandler);
+      container.removeEventListener('mouseup', mouseUpHandler);
+  
+    };
+    const mouseEnterHandler = function () {
+ 
+      setTranslationsEnabled(false);
+    };
+    
+    const mouseLeaveHandler = function () {
+      
+      setTranslationsEnabled(true);
+    };
+    const handleTouchInteractionStart = () => {
+      setTranslationsEnabled(false);
     };
 
-    // Attach the handler
     container.addEventListener('mousedown', mouseDownHandler);
-  
-   
-    
+    container.addEventListener('mouseenter', mouseEnterHandler);
+    container.addEventListener('mouseleave', mouseLeaveHandler);
+    container.addEventListener("touchmove", handleTouchInteractionStart);
     const moveTrack = () => {
-      
       if (!isTranslationsEnabled) return;
+
       pos = {
         left: container.scrollLeft,
       };
-      console.log(container.scrollLeft);
-      console.log("direction " + direction);
-      
 
- 
       const trackEnd = ((pos.left + window.innerWidth) / container.scrollWidth) * 100;
-     
+
       if (trackEnd >= 100 && direction === 1) {
-        direction = -1;
-        console.log("switch bitch")
+        setDirection(-1);
       } else if (container.scrollLeft === 0 && direction === -1) {
-        direction = 1;
+        setDirection(1);
       }
-      container.scrollLeft += direction * 100;
-      
-    }
-  
 
-  const interval = setInterval(moveTrack, 10);
+      container.scrollLeft += direction * 10;
+    };
 
-  return () => {
-    clearInterval(interval);
-    container.removeEventListener('mousedown', mouseDownHandler);
-  }; 
-}, [ isTranslationsEnabled]);
+    const interval = setInterval(moveTrack, 10);
+
+    return () => {
+      clearInterval(interval);
+      container.removeEventListener('mousedown', mouseDownHandler);
+      container.removeEventListener('mouseenter', mouseEnterHandler);
+      container.removeEventListener('mouseleave', mouseLeaveHandler);
+      container.removeEventListener("touchmove", handleTouchInteractionStart);
+    };
+  }, [direction, isTranslationsEnabled]);
+
 
   return (
     <div className={styles.scrollContainer} ref={scrollRef}>
       <div
         className={styles.imageTrack}
-   
         id="imageTrack"
-        
       >
         <Cardo source="/selfPhotos/IMG-0092.jpg" />
         <Cardo source="/selfPhotos/IMG-8046.jpg" />
