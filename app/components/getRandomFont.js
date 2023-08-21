@@ -10,13 +10,9 @@ const getRandomColor = () => {
 
   return color;
 };
-const getWindowSize = () => {
-  useWindowSize();
-  return { innerWidth, innerHeight };
-};
+
 
 const RandomSquare = () => {
-  
 
 
   const [objectSize] = useState(Math.floor(Math.random() * (((innerWidth - (innerWidth/3))-500) + 500)));
@@ -104,7 +100,7 @@ const RandomSquare = () => {
       }
       clearInterval(interval);
     };
-  }, [position, direction, isTranslationsEnabled]);
+  }, [objectSize, position, direction, isTranslationsEnabled]);
 
   return (
     <div
