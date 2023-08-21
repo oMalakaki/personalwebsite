@@ -51,8 +51,7 @@ const HomePage = () => {
             left: "0",
             top: "0",
             overflow: "hidden",
-            filter: "blur(100px)",
-            backgroundColor: "#e61f3a",
+            filter: "blur(50px)",
           }}
         >
           <GenerateBackground />
