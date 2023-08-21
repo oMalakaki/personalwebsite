@@ -11,9 +11,9 @@ const getRandomColor = () => {
   return color;
 };
 
-
 const RandomSquare = () => {
-
+  useWindowSize();
+  
 
   const [objectSize] = useState(Math.floor(Math.random() * (((innerWidth - (innerWidth/3))-500) + 500)));
 
