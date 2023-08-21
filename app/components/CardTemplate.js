@@ -10,7 +10,7 @@ function Cardo({source, title, percentage}) {
         className={styles.image}
         src={source}
         draggable="false"
-        style={{ transform: `translateX(${percentage / 5}%)` }}
+        
       ></img>
 
    

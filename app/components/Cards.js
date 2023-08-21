@@ -57,6 +57,12 @@ export default function Cards() {
       pos = {
         left: container.scrollLeft,
       };
+      let scrollSpeed = 10; // Default scroll speed for desktop
+
+      if (window.innerWidth <= 768) {
+        // Adjust scroll speed for mobile devices
+        scrollSpeed = 20;
+      }
 
       const trackEnd = ((pos.left + window.innerWidth) / container.scrollWidth) * 100;
 
@@ -66,7 +72,8 @@ export default function Cards() {
         setDirection(1);
       }
 
-      container.scrollLeft += direction * 10;
+      container.scrollLeft += direction * scrollSpeed;
+      console.log(scrollSpeed);
     };
 
     const interval = setInterval(moveTrack, 10);
@@ -87,20 +94,20 @@ export default function Cards() {
         className={styles.imageTrack}
         id="imageTrack"
       >
-        <Cardo source="/selfPhotos/IMG-0092.jpg" />
-        <Cardo source="/selfPhotos/IMG-8046.jpg" />
-        <Cardo source="/selfPhotos/IMG-0199.jpg" />
-        <Cardo source="/selfPhotos/2023-07-14 22 02 34.270.JPEG" />
-        <Cardo source="/selfPhotos/IMG-2111.JPEG" />
-        <Cardo source="/selfPhotos/DSCN0454.JPG" />
-        <Cardo source="/selfPhotos/IMG-3922.jpg" />
-        <Cardo source="/selfPhotos/IMG-7811.JPG" />
-        <Cardo source="/selfPhotos/IMG-4304.JPEG" />
-        <Cardo source="/selfPhotos/IMG-8401-Original.jpg" />
-        <Cardo source="/selfPhotos/IMG-4881.jpg" />
-        <Cardo source="/selfPhotos/IMG-8083-Original.jpg" />
-        <Cardo source="/selfPhotos/IMG-8084-Original.jpg" />
-        <Cardo source="/selfPhotos/IMG-5450.JPG" />
+        <Cardo source="https://i.imgur.com/Wwol4o6.jpg" />
+        <Cardo source="https://i.imgur.com/KqvP7LG.jpg" />
+        <Cardo source="https://i.imgur.com/RSJb66N.jpg" />
+        <Cardo source="https://i.imgur.com/ErvLyef.jpg" />
+        <Cardo source="https://i.imgur.com/ds0U0TT.jpg" />
+        <Cardo source="https://i.imgur.com/Ol7AB9K.jpg" />
+        <Cardo source="https://i.imgur.com/EKRJqHE.jpg" />
+        <Cardo source="https://i.imgur.com/iuJwYU1.jpg" />
+        <Cardo source="https://i.imgur.com/wSZ75M9.jpg" />
+        <Cardo source="https://i.imgur.com/y5TUTWD.jpg" />
+        <Cardo source="https://i.imgur.com/ldKSUfA.jpg" />
+        <Cardo source="https://i.imgur.com/hHdxFbm.jpg" />
+        <Cardo source="https://i.imgur.com/s2YQVFd.jpg" />
+        <Cardo source="https://i.imgur.com/FwSMJvZ.jpg" />
       </div>
     </div>
   );

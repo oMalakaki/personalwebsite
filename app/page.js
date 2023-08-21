@@ -1,22 +1,41 @@
-
-import Image from "next/image";
+"use client";
 import Cards from "./components/Cards";
 import MakeBox from "./components/MakeBox";
-import ImageCarousel from "./components/ImageCarousel";
+import { useEffect, useState } from "react";
 import GenerateBackground from "./components/GenerateBackground"; // Make sure to provide the correct path
 
-
 const HomePage = () => {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    // Update window width when the component mounts and on window resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    handleResize(); // Set initial window width
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <div className="noise" />
+      {windowWidth > 744 && <div className="noise" />}
       <div className="pageContainerSplash">
         <div className="titleText cut-out-text">
           <div className="menu">
-            <h2><a href="#aboutLink">About</a></h2>
-            <h2><a href="#resumeLink">Resume</a></h2>
-            <h2><a href="#projectsLink">Projects</a></h2>
-
+            <h2>
+              <a href="#aboutLink">About</a>
+            </h2>
+            <h2>
+              <a href="#resumeLink">Resume</a>
+            </h2>
+            <h2>
+              <a href="#projectsLink">Projects</a>
+            </h2>
           </div>
           <h1>
             Alex <br />
@@ -36,7 +55,7 @@ const HomePage = () => {
             backgroundColor: "#e61f3a",
           }}
         >
-<GenerateBackground />
+          <GenerateBackground />
         </div>
         {/* <div className="graffiti">
         <img src="alexgraffiti.svg"/>
@@ -66,7 +85,7 @@ const HomePage = () => {
         </div>
         <Cards />
       </div>
-      <div className="pageContainer resume"id="resumeLink">
+      <div className="pageContainer resume" id="resumeLink">
         <div className="container">
           <h2>Resume</h2>
           <div className="resumeText">
@@ -74,12 +93,10 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="pageContainer projects"id="projectsLink">
+      <div className="pageContainer projects" id="projectsLink">
         <div className="container">
           <h2>Projects</h2>
-          <div className="projectsText">
-
-          </div>
+          <div className="projectsText"></div>
         </div>
       </div>
     </>
