@@ -1,6 +1,3 @@
-
-
-
 .imageTrack {
   padding-top: 5em;
   display: flex;
@@ -8,9 +5,11 @@
   gap: 0.5em;
   /* margin-top: 0.5em; */
 
-  height: 100%;
-width: fit-content;
-
+  height: fit-content;
+  width: fit-content;
+  position: absolute; /* Position absolutely within the content */
+  top: 0px; /* Initial vertical position */
+  left: 0px; /* Initial horizontal position */
 
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
@@ -18,38 +17,38 @@ width: fit-content;
   cursor: -webkit-grab;
   -webkit-overflow-scrolling: touch;
   user-select: none;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .imageTrack:active {
   cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
 }
 
 .imageTrack::-webkit-scrollbar {
   display: none;
 }
 
-.cardTemp img{
-
+.cardTemp img {
   object-fit: cover;
   object-position: 100% center;
   width: 30em;
   height: 30em;
 }
 .cardTemp {
-  overflow: hidden; 
+  overflow: hidden;
 
   width: 30em;
   height: 30em;
-
 }
 
-
 .scrollContainer {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   overflow: auto;
+  width: 100%;
+  height: 30em;
+  position: relative; /* Required for positioning child elements */
 }
