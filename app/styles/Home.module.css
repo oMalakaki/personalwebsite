@@ -10,7 +10,7 @@
   position: absolute; /* Position absolutely within the content */
   top: 0px; /* Initial vertical position */
   left: 0px; /* Initial horizontal position */
-
+  transform: translateX(0); /* Initial translation */
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
   cursor: -moz-grab;
@@ -37,6 +37,7 @@
   object-position: 100% center;
   width: 30em;
   height: 30em;
+  scale: 115%;
 }
 .cardTemp {
   overflow: hidden;
@@ -46,8 +47,8 @@
 }
 
 .scrollContainer {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* -ms-overflow-style: none; 
+  scrollbar-width: none; Firefox */
   overflow-x: auto;
   width: 100%;
   height: 30em;
