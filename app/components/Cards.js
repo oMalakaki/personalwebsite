@@ -73,18 +73,38 @@ export default function Cards() {
       }
 
       container.scrollLeft += direction * scrollSpeed;
-      console.log(scrollSpeed);
+      console.log(container.scrollLeft);
     };
+    
 
     const interval = setInterval(moveTrack, 10);
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
 
+      if (window.scrollY < 475 || window.scrollY > 2000) {
+        // Stop translations
+        setTranslationsEnabled(false);
+      } else {
+        // Enable translations again
+        setTranslationsEnabled(true);
+      }}
+    };
+    if (typeof window !== "undefined") {
+      
+      window.addEventListener("scroll", handleScroll); // Add scroll event listener
+    }
     return () => {
       clearInterval(interval);
       container.removeEventListener('mousedown', mouseDownHandler);
       container.removeEventListener('mouseenter', mouseEnterHandler);
       container.removeEventListener('mouseleave', mouseLeaveHandler);
       container.removeEventListener("touchmove", handleTouchInteractionStart);
+      if (typeof window !== "undefined") {
+      
+        window.removeEventListener("scroll", handleScroll); // Add scroll event listener
+      }
     };
+    
   }, [direction, isTranslationsEnabled]);
 
 
