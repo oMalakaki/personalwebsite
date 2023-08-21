@@ -11,7 +11,7 @@ const getRandomColor = () => {
   return color;
 };
 const getWindowSize = () => {
-  const { innerWidth, innerHeight } = useWindowSize();
+  useWindowSize();
   return { innerWidth, innerHeight };
 };
 
