@@ -23,13 +23,15 @@ const images = [
 ];
 
 const GenerateBackground = () => {
+  
   const squares = [];
 
   for (let i = 0; i <= 10; i++) {
     squares.push(<RandomSquare key={i} />);
   }
-
+  
   return squares;
+  
 };
 
 const HomePage = () => {
@@ -62,7 +64,7 @@ const HomePage = () => {
             backgroundColor: "#e61f3a",
           }}
         >
-          <GenerateBackground />
+<GenerateBackground />
         </div>
         {/* <div className="graffiti">
         <img src="alexgraffiti.svg"/>

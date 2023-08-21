@@ -2,40 +2,44 @@
 import { useEffect, useState } from "react";
 import { useWindowSize } from "rooks";
 
+const getRandomDirection = () => ({
+  x: Math.random() > 0.5 ? 1 : -1,
+  y: Math.random() > 0.5 ? 1 : -1,
+});
 
 const getRandomColor = () => {
   var colors = ["#0e0502", "#229b63", "#12918b", "#f25d0a", "#380d54"];
-  let color = "#";
-  color = colors[Math.floor(Math.random() * colors.length)];
+  let color = colors[Math.floor(Math.random() * colors.length)];
 
   return color;
 };
 
 const RandomSquare = () => {
-  useWindowSize();
-  
-
-  const [objectSize] = useState(Math.floor(Math.random() * (((innerWidth - (innerWidth/3))-500) + 500)));
-
-  const [position, setPosition] = useState({
-    x: Math.random() * (innerWidth - objectSize),
-    y: Math.random() * (innerHeight - objectSize),
-  });
-
-  const [direction, setDirection] = useState({
-    x: Math.random() > 0.5 ? 1 : -1,
-    y: Math.random() > 0.5 ? 1 : -1,
-  });
-  const [color] = useState(getRandomColor());
+  const { innerWidth, innerHeight } = useWindowSize();
+  const [objectSize, setObjectSize] = useState(0);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [direction, setDirection] = useState(getRandomDirection());
+  const [color, setColor] = useState("");
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
   useEffect(() => {
-    const getRandomDirection = () => {
-      const x = Math.random() > 0.5 ? 1 : -1;
-      const y = Math.random() > 0.5 ? 1 : -1;
-      return { x, y };
-    };
+    if (typeof window !== "undefined") {
+      setObjectSize(
+        Math.floor(Math.random() * (((innerWidth - (innerWidth / 3)) - 500) + 500))
+      );
+    }
+  }, [innerWidth]);
 
+  useEffect(() => {
+    setPosition({
+      x: Math.random() * (innerWidth - objectSize),
+      y: Math.random() * (innerHeight - objectSize),
+    });
+    setDirection(getRandomDirection());
+    setColor(getRandomColor());
+  }, [objectSize, innerHeight]);
+
+  useEffect(() => {
     const moveSquare = () => {
       if (!isTranslationsEnabled) return; // Check if translations are enabled
       const newPosition = {
@@ -101,9 +105,10 @@ const RandomSquare = () => {
       clearInterval(interval);
     };
   }, [objectSize, position, direction, isTranslationsEnabled]);
+  
 
   return (
-    <div
+    <div id="blob"
       style={{
         position: "absolute",
         width: objectSize,
@@ -114,7 +119,7 @@ const RandomSquare = () => {
         
         transform: `translate(${position.x}px, ${position.y}px)`,
       }}
-    />
+    ></div>
   );
 };
 
