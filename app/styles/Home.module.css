@@ -5,7 +5,7 @@
   gap: 0.5em;
   /* margin-top: 0.5em; */
 
-  height: fit-content;
+  height: 30em;
   width: fit-content;
   position: absolute; /* Position absolutely within the content */
   top: 0px; /* Initial vertical position */
@@ -19,6 +19,7 @@
   user-select: none;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  overflow: hidden;
 }
 
 .imageTrack:active {

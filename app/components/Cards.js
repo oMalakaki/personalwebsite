@@ -21,10 +21,7 @@ export default function Cards() {
   useEffect(() => {
    
     const track = trackRef.current;
-    // Check if a position is stored in localStorage
-    const storedPosition = localStorage.getItem('initialPosition');
 
-    
     
     const handleInteractionStart = (e) => {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -73,11 +70,11 @@ export default function Cards() {
     };
 
     window.addEventListener("mousedown", handleInteractionStart);
-    window.addEventListener("touchstart", handleTouchInteractionStart);
+    
     window.addEventListener("mouseup", handleMouseOrTouchEnd);
-    // window.addEventListener("touchend", handleMouseOrTouchEnd);
+  
     track.addEventListener("mousemove", handleMouseOrTouchMove);
-    // track.addEventListener("touchmove", handleMouseOrTouchMove);
+    track.addEventListener("touchmove", handleTouchInteractionStart);
 
     const getNewDirection = () => {
       return { x: direction.x === -1 ? 1 : -1 };
@@ -107,11 +104,11 @@ export default function Cards() {
       clearInterval(interval);
 
       window.removeEventListener("mousedown", handleInteractionStart);
-      window.removeEventListener("touchstart", handleInteractionStart);
+
       window.removeEventListener("mouseup", handleMouseOrTouchEnd);
-      // window.removeEventListener("touchend", handleMouseOrTouchEnd);
+   
       track.removeEventListener("mousemove", handleMouseOrTouchMove);
-      // track.removeEventListener("touchmove", handleMouseOrTouchMove);
+    track.removeEventListener("touchmove", handleTouchInteractionStart);
     };
 
   }, [
