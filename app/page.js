@@ -1,7 +1,26 @@
 import RandomSquare from "./components/getRandomFont";
 import Image from "next/image";
 import Cards from "./components/Cards";
-import ResumeBox from "./components/ResumeBox";
+import MakeBox from "./components/MakeBox";
+import ImageCarousel from "./components/ImageCarousel";
+
+const images = [
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+  "https://source.unsplash.com/random",
+];
 
 const GenerateBackground = () => {
   const squares = [];
@@ -77,7 +96,7 @@ const HomePage = () => {
         <div className="container">
           <h2>Resume</h2>
           <div className="resumeText">
-            <ResumeBox />
+            <MakeBox />
           </div>
         </div>
       </div>
@@ -85,7 +104,7 @@ const HomePage = () => {
         <div className="container">
           <h2>Projects</h2>
           <div className="projectsText">
-            <p> projects here</p>
+            <ImageCarousel  images={images} />
           </div>
         </div>
       </div>

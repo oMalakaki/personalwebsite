@@ -10,11 +10,16 @@ const getRandomColor = () => {
 
   return color;
 };
+const getWindowSize = () => {
+  const { innerWidth, innerHeight } = useWindowSize();
+  return { innerWidth, innerHeight };
+};
 
 const RandomSquare = () => {
-  const { innerWidth, innerHeight } = useWindowSize();
+  
 
-  const [objectSize] = useState(Math.floor(Math.random() * ((1200 - 500) + 500)));
+
+  const [objectSize] = useState(Math.floor(Math.random() * (((innerWidth - (innerWidth/3))-500) + 500)));
 
   const [position, setPosition] = useState({
     x: Math.random() * (innerWidth - objectSize),

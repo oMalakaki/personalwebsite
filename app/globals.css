@@ -6,8 +6,9 @@
   margin: 0;
   scroll-behavior: smooth;
 }
-body{
+body {
   background-color: black;
+  font-family: Poppins;
 }
 .noise {
   z-index: 9999999;
@@ -34,8 +35,7 @@ body{
 .titleText h1 {
   font-size: 12rem;
   line-height: 0.8em;
-  letter-spacing: -.05em;
- 
+  letter-spacing: -0.05em;
 }
 .cut-out-text {
   color: white; /* Text color */
@@ -55,7 +55,6 @@ body{
   justify-content: center;
 }
 
-
 .menu {
   display: flex;
   flex-direction: row;
@@ -63,19 +62,20 @@ body{
   justify-content: flex-end;
   width: 100%;
   z-index: 8;
-
 }
 .menu h2 {
   font-size: 2em;
   transition: 0.1s ease-in-out;
   cursor: pointer;
-  letter-spacing: -.03em;
+  letter-spacing: -0.03em;
   font-weight: 500;
 }
 .menu h2:hover {
   scale: 1.05;
 }
-
+.menu h2 a {
+  all: unset;
+}
 .titleText {
   display: flex;
   z-index: 2;
@@ -87,7 +87,7 @@ body{
 .name {
   display: flex;
   flex-direction: column;
-  letter-spacing: -.8em;
+  letter-spacing: -0.8em;
 }
 
 /* Add a media query for smaller screens */
@@ -103,21 +103,17 @@ body{
     flex-direction: column;
     gap: 2em;
     text-align: center;
-    
-
   }
   .menu h2 {
     font-size: 1.5em;
     transition: 0.1s ease-in-out;
     cursor: pointer;
-    
   }
   .titleText {
     display: flex;
     z-index: 2;
     gap: 2em;
     flex-direction: column-reverse;
-    
   }
 }
 
@@ -141,7 +137,6 @@ body{
 }
 
 .about {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -149,7 +144,7 @@ body{
 }
 .pageContainer h2 {
   font-size: 4em;
-  letter-spacing: -.07em;
+  letter-spacing: -0.07em;
 }
 p {
   font-size: 1em;
@@ -157,17 +152,14 @@ p {
   line-height: 21px;
 }
 
-
 .about .container {
   align-self: center;
-
 }
 .container {
   position: relative;
   padding: 4em 4em 0 4em;
   max-width: 1440px;
   width: 100%;
-
 }
 .aboutText {
   position: relative;
@@ -175,7 +167,6 @@ p {
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;
-  
 }
 
 .pageContainer {
@@ -185,9 +176,8 @@ p {
   overflow-x: hidden;
   min-height: 100vh;
   color: white;
-  display:flex;
+  display: flex;
   justify-content: center;
-  
 }
 
 /* Add a media query for smaller screens */
@@ -195,7 +185,7 @@ p {
   .container {
     flex-direction: column; /* Switch container to column layout */
     align-items: center; /* Center-align content in column layout */
-    padding: 4em;
+    padding: 2em;
   }
 
   .aboutText {
@@ -208,15 +198,27 @@ p {
     width: 100%; /* Make the paragraph full width */
     min-width: unset; /* Remove the minimum width */
   }
+  .pair {
+
+    flex-direction: column;
+    padding-bottom: 1em;
+  }
+  .pair h4 {
+    align-self: flex-start;
+  
+  }
 }
 
 .resumeBox {
-  width: 600px;
+  width: fit-content;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  padding: 20px;
-
+  
+}
+.resumeBox h3 {
+  text-transform: uppercase;
+  font-size: 1.5em;
 }
 .resumeText {
   margin-top: 2em;
@@ -229,19 +231,24 @@ p {
 .pair {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 450px;
+}
+.boxList {
+  display: flex;
+  align-items: center;
+  width: 450px;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+}
+.boxList p {
+  width: 30%;
 }
 .pair p {
-  text-align: right;
+  text-align: left;
   width: 100%;
-  background-color:black;
-
+  background-color: black;
 }
 .pair h4 {
-  font-weight: 500;
-
-}
-
-.menu h2 a{
-  all: unset;
+  width: 30%;
 }

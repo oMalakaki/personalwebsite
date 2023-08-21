@@ -8,7 +8,14 @@ export default function Cards() {
   const [interactionStart, setInteractionStart] = useState(null);
   const [prevPercentage, setPrevPercentage] = useState(0);
   const [percentage, setPercentage] = useState(0);
+  const [position, setPosition] = useState({
+    x: 0,
+  });
+  const [direction, setDirection] = useState({
+    x: -1,
+  });
 
+  const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
   useEffect(() => {
     const track = trackRef.current;
 
@@ -16,10 +23,11 @@ export default function Cards() {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       setInteractionStart(clientX);
     };
-
+    
     const handleInteractionEnd = () => {
       setInteractionStart(null);
       setPrevPercentage(percentage);
+
     };
 
     const handleInteractionMove = (e) => {
@@ -29,18 +37,17 @@ export default function Cards() {
       const interactionDelta = interactionStart - clientX;
       const maxDelta = track.scrollWidth;
 
-      const percentage = (interactionDelta / maxDelta) * -100;
-      const nextPercentageUnconstrained = prevPercentage + percentage;
+      const calculatedPercentage = (interactionDelta / maxDelta) * -100;
+      const nextPercentageUnconstrained = prevPercentage + calculatedPercentage;
       const nextPercentage = Math.max(
         Math.min(nextPercentageUnconstrained, 0),
-        -(100 - (window.innerWidth / track.scrollWidth) * 100)
+        -(100 - (window.innerWidth / maxDelta) * 100)
       );
 
       setPercentage(nextPercentage);
+      setTranslationsEnabled(false);
 
       track.style.transform = `translate(${nextPercentage}%, 0%)`;
-
-      
     };
 
     const handleMouseOrTouchEnd = () => {
@@ -57,37 +64,77 @@ export default function Cards() {
 
     window.addEventListener("mousedown", handleInteractionStart);
     window.addEventListener("touchstart", handleInteractionStart);
-
     window.addEventListener("mouseup", handleMouseOrTouchEnd);
     window.addEventListener("touchend", handleMouseOrTouchEnd);
-
     track.addEventListener("mousemove", handleMouseOrTouchMove);
     track.addEventListener("touchmove", handleMouseOrTouchMove);
 
+    const getNewDirection = () => {
+      return { x: direction.x === -1 ? 1 : -1 };
+    };
+
+    const moveTrack = () => {
+      if (!isTranslationsEnabled) return;
+      const maxDelta = (window.innerWidth / track.scrollWidth) * 100;
+      const newPosition = {
+        x: position.x + direction.x * 0.015, // Adjust speed as needed
+      };
+
+      setPosition(newPosition);
+      setPrevPercentage(position.x);
+
+      if (
+        (position.x < -100 + maxDelta && direction.x == -1) ||
+        (position.x > 0 && direction.x === 1)
+      ) {
+        setDirection(getNewDirection());
+      }
+    };
+
+    const interval = setInterval(moveTrack, 10); // Adjust interval as needed
+
     return () => {
+      clearInterval(interval);
+
       window.removeEventListener("mousedown", handleInteractionStart);
       window.removeEventListener("touchstart", handleInteractionStart);
-
       window.removeEventListener("mouseup", handleMouseOrTouchEnd);
       window.removeEventListener("touchend", handleMouseOrTouchEnd);
-
       track.removeEventListener("mousemove", handleMouseOrTouchMove);
       track.removeEventListener("touchmove", handleMouseOrTouchMove);
     };
-  }, [interactionStart, prevPercentage, percentage]);
+  }, [
+    interactionStart,
+    prevPercentage,
+    percentage,
+    position,
+    direction,
+    isTranslationsEnabled,
+  ]);
 
   return (
-    <div className={styles.imageTrack} id="imageTrack" ref={trackRef}>
+    <div
+      className={styles.imageTrack}
+      id="imageTrack"
+      ref={trackRef}
+      style={{
+        transform: `translate(${position.x}%, 0px)`,
+      }}
+    >
       <Cardo source="/selfPhotos/IMG-0092.jpg" />
+      <Cardo source="/selfPhotos/IMG-8046.jpg" />
       <Cardo source="/selfPhotos/IMG-0199.jpg" />
+      <Cardo source="/selfPhotos/2023-07-14 22 02 34.270.JPEG" />
       <Cardo source="/selfPhotos/IMG-2111.JPEG" />
+      <Cardo source="/selfPhotos/DSCN0454.JPG" />
       <Cardo source="/selfPhotos/IMG-3922.jpg" />
+      <Cardo source="/selfPhotos/IMG-7811.JPG" />
       <Cardo source="/selfPhotos/IMG-4304.JPEG" />
+      <Cardo source="/selfPhotos/IMG-8401-Original.jpg" />
       <Cardo source="/selfPhotos/IMG-4881.jpg" />
-      <Cardo
-        source="/selfPhotos/IMG-8084-Original.jpg"
-       
-      />
+      <Cardo source="/selfPhotos/IMG-8083-Original.jpg" />
+      <Cardo source="/selfPhotos/IMG-8084-Original.jpg" />
+      <Cardo source="/selfPhotos/IMG-5450.JPG" />
     </div>
   );
 }
