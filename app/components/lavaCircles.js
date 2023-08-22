@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useWindowSize } from "rooks";
 
 const getRandomDirection = () => ({
@@ -17,37 +17,37 @@ const getRandomColor = () => {
 const RandomSquare = () => {
   const { innerWidth, innerHeight } = useWindowSize();
   const [objectSize, setObjectSize] = useState(0);
-  const [position, setPosition] = useState({  x: 0, y: 0});
-  const [direction, setDirection] = useState(getRandomDirection());
+  const [position, setPosition] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [color, setColor] = useState("");
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
  
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setObjectSize(
-        Math.floor(Math.random() * (((innerWidth - (innerWidth / 3)) - 500) + 500))
-      );
-    }
-  }, [innerWidth]);
+    const minSize = 500;
+    const maxSize = innerWidth - (innerWidth / 2.5);
+    const randomSize = Math.random() * (maxSize - minSize) + minSize;
+    setObjectSize(randomSize);
+  }, []);
+  
 
   useEffect(() => {
     setPosition({
-      x: Math.random() * (innerWidth - objectSize),
-      y: Math.random() * (innerHeight - objectSize),
+      x: Math.random() * (innerWidth/2 - objectSize),
+      y: Math.random() * (innerHeight/2 - objectSize),
     });
-    
-    // setDirection({x: 1, y: 1}); // Moved direction initialization here
+    setDirection(getRandomDirection());
     setColor(getRandomColor());
-  }, [objectSize, innerHeight]);
+  }, []);
+  
 
   
   useEffect(() => {
     const moveSquare = () => {
       if (!isTranslationsEnabled) return; // Check if translations are enabled
       const newPosition = {
-        x: position.x + direction.x * 1, // Adjust speed as needed
-        y: position.y + direction.y * 1,
+        x: position.x + direction.x * .75, // Adjust speed as needed
+        y: position.y + direction.y * .75,
       };
 
       if (
@@ -98,7 +98,7 @@ const RandomSquare = () => {
       window.addEventListener("scroll", handleScroll); // Add scroll event listener
     }
 
-    const interval = setInterval(moveSquare, 30); // Adjust interval as needed
+    const interval = setInterval(moveSquare, 10); // Adjust interval as needed
 
     return () => {
       if (typeof window !== "undefined") {
