@@ -6,21 +6,30 @@ import GenerateBackground from "./components/GenerateBackground"; // Make sure t
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
+  const [isScrolledPast500, setIsScrolledPast500] = useState(false);
 
   useEffect(() => {
-    // Update window width when the component mounts and on window resize
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    handleResize(); // Set initial window width
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolledPast500(true);
+      } else {
+        setIsScrolledPast500(false);
+      }
+    };
+
+    handleResize();
     window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       {windowWidth > 744 && <div className="noise" />}
@@ -44,14 +53,15 @@ const HomePage = () => {
         </div>
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             width: "100%",
             scale: "1.4",
             height: "100%",
             left: "0",
             top: "0",
             overflow: "hidden",
-            // filter: "blur(50px)",
+            transition: ".25s ease-in-out",
+            filter: isScrolledPast500 ? "blur(50px)" : "none",
           }}
         >
           <GenerateBackground />

@@ -44,7 +44,7 @@ const RandomSquare = () => {
   
   useEffect(() => {
     const moveSquare = () => {
-      if (!isTranslationsEnabled) return; // Check if translations are enabled
+      // if (!isTranslationsEnabled) return; // Check if translations are enabled
       const newPosition = {
         x: position.x + direction.x * .75, // Adjust speed as needed
         y: position.y + direction.y * .75,

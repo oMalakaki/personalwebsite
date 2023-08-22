@@ -9,7 +9,7 @@
 }
 body,html {
   font-family: 'Poppins', sans-serif;
-  background-color: black;
+  background-color: #e61f3a;
   
 }
 .noise {
@@ -226,12 +226,18 @@ p {
 .pair p {
   text-align: left;
   width: 100%;
-  background-color: black;
+  
 }
 .pair h4 {
   width: 35%;
 }
 
+a {
+  all:unset;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 /* Add a media query for smaller screens */
 @media screen and (max-width: 915px) {
