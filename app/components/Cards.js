@@ -73,7 +73,7 @@ export default function Cards() {
       }
 
       container.scrollLeft += direction * scrollSpeed;
-      console.log(container.scrollLeft);
+   
     };
     
 

@@ -5,7 +5,7 @@ import { useWindowSize } from "rooks";
 const getRandomDirection = () => ({
   x: Math.random() > 0.5 ? 1 : -1,
   y: Math.random() > 0.5 ? 1 : -1,
-});
+})
 
 const getRandomColor = () => {
   var colors = ["#0e0502", "#229b63", "#12918b", "#f25d0a", "#380d54"];
@@ -17,11 +17,12 @@ const getRandomColor = () => {
 const RandomSquare = () => {
   const { innerWidth, innerHeight } = useWindowSize();
   const [objectSize, setObjectSize] = useState(0);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({  x: 0, y: 0});
   const [direction, setDirection] = useState(getRandomDirection());
   const [color, setColor] = useState("");
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
+ 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setObjectSize(
@@ -35,10 +36,12 @@ const RandomSquare = () => {
       x: Math.random() * (innerWidth - objectSize),
       y: Math.random() * (innerHeight - objectSize),
     });
-    setDirection(getRandomDirection());
+    
+    // setDirection({x: 1, y: 1}); // Moved direction initialization here
     setColor(getRandomColor());
   }, [objectSize, innerHeight]);
 
+  
   useEffect(() => {
     const moveSquare = () => {
       if (!isTranslationsEnabled) return; // Check if translations are enabled
@@ -105,18 +108,15 @@ const RandomSquare = () => {
       clearInterval(interval);
     };
   }, [objectSize, position, direction, isTranslationsEnabled]);
-  
-
   return (
-    <div id="blob"
+    <div
+      id="blob"
       style={{
         position: "absolute",
         width: objectSize,
         height: objectSize,
         backgroundColor: color,
-      
         borderRadius: "100%",
-        
         transform: `translate(${position.x}px, ${position.y}px)`,
       }}
     ></div>

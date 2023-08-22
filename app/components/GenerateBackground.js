@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import RandomSquare from "./getRandomFont"; // Make sure to provide the correct path
+import RandomSquare from "./lavaCircles"; // Make sure to provide the correct path
 
 const GenerateBackground = () => {
   const [numSquares, setNumSquares] = useState(4); // Default to 4 squares
