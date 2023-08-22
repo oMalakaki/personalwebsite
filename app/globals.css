@@ -10,6 +10,7 @@
 body,html {
   font-family: 'Poppins', sans-serif;
   background-color: #e61f3a;
+  overflow-x: hidden;
   
 }
 .noise {
@@ -150,7 +151,7 @@ body,html {
   letter-spacing: -0.07em;
 }
 p {
-  font-size: 1em;
+  font-size: 1.1em;
   max-width: 600px;
   line-height: 21px;
 }
@@ -195,7 +196,7 @@ p {
 }
 .resumeBox h3 {
   text-transform: uppercase;
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 .resumeText {
   margin-top: 2em;
@@ -230,6 +231,7 @@ p {
 }
 .pair h4 {
   width: 35%;
+  font-size: 1.1em;
 }
 
 a {
@@ -239,6 +241,43 @@ a {
   text-decoration: underline;
 }
 
+ .resume {
+  width: 100%;
+  height: 100%;
+}
+.pdf-container {
+  width: 90%;
+  height: 95%; 
+  opacity: 1;
+}
+.modal-background {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+#closeModalBtn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  left: 0;
+  background-color: red;
+}
+#openModalBtn {
+  
+  width: 50px;
+  height: 50px;
+  
+  background-color: pink;
+}
 /* Add a media query for smaller screens */
 @media screen and (max-width: 915px) {
   .container {

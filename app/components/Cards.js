@@ -7,11 +7,12 @@ export default function Cards() {
   const scrollRef = useRef(null);
   const [direction, setDirection] = useState(1); // Initialize direction state
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
-    
+      
     const container = scrollRef.current;
-    let pos = { top: 0, left: 0, x: 0, y: 0 };
+    let pos = {  left: 0, x: 0  };
 
     const mouseDownHandler = function (e) {
 
@@ -51,33 +52,26 @@ export default function Cards() {
     container.addEventListener('mouseenter', mouseEnterHandler);
     container.addEventListener('mouseleave', mouseLeaveHandler);
     container.addEventListener("touchmove", handleTouchInteractionStart);
+    
     const moveTrack = () => {
+      
       if (!isTranslationsEnabled) return;
-
+      
       pos = {
         left: container.scrollLeft,
       };
-      let scrollSpeed = 10; // Default scroll speed for desktop
-
-      if (window.innerWidth <= 768) {
-        // Adjust scroll speed for mobile devices
-        scrollSpeed = 20;
-      }
-
+      
       const trackEnd = ((pos.left + window.innerWidth) / container.scrollWidth) * 100;
 
       if (trackEnd >= 100 && direction === 1) {
         setDirection(-1);
       } else if (container.scrollLeft === 0 && direction === -1) {
         setDirection(1);
-      }
-
-      container.scrollLeft += direction * scrollSpeed;
-   
+      } 
+      container.scrollLeft += direction*2
     };
-    
+    const interval = setInterval(moveTrack, 100);
 
-    const interval = setInterval(moveTrack, 10);
     const handleScroll = () => {
       if (typeof window !== "undefined") {
 
@@ -87,6 +81,7 @@ export default function Cards() {
       } else {
         // Enable translations again
         setTranslationsEnabled(true);
+        
       }}
     };
     if (typeof window !== "undefined") {

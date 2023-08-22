@@ -2,7 +2,8 @@
 import Cards from "./components/Cards";
 import MakeBox from "./components/MakeBox";
 import { useEffect, useState } from "react";
-import GenerateBackground from "./components/GenerateBackground"; // Make sure to provide the correct path
+import GenerateBackground from "./components/GenerateBackground"; 
+import ResumeModal from "./components/resumeModal"; 
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
@@ -14,7 +15,7 @@ const HomePage = () => {
     };
 
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY  > 100) {
         setIsScrolledPast500(true);
       } else {
         setIsScrolledPast500(false);
@@ -100,12 +101,15 @@ const HomePage = () => {
           <div className="resumeText">
             <MakeBox />
           </div>
+          <ResumeModal />
         </div>
       </div>
       <div className="pageContainer projects" id="projectsLink">
         <div className="container">
           <h2>Projects</h2>
-          <div className="projectsText"></div>
+          <div className="projectsText">
+          
+          </div>
         </div>
       </div>
     </>
