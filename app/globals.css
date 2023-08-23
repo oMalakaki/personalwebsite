@@ -16,6 +16,12 @@ body {
   flex-direction: column;
   
 }
+html {
+
+  overflow-x: hidden;
+
+  
+}
 
 .noise {
   z-index: 9999999;
@@ -143,13 +149,7 @@ body {
   z-index: 1;
 }
 
-.about {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  
-}
+
 .pageContainer h2 {
   font-size: 4em;
   letter-spacing: -0.07em;
