@@ -36,7 +36,7 @@ export default function ResumeModal() {
     <>
       <div id="openModalBtn" onClick={openModal}>
         <p>View PDF</p>
-        <Document file="/Alex Canfield Resume-9.pdf">
+        <Document file="/AlexCanfieldResume.pdf">
           <Page 
             renderAnnotationLayer={false}
             renderTextLayer={false}
@@ -53,18 +53,18 @@ export default function ResumeModal() {
           <div className="pdf-container">
             {windowWidth >= 700 ? (
               <object
-                data="/Alex Canfield Resume-9.pdf"
+                data="/AlexCanfieldResume.pdf"
                 type="application/pdf"
                 width="100%"
                 height="100%"
               >
                 <p>
                   Your browser does not support PDFs.{" "}
-                  <a href="/Alex Canfield Resume-9.pdf">Download the PDF</a> instead.
+                  <a href="/AlexCanfieldResume.pdf">Download the PDF</a> instead.
                 </p>
               </object>
             ) : (
-                <Document file="/Alex Canfield Resume-9.pdf">
+                <Document file="/AlexCanfieldResume.pdf">
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
