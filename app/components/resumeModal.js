@@ -15,11 +15,13 @@ export default function ResumeModal() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-
+    if (typeof window !== "undefined") {
     window.addEventListener("resize", handleResize);
-
+    }
     return () => {
+        if (typeof window !== "undefined") {
       window.removeEventListener("resize", handleResize);
+        }
     };
   }, []);
 
