@@ -244,6 +244,7 @@ a {
   width: 90%;
   height: 95%; 
   opacity: 1;
+
 }
 .modal-background {
   width: 100%;
@@ -252,29 +253,83 @@ a {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
-
+  gap: 2%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
 }
 #closeModalBtn {
-  position: absolute;
+  position: relative;
+  align-self: flex-start;
   width: 50px;
   height: 50px;
-  top: 0;
-  left: 0;
-  background-color: red;
+  top: 2.5%;
+  background-repeat: no-repeat;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Cross_icon_%28white%29.svg/2048px-Cross_icon_%28white%29.svg.png");
+  background-size: contain;
+  cursor: pointer;
 }
 #openModalBtn {
+  margin-top: 3em;
+  cursor: pointer;
+  width: min-content;
+  position: relative;
+  display: inline-block;
   
-  width: 50px;
-  height: 50px;
-  
-  background-color: pink;
 }
+
+#openModalBtn::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 100%;
+  height: 100%;
+  border: 3px solid white;
+  border-radius: 3px;
+  opacity: 70%;
+
+
+}
+#openModalBtn:hover::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  top: -3px;
+  left: -3px;
+
+  border: 3px solid white;
+  background-color: white;
+  opacity: 70%;
+
+  z-index: 99;
+
+}
+#openModalBtn:hover p{
+  opacity: 1;
+
+}
+#openModalBtn p{
+  opacity: 0;
+  position: absolute;		
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  color: black;
+ 
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+
+
 /* Add a media query for smaller screens */
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 700px) {
   .container {
     flex-direction: column; /* Switch container to column layout */
     align-items: center; /* Center-align content in column layout */
@@ -302,5 +357,24 @@ a {
   }
   .boxList p {
     width: 40%;
+  }
+  .modal-background {
+    flex-direction: column-reverse;
+    gap: 0;
+    
+  }
+  #closeModalBtn {
+    position: relative;
+    align-self: center;
+    width: 50px;
+    height: 50px;
+   
+  
+  }
+  .pdf-container {
+
+    height: min-content; 
+
+  
   }
 }
