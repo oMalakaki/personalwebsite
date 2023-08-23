@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useWindowSize } from "rooks";
@@ -8,11 +7,29 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export default function ResumeModal() {
-    const { innerWidth } = useWindowSize();
+  const { innerWidth } = useWindowSize();
   const [modalVisible, setModalVisible] = useState(false);
 
+  useEffect(() => {
+    const closeModalOnOutsideClick = (event) => {
+      if (event.target.classList.contains("modal-background")) {
+        closeModal();
+      }
+    };
 
+    if (modalVisible) {
+      document.body.style.overflowY = "hidden";
+      document.addEventListener("click", closeModalOnOutsideClick);
+    } else {
+      document.body.style.overflowY = "auto";
+      document.removeEventListener("click", closeModalOnOutsideClick);
+    }
 
+    return () => {
+      document.body.style.overflowY = "auto";
+      document.removeEventListener("click", closeModalOnOutsideClick);
+    };
+  }, [modalVisible]);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -49,12 +66,12 @@ export default function ResumeModal() {
                 height="100%"
               >
                 <p>
-                  Your browser does not support PDFs.{" "}
+                  Your browser does not support PDFs.
                   <a href="/AlexCanfieldResume.pdf">Download the PDF</a> instead.
                 </p>
               </object>
             ) : (
-                <Document file="/AlexCanfieldResume.pdf">
+              <Document file="/AlexCanfieldResume.pdf">
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}

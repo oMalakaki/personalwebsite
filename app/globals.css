@@ -7,12 +7,16 @@
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
-body,html {
+body {
   font-family: 'Poppins', sans-serif;
   background-color: #e61f3a;
   overflow-x: hidden;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
   
 }
+
 .noise {
   z-index: 9999999;
   width: 100%;
@@ -158,25 +162,20 @@ p {
 }
 
 
-.container {
-  position: relative;
-  padding: 4em 4em 0 4em;
-  max-width: 1200px;
-  width: 100%;
-  overflow: hidden;
-  align-self: center;
-}
 
 
 .pageContainer {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden;
   color: white;
-  display: flex;
-  justify-content: center;
+
   margin-bottom: 5em;
+  max-width: 1200px;
+  padding: 4em 4em 0 4em;
+  align-self: center;
+  overflow: visible;
+
 
 }
 
@@ -236,16 +235,14 @@ a {
   text-decoration: underline;
 }
 
- .resume {
-  width: 100%;
-  height: 100%;
-}
+
 .pdf-container {
   width: 90%;
   height: 95%; 
   opacity: 1;
 
 }
+
 .modal-background {
   width: 100%;
   height: 100%;
@@ -254,6 +251,7 @@ a {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
   gap: 2%;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -269,6 +267,11 @@ a {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Cross_icon_%28white%29.svg/2048px-Cross_icon_%28white%29.svg.png");
   background-size: contain;
   cursor: pointer;
+  transition: .1s linear;
+}
+#closeModalBtn:hover {
+  scale: 1.05;
+  
 }
 #openModalBtn {
   margin-top: 3em;
@@ -276,22 +279,10 @@ a {
   width: min-content;
   position: relative;
   display: inline-block;
-  
-}
-
-#openModalBtn::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 100%;
-  height: 100%;
-  border: 3px solid white;
+  border: 3px solid rgba(255,255,255, .5);
   border-radius: 3px;
-  opacity: 70%;
-
-
 }
+
 #openModalBtn:hover::before {
   content: "";
   position: absolute;
@@ -306,7 +297,7 @@ a {
   background-color: white;
   opacity: 70%;
 
-  z-index: 99;
+  z-index: 1;
 
 }
 #openModalBtn:hover p{
@@ -319,7 +310,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 2;
   color: black;
  
   font-weight: 600;
@@ -330,7 +321,7 @@ a {
 
 /* Add a media query for smaller screens */
 @media screen and (max-width: 700px) {
-  .container {
+  .pageContainer {
     flex-direction: column; /* Switch container to column layout */
     align-items: center; /* Center-align content in column layout */
     padding: 2em;

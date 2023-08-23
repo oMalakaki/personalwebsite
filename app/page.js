@@ -72,7 +72,7 @@ const HomePage = () => {
         </div> */}
       </div>
       <div className="pageContainer about" id="aboutLink">
-        <div className="container">
+    
           <h2>About</h2>
 
             <p>
@@ -92,26 +92,28 @@ const HomePage = () => {
               infusing creativity and pragmatism.
             </p>
          
-        </div>
-        <Cards />
+   
+        
       </div>
+      <Cards />
       <div className="pageContainer resume" id="resumeLink">
-        <div className="container">
+    
           <h2>Resume</h2>
           <div className="resumeText">
             <MakeBox />
+            
           </div>
           <ResumeModal />
         </div>
-      </div>
+
       <div className="pageContainer projects" id="projectsLink">
-        <div className="container">
+    
           <h2>Projects</h2>
           <div className="projectsText">
           
           </div>
         </div>
-      </div>
+   
     </>
   );
 };
