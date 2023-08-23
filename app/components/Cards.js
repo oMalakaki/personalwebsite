@@ -5,17 +5,14 @@ import Cardo from "./CardTemplate";
 
 export default function Cards() {
   const scrollRef = useRef(null);
-  const [direction, setDirection] = useState(1); // Initialize direction state
+  const [direction, setDirection] = useState(1);
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
-  const [position, setPosition] = useState(0);
 
   useEffect(() => {
-      
     const container = scrollRef.current;
-    let pos = {  left: 0, x: 0  };
+    let pos = { left: 0, x: 0 };
 
     const mouseDownHandler = function (e) {
-
       pos = {
         left: container.scrollLeft,
         x: e.clientX,
@@ -28,22 +25,28 @@ export default function Cards() {
     const mouseMoveHandler = function (e) {
       const dx = e.clientX - pos.x;
       container.scrollLeft = pos.left - dx;
+     
     };
 
     const mouseUpHandler = function () {
       container.removeEventListener('mousemove', mouseMoveHandler);
       container.removeEventListener('mouseup', mouseUpHandler);
-  
     };
+
     const mouseEnterHandler = function () {
- 
-      setTranslationsEnabled(false);
-    };
-    
-    const mouseLeaveHandler = function () {
       
+     
+      
+      setTranslationsEnabled(false);
+ 
+      
+    };
+
+    const mouseLeaveHandler = function () {
+
       setTranslationsEnabled(true);
     };
+
     const handleTouchInteractionStart = () => {
       setTranslationsEnabled(false);
     };
@@ -52,11 +55,9 @@ export default function Cards() {
     container.addEventListener('mouseenter', mouseEnterHandler);
     container.addEventListener('mouseleave', mouseLeaveHandler);
     container.addEventListener("touchmove", handleTouchInteractionStart);
-    
+
     const moveTrack = () => {
-      
       if (!isTranslationsEnabled) return;
-      
       pos = {
         left: container.scrollLeft,
       };
@@ -68,46 +69,47 @@ export default function Cards() {
       } else if (container.scrollLeft === 0 && direction === -1) {
         setDirection(1);
       } 
-      container.scrollLeft += direction*2
+      container.scrollLeft += direction*1;
     };
-    const interval = setInterval(moveTrack, 100);
+
+    const interval = setInterval(moveTrack, 10);
 
     const handleScroll = () => {
       if (typeof window !== "undefined") {
-
-      if (window.scrollY < 475 || window.scrollY > 2000) {
-        // Stop translations
-        setTranslationsEnabled(false);
-      } else {
-        // Enable translations again
-        setTranslationsEnabled(true);
-        
-      }}
+        if (window.scrollY < 475 || window.scrollY > 2000) {
+          setTranslationsEnabled(false);
+        } else {
+          setTranslationsEnabled(true);
+        }
+      }
     };
+
     if (typeof window !== "undefined") {
-      
-      window.addEventListener("scroll", handleScroll); // Add scroll event listener
+      window.addEventListener("scroll", handleScroll);
     }
+
     return () => {
       clearInterval(interval);
       container.removeEventListener('mousedown', mouseDownHandler);
       container.removeEventListener('mouseenter', mouseEnterHandler);
       container.removeEventListener('mouseleave', mouseLeaveHandler);
       container.removeEventListener("touchmove", handleTouchInteractionStart);
+
       if (typeof window !== "undefined") {
-      
-        window.removeEventListener("scroll", handleScroll); // Add scroll event listener
+        window.removeEventListener("scroll", handleScroll);
       }
     };
-    
   }, [direction, isTranslationsEnabled]);
-
-
+ 
   return (
-    <div className={styles.scrollContainer} ref={scrollRef}>
+    <div className={styles.scrollContainer} ref={scrollRef}
+ 
+    >
+
       <div
         className={styles.imageTrack}
         id="imageTrack"
+  
       >
         <Cardo source="https://i.imgur.com/Wwol4o6.jpg" />
         <Cardo source="https://i.imgur.com/KqvP7LG.jpg" />

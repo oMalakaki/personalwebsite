@@ -149,6 +149,7 @@ body,html {
 .pageContainer h2 {
   font-size: 4em;
   letter-spacing: -0.07em;
+  mix-blend-mode: difference;
 }
 p {
   font-size: 1.1em;
@@ -156,23 +157,16 @@ p {
   line-height: 21px;
 }
 
-.about .container {
-  align-self: center;
-}
+
 .container {
   position: relative;
   padding: 4em 4em 0 4em;
   max-width: 1200px;
   width: 100%;
   overflow: hidden;
+  align-self: center;
 }
-.aboutText {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 100%;
-}
+
 
 .pageContainer {
   width: 100%;
@@ -182,6 +176,7 @@ p {
   color: white;
   display: flex;
   justify-content: center;
+  margin-bottom: 5em;
 
 }
 

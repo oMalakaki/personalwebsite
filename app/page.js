@@ -7,7 +7,7 @@ import ResumeModal from "./components/resumeModal";
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
-  const [isScrolledPast500, setIsScrolledPast500] = useState(false);
+  const [windowPos, setWindowPos] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -15,10 +15,10 @@ const HomePage = () => {
     };
 
     const handleScroll = () => {
-      if (window.scrollY  > 100) {
-        setIsScrolledPast500(true);
+      if(window.scrollY >= 100) {
+        setWindowPos(100);
       } else {
-        setIsScrolledPast500(false);
+        setWindowPos(window.scrollY);
       }
     };
 
@@ -61,8 +61,8 @@ const HomePage = () => {
             left: "0",
             top: "0",
             overflow: "hidden",
-            transition: ".25s ease-in-out",
-            filter: isScrolledPast500 ? "blur(50px)" : "none",
+            
+            filter: `blur(${ windowPos/2+ "px"})`,
           }}
         >
           <GenerateBackground />
@@ -74,7 +74,7 @@ const HomePage = () => {
       <div className="pageContainer about" id="aboutLink">
         <div className="container">
           <h2>About</h2>
-          <div className="aboutText">
+
             <p>
               I am a motivated and experienced graduate in Information Systems
               with a strong focus on project management and product development.
@@ -91,7 +91,7 @@ const HomePage = () => {
               contributions within rapidly evolving business landscapes, while
               infusing creativity and pragmatism.
             </p>
-          </div>
+         
         </div>
         <Cards />
       </div>
