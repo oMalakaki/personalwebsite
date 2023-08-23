@@ -1,28 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-
+import { useWindowSize } from "rooks";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url
 ).toString();
 
 export default function ResumeModal() {
+    const { innerWidth } = useWindowSize();
   const [modalVisible, setModalVisible] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
- 
-    return () => {
- 
-      window.removeEventListener("resize", handleResize);
-        
-    };
-}};
-  }, []);
+
+
 
   const closeModal = () => {
     setModalVisible(false);
@@ -51,7 +41,7 @@ export default function ResumeModal() {
           <div id="closeModalBtn" onClick={closeModal} />
 
           <div className="pdf-container">
-            {windowWidth >= 700 ? (
+            {innerWidth >= 700 ? (
               <object
                 data="/AlexCanfieldResume.pdf"
                 type="application/pdf"
@@ -68,7 +58,7 @@ export default function ResumeModal() {
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                  scale={windowWidth / 700}
+                  scale={innerWidth / 700}
                   pageNumber={1}
                 />
               </Document>
