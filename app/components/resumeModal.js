@@ -12,17 +12,16 @@ export default function ResumeModal() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-    };
-    if (typeof window !== "undefined") {
-    window.addEventListener("resize", handleResize);
-    }
+ 
     return () => {
-        if (typeof window !== "undefined") {
+ 
       window.removeEventListener("resize", handleResize);
-        }
+        
     };
+}};
   }, []);
 
   const closeModal = () => {
