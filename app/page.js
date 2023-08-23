@@ -55,7 +55,7 @@ const HomePage = () => {
         <div
           style={{
             position: "fixed",
-            width: "100%",
+            width: "100vw",
             scale: "1.4",
             height: "100%",
             left: "0",
