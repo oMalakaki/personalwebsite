@@ -38,7 +38,9 @@ export default function ResumeModal() {
   const openModal = () => {
     setModalVisible(true);
   };
-
+  const handlePinchToZoom = (event) => {
+    event.preventDefault(); 
+  };
   return (
     <>
       <div id="openModalBtn" onClick={openModal}>
@@ -76,7 +78,7 @@ export default function ResumeModal() {
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
                  width={innerWidth *.9}
-                 
+                 onWheel={handlePinchToZoom}
                   
            
                   pageNumber={1}
