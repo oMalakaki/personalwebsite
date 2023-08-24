@@ -418,6 +418,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
+  opacity: 1;
   mix-blend-mode: normal;
   height: 97.5%;
   border-top: 4px solid white;
@@ -426,6 +427,7 @@ a {
 }
 .active.orgContainer:last-child::before {
   height: 95%;
+  opacity: 1;
 }
 
 /* Add a media query for smaller screens */
