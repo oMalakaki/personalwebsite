@@ -1,5 +1,5 @@
 import React from "react";
-
+import ResumeModal from "./resumeModal"; 
 const data = [
   {
     title: "EDUCATION",
@@ -61,6 +61,10 @@ const data = [
         </a>
       ),
     },
+  },
+  {
+    title: "VIEW PDF",
+    content: [<ResumeModal />]
   },
 ];
 

@@ -3,7 +3,7 @@ import Cards from "./components/Cards";
 import MakeBox from "./components/MakeBox";
 import { useEffect, useState } from "react";
 import GenerateBackground from "./components/GenerateBackground"; 
-import ResumeModal from "./components/resumeModal"; 
+
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
@@ -103,7 +103,7 @@ const HomePage = () => {
             <MakeBox />
             
           </div>
-          <ResumeModal />
+   
         </div>
 
       <div className="pageContainer projects" id="projectsLink">
