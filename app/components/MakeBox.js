@@ -64,7 +64,7 @@ const data = [
   },
   {
     title: "VIEW PDF",
-    content: [<ResumeModal />]
+    content: ""
   },
 ];
 
@@ -84,10 +84,15 @@ export default function MakeBox() {
             Object.keys(item.content).map((key, subIndex) => (
               <div key={subIndex} className="pair">
                 <h4>{key}</h4>
-                <p>{item.content[key]}</p>
+                {key === "LinkedIn" ? (
+                  <div>{item.content[key]}</div>
+                ) : (
+                  <p>{item.content[key]}</p>
+                )}
               </div>
             ))
           )}
+          {item.title === "VIEW PDF" && <ResumeModal />}
         </div>
       ))}
     </>
