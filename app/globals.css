@@ -1,20 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #e61f3a;
   overflow-x: hidden;
   display: flex;
   align-content: center;
   flex-direction: column;
-  
 }
 
 .noise {
@@ -143,21 +142,42 @@ body {
   z-index: 1;
 }
 
-
 .pageContainer h2 {
-  font-size: 4em;
+  font-size: 4rem;
   letter-spacing: -0.07em;
   mix-blend-mode: difference;
-  margin-bottom: .5em;
+  margin-bottom: 3rem;
+  line-height: 1;
+  position: relative;
+  color: white;
+  opacity: 1;
+  width: min-content;
+  height: min-content;
+
+  filter: brightness(175%); /* Adjust the percentage as needed */
 }
+.sectionTitle {
+  position: relative;
+}
+.sectionTitle .titleDupe {
+  font-size: 4rem;
+  letter-spacing: -0.07em;
+  mix-blend-mode: normal;
+  line-height: 1;
+  position: absolute;
+  color: white;
+  opacity: 0.25;
+  width: min-content;
+  height: min-content;
+  top: 0;
+  left: 0;
+}
+
 p {
-  font-size: 1.1em;
-  max-width: 600px;
+  font-size: 1.25rem;
+  max-width: 37em;
   line-height: 1.5em;
 }
-
-
-
 
 .pageContainer {
   width: 100%;
@@ -170,30 +190,25 @@ p {
   padding: 4em 4em 0 4em;
   align-self: center;
   overflow: visible;
-
-
 }
 
-
 .resumeBox {
-  width: 450px;
+  width: 30rem;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  row-gap: .3em;
+  row-gap: 0.5em;
   overflow: hidden;
-  
 }
 .resumeBox h3 {
   text-transform: uppercase;
-  font-size: 1.6em;
+  font-size: 1.75rem;
 }
 .resumeText {
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  row-gap: 2em;
+  row-gap: 4rem;
 }
 
 .pair {
@@ -204,41 +219,37 @@ p {
 .boxList {
   display: flex;
   align-items: center;
-  max-width: 450px;
+  max-width: 30rem;
   flex-direction: row;
   justify-content: space-between;
   column-gap: 3%;
-  row-gap: .3em;
+  row-gap: 0.3em;
   flex-wrap: wrap;
 }
 .boxList p {
   width: 30%;
-  
 }
 .pair p {
   text-align: left;
   width: 100%;
   white-space: normal;
-  
 }
 .pair h4 {
-  width: 35%;
-  font-size: 1.1em;
+  width: 40%;
+  font-size: 1.25em;
 }
 
 a {
-  all:unset;
+  all: unset;
   color: white;
   cursor: pointer;
   text-decoration: underline;
 }
 
-
 .pdf-container {
   width: 90%;
-  height: 95%; 
+  height: 95%;
   opacity: 1;
-
 }
 
 .modal-background {
@@ -258,26 +269,24 @@ a {
 #closeModalBtn {
   position: relative;
   align-self: flex-start;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   top: 2.5%;
   background-repeat: no-repeat;
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Cross_icon_%28white%29.svg/2048px-Cross_icon_%28white%29.svg.png");
   background-size: contain;
   cursor: pointer;
-  transition: .1s linear;
+  transition: 0.1s linear;
 }
 #closeModalBtn:hover {
   scale: 1.05;
-  
 }
 #openModalBtn {
-
   cursor: pointer;
   width: min-content;
   position: relative;
   display: inline-block;
-  border: 3px solid rgba(255,255,255, .5);
+  border: 3px solid rgba(255, 255, 255, 0.5);
   border-radius: 3px;
 }
 
@@ -296,15 +305,13 @@ a {
   opacity: 70%;
 
   z-index: 1;
-
 }
-#openModalBtn:hover p{
+#openModalBtn:hover p {
   opacity: 1;
-
 }
-#openModalBtn p{
+#openModalBtn p {
   opacity: 0;
-  position: absolute;		
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -315,7 +322,94 @@ a {
   font-size: 1.2em;
 }
 
+.projectsText {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.projectsHero {
+  width: 640px;
+  height: 40rem;
+  background-color: white;
+  mix-blend-mode: overlay;
+}
 
+.projectsList img {
+  max-width: 20em;
+  max-height: 4rem;
+}
+.projectsList {
+  display: flex;
+  flex-direction: column;
+  height: 40rem;
+  width: 25rem;
+  
+}
+.orgContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  position: relative;
+  cursor: pointer;
+}
+.orgContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  mix-blend-mode: overlay;
+
+  border-top: 4px solid white;
+
+  width: 100%;
+
+  height: 100%;
+}
+.orgContainer:last-child::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  mix-blend-mode: overlay;
+  border-bottom: 4px solid white;
+
+  width: 100%;
+
+  height: 100%;
+}
+
+.orgContainer h3 {
+  opacity: 0.3;
+  transition: 0.3s;
+  font-size: 5rem;
+}
+
+.active h3 {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+.active {
+  transition: 0.3s;
+}
+.active.orgContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  mix-blend-mode: normal;
+  height: 97.5%;
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  width: 100%;
+}
+.active.orgContainer:last-child::before {
+  height: 95%;
+}
 
 /* Add a media query for smaller screens */
 @media screen and (max-width: 700px) {
@@ -345,7 +439,6 @@ a {
   }
   .pair h4 {
     align-self: flex-start;
-  
   }
   .boxList p {
     width: 40%;
@@ -353,20 +446,14 @@ a {
   .modal-background {
     flex-direction: column-reverse;
     gap: 0;
-    
   }
   #closeModalBtn {
     position: relative;
     align-self: center;
     width: 50px;
     height: 50px;
-   
-  
   }
   .pdf-container {
-
-    height: min-content; 
-
-  
+    height: min-content;
   }
 }

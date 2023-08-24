@@ -3,6 +3,7 @@ import Cards from "./components/Cards";
 import MakeBox from "./components/MakeBox";
 import { useEffect, useState } from "react";
 import GenerateBackground from "./components/GenerateBackground"; 
+import Projects from "./components/Projects"; 
 
 
 const HomePage = () => {
@@ -73,7 +74,8 @@ const HomePage = () => {
       </div>
       <div className="pageContainer about" id="aboutLink">
     
-          <h2>About</h2>
+      <div className="sectionTitle">    <h2>About</h2><h2 className="titleDupe">About</h2>
+      </div>
 
             <p>
               I am a motivated and experienced graduate in Information Systems
@@ -98,7 +100,7 @@ const HomePage = () => {
       <Cards />
       <div className="pageContainer resume" id="resumeLink">
     
-          <h2>Resume</h2>
+      <div className="sectionTitle">    <h2>Resume</h2><h2 className="titleDupe">Resume</h2></div>
           <div className="resumeText">
             <MakeBox />
             
@@ -108,10 +110,11 @@ const HomePage = () => {
 
       <div className="pageContainer projects" id="projectsLink">
     
-          <h2>Projects</h2>
-          <div className="projectsText">
+      <div className="sectionTitle">    <h2>Projects</h2><h2 className="titleDupe">Projects</h2></div>
+
           
-          </div>
+          <Projects />
+          
         </div>
    
     </>
