@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export default function Projects() {
     const organizations = ['SONY', 'MAG7', 'SYNACK', 'GW'];
-    const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const handleOrgContainerClick = (index) => {
         setActiveIndex(index);
