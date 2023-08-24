@@ -75,7 +75,7 @@ export default function ResumeModal() {
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                 scale={(.85-(100/innerWidth))}
+                 scale={1}
                  canvasBackground="transparent"
                  
                   

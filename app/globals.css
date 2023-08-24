@@ -336,10 +336,25 @@ a {
 .projectsHero {
   width: 640px;
   height: 40rem;
-  background-color: white;
-  mix-blend-mode: overlay;
-}
 
+
+}
+.projectsHero h1{
+  text-transform:uppercase;
+  font-size: 3rem;
+
+
+}
+.projectsHero p{
+
+  font-size: 1.25rem;
+
+
+}
+.hero{display: none;}
+.hero.activeHero {
+  display: block;
+}
 .projectsList img {
   max-width: 20em;
   max-height: 4rem;
@@ -457,8 +472,6 @@ a {
   }
   .pdf-container {
     height: min-content;
-    width: 100%;
-   
-
+    width: 100%; 
   }
 }
