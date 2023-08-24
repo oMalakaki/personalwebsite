@@ -38,9 +38,7 @@ export default function ResumeModal() {
   const openModal = () => {
     setModalVisible(true);
   };
-  const handlePinchToZoom = (event) => {
-    event.preventDefault(); 
-  };
+
   return (
     <>
       <div id="openModalBtn" onClick={openModal}>
@@ -73,12 +71,13 @@ export default function ResumeModal() {
                 </p>
               </object>
             ) : (
-              <Document file="/AlexCanfieldResume.pdf" >
+              <Document  file="/AlexCanfieldResume.pdf" >
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                 width={innerWidth *.9}
-                 onWheel={handlePinchToZoom}
+                 scale={(.85-(100/innerWidth))}
+                 canvasBackground="transparent"
+                 
                   
            
                   pageNumber={1}

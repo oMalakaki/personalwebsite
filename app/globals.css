@@ -250,6 +250,9 @@ a {
   width: 90%;
   height: 95%;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .modal-background {
@@ -346,7 +349,6 @@ a {
   flex-direction: column;
   height: 40rem;
   width: 25rem;
-  
 }
 .orgContainer {
   width: 100%;
@@ -362,7 +364,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: .3;
+  opacity: 0.3;
 
   border-top: 4px solid white;
 
@@ -375,7 +377,7 @@ a {
   position: absolute;
   top: -4px;
   left: 0;
-  opacity: .3;
+  opacity: 0.3;
   border-bottom: 4px solid white;
 
   width: 100%;
@@ -455,5 +457,8 @@ a {
   }
   .pdf-container {
     height: min-content;
+    width: 100%;
+   
+
   }
 }
