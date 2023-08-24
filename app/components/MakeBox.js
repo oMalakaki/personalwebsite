@@ -84,11 +84,9 @@ export default function MakeBox() {
             Object.keys(item.content).map((key, subIndex) => (
               <div key={subIndex} className="pair">
                 <h4>{key}</h4>
-                {key === "LinkedIn" ? (
-                  <div>{item.content[key]}</div>
-                ) : (
+            
                   <p>{item.content[key]}</p>
-                )}
+          
               </div>
             ))
           )}
