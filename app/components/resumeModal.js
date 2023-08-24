@@ -71,12 +71,16 @@ export default function ResumeModal() {
                 </p>
               </object>
             ) : (
-              <Document file="/AlexCanfieldResume.pdf">
+              <Document file="/AlexCanfieldResume.pdf" >
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                  scale={innerWidth / 700}
+                 width={innerWidth *.9}
+                 
+                  
+           
                   pageNumber={1}
+                  
                 />
               </Document>
             )}
