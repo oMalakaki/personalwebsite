@@ -336,7 +336,9 @@ a {
 .projectsHero {
   width: 640px;
   height: 40rem;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
 }
 .projectsHero h1{
@@ -428,6 +430,32 @@ a {
 .active.orgContainer:last-child::before {
   height: 95%;
   opacity: 1;
+}
+
+.projectsHero .arrowButtons {
+  display: flex;
+  font-size: 1.5em;
+  align-self: center;
+  width: 9rem;
+  justify-content: space-between;
+
+}
+
+.projectsHero .arrowButtons button{
+  all: unset;
+  cursor: pointer;
+  color: white;
+  scale: 1.2;
+  padding: 0 .5em 0 .5em;
+  user-select: none;
+
+}
+.projectsHero .arrowButtons h4{
+  width: 4rem;
+  text-align: center;
+  
+  
+
 }
 
 /* Add a media query for smaller screens */
