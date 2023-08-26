@@ -124,10 +124,13 @@ const HomePage = () => {
 
         <Projects />
       </div>
-      <div className="pageContainer connect" style={{marginTop: "5rem", height: "50vh"}}>
-       <h1 style={{fontSize: "6rem", mixBlendMode: "difference"}}>
-        LET'S CONNECT!
-       </h1>
+      <div className="pageContainer connect" style={{marginTop: "5rem", minHeight: "50vh"}}>
+       <div className="sectionTitle">
+         <h1>
+          LET'S CONNECT!
+         </h1>
+         <h1 className="titleDupe">LET'S CONNECT!</h1>
+       </div>
        <p>james.alexander.canfield@gmail.com</p>
        <p><a
           href="https://www.linkedin.com/in/jamescanfield"

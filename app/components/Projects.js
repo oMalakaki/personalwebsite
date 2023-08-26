@@ -98,6 +98,20 @@ export default function Projects() {
 
   return (
     <div className="projectsText">
+      
+      <div className="projectsList">
+        {organizations.map((org, orgIndex) => (
+          <div
+            key={org}
+            className={`orgContainer ${
+              activeOrgIndex === orgIndex ? "active" : ""
+            }`}
+            onClick={() => handleOrgContainerClick(orgIndex)}
+          >
+            <h3>{org}</h3>
+          </div>
+        ))}
+      </div>
       <div className="projectsHero">
         <ProjectDescription
           name={activeOrgProjects[activeProjIndex].name}
@@ -117,19 +131,6 @@ export default function Projects() {
             )}
           </div>
         
-      </div>
-      <div className="projectsList">
-        {organizations.map((org, orgIndex) => (
-          <div
-            key={org}
-            className={`orgContainer ${
-              activeOrgIndex === orgIndex ? "active" : ""
-            }`}
-            onClick={() => handleOrgContainerClick(orgIndex)}
-          >
-            <h3>{org}</h3>
-          </div>
-        ))}
       </div>
     </div>
   );
