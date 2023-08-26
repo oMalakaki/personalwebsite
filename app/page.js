@@ -6,6 +6,7 @@ import GenerateBackground from "./components/GenerateBackground";
 import Projects from "./components/Projects";
 import { Link, Element } from 'react-scroll';
 
+
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowPos, setWindowPos] = useState(0);
@@ -137,7 +138,7 @@ const HomePage = () => {
         </a></p>
         
       </div>
-     
+
     </>
   );
 };

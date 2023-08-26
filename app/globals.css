@@ -329,13 +329,13 @@ a {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: 42.5rem;
   flex-wrap: wrap;
   gap: 1em;
 }
 .projectsHero {
   width: 640px;
-  height: 40rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -349,8 +349,9 @@ a {
 }
 .projectsHero p{
 
-  font-size: 1.25rem;
-
+  font-size: 1.125rem;
+  text-wrap: word-break;
+  white-space: pre-wrap;
 
 }
 .hero{display: none;}
@@ -364,7 +365,7 @@ a {
 .projectsList {
   display: flex;
   flex-direction: column;
-  height: 40rem;
+  height: 100%;
   width: 25rem;
 }
 .orgContainer {
@@ -372,7 +373,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10rem;
+  height: 25%;
   position: relative;
   cursor: pointer;
 }
