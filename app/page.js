@@ -131,14 +131,19 @@ const HomePage = () => {
          </h1>
          <h1 className="titleDupe">LET'S CONNECT!</h1>
        </div>
-       <p>james.alexander.canfield@gmail.com</p>
-       <p><a
-          href="https://www.linkedin.com/in/jamescanfield"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          linkedin.com/in/jamescanfield
-        </a></p>
+       <p>I am always looking for new opportunities to accelerate my career. I would love to hear from you!</p>
+     <div className="connectionInfo">
+         <h3>Shoot Me An Email</h3>
+         <p>james.alexander.canfield@gmail.com</p>
+         <h3>Connect With Me</h3>
+         <p><a
+            href="https://www.linkedin.com/in/jamescanfield"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            linkedin.com/in/jamescanfield
+          </a></p>
+     </div>
         
       </div>
 
