@@ -26,17 +26,17 @@ const RandomSquare = () => {
     const maxSize = innerWidth - (innerWidth / 2.5);
     const randomSize = Math.random() * (maxSize - minSize) + minSize;
     setObjectSize(randomSize);
-  }, []);
-  
 
-  useEffect(() => {
     setPosition({
-      x: Math.random() * (innerWidth/2 - objectSize),
-      y: Math.random() * (innerHeight/2 - objectSize),
+      x: Math.random() * (innerWidth - randomSize),
+      y: Math.random() * (innerHeight- randomSize),
     });
+
     setDirection(getRandomDirection());
     setColor(getRandomColor());
-  }, []);
+  }, [innerWidth, innerHeight]); // Listen for changes in window size
+  
+
   
 
   
