@@ -18,7 +18,7 @@ const RandomSquare = () => {
   const { innerWidth, innerHeight } = useWindowSize();
   const [objectSize, setObjectSize] = useState(0);
   const [position, setPosition] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState({x: 1, y: 1});
   const [color, setColor] = useState("");
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
