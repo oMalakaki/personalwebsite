@@ -10,7 +10,6 @@ const getRandomDirection = () => ({
 const getRandomColor = () => {
   var colors = ["#0e0502", "#229b63", "#12918b", "#f25d0a", "#380d54"];
   let color = colors[Math.floor(Math.random() * colors.length)];
-
   return color;
 };
 
@@ -18,7 +17,7 @@ const RandomSquare = () => {
   const { innerWidth, innerHeight } = useWindowSize();
   const [objectSize, setObjectSize] = useState(0);
   const [position, setPosition] = useState(0);
-  const [direction, setDirection] = useState({x: 1, y: 1});
+  const [direction, setDirection] = useState(0);
   const [color, setColor] = useState("");
 
  
@@ -84,7 +83,6 @@ const RandomSquare = () => {
     if (typeof window !== "undefined") {
       
       window.addEventListener("resize", handleResize);
-      window.addEventListener("scroll", handleScroll); // Add scroll event listener
     }
 
     const interval = setInterval(moveSquare, 10); // Adjust interval as needed
@@ -92,7 +90,7 @@ const RandomSquare = () => {
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", handleResize);
-        window.removeEventListener("scroll", handleScroll); // Remove scroll event listener
+    
       }
       clearInterval(interval);
     };
