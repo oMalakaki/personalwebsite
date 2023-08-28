@@ -123,8 +123,8 @@ export default function Cards() {
         <Cardo source="https://i.imgur.com/y5TUTWD.jpg" />
         <Cardo source="https://i.imgur.com/ldKSUfA.jpg" />
         <Cardo source="https://i.imgur.com/hHdxFbm.jpg" />
-        <Cardo source="https://i.imgur.com/RDh1gJw.jpg" />
         <Cardo source="https://i.imgur.com/Oltuwk2.jpg" />
+        <Cardo source="https://i.imgur.com/s2YQVFd.jpg" />
         <Cardo source="https://i.imgur.com/FwSMJvZ.jpg" />
       </div>
     </div>

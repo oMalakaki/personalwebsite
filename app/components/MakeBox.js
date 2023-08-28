@@ -25,7 +25,7 @@ const data = [
     content: [
       "JavaScript",
       "React",
-      "Node.js",
+      "Next.js",
       "HTML",
       "CSS",
       "PHP",
