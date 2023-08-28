@@ -20,7 +20,6 @@ const RandomSquare = () => {
   const [position, setPosition] = useState(0);
   const [direction, setDirection] = useState({x: 1, y: 1});
   const [color, setColor] = useState("");
-  const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
 
  
   useEffect(() => {
@@ -44,7 +43,7 @@ const RandomSquare = () => {
   
   useEffect(() => {
     const moveSquare = () => {
-      // if (!isTranslationsEnabled) return; // Check if translations are enabled
+     
       const newPosition = {
         x: position.x + direction.x * .75, // Adjust speed as needed
         y: position.y + direction.y * .75,
@@ -79,17 +78,7 @@ const RandomSquare = () => {
           (position.y = innerHeight - position.y + position.y - objectSize / 2);
     };
 
-    const handleScroll = () => {
-      if (typeof window !== "undefined") {
 
-      if (window.scrollY > 200) {
-        // Stop translations
-        setTranslationsEnabled(false);
-      } else {
-        // Enable translations again
-        setTranslationsEnabled(true);
-      }}
-    };
 
 
     if (typeof window !== "undefined") {
@@ -107,7 +96,7 @@ const RandomSquare = () => {
       }
       clearInterval(interval);
     };
-  }, [objectSize, position, direction, isTranslationsEnabled]);
+  }, [objectSize, position, direction]);
   return (
     <div
       id="blob"
