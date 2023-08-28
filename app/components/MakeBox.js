@@ -63,6 +63,21 @@ const data = [
     },
   },
   {
+    title: "Interests",
+    content: [
+      "Rowing",
+      "Cycling",
+      "Hiking",
+      "Sustainability",
+      "Music",
+      "Design",
+      "Web Dev",
+      "Data Analysis",
+      "Product Dev",
+
+    ],
+  },
+  {
     title: "VIEW PDF",
     content: ""
   },
