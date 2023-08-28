@@ -74,7 +74,7 @@
   scale: 1.025;
 }
 
-.active h3 {
+.orgContainer.active h3 {
   mix-blend-mode: difference;
   opacity: 1;
 }

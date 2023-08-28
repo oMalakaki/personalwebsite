@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Projects.module.css";
-import { useWindowSize } from "rooks";
+
 function ProjectDescription(props) {
   return (
     <>
@@ -39,7 +39,7 @@ function ProjectDescriptionMobile(props) {
 
 export default function Projects() {
   const organizations = ["SONY", "MAG7", "SYNACK", "GW"];
-  const { innerWidth } = useWindowSize();
+
   const organizationData = [
     {
       name: "SONY",
@@ -103,7 +103,21 @@ export default function Projects() {
 
   const [activeOrgIndex, setActiveOrgIndex] = useState(0);
   const [activeProjIndex, setActiveProjIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0); // State to store window width
 
+  useEffect(() => {
+    // Update window width on mount and when the window is resized
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    setWindowWidth(window.innerWidth); // Set initial width
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
   const handleOrgContainerClick = (orgIndex) => {
     setActiveOrgIndex(orgIndex);
     setActiveProjIndex(0);
@@ -128,7 +142,7 @@ export default function Projects() {
 
   return (
     <div className={styles.projectsText}>
-      {innerWidth >= 700 ? (
+      {windowWidth >= 900 ? (
         <>
           <div className={styles.projectsList}>
             {organizations.map((org, orgIndex) => (
