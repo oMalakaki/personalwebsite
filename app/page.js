@@ -4,8 +4,7 @@ import MakeBox from "./components/MakeBox";
 import { useEffect, useState } from "react";
 import GenerateBackground from "./components/GenerateBackground";
 import Projects from "./components/Projects";
-import { Link, Element } from 'react-scroll';
-
+import { Link, Element } from "react-scroll";
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
@@ -87,20 +86,30 @@ const HomePage = () => {
         </div>
 
         <p>
-          I am a motivated and experienced graduate in Information Systems with
-          a strong focus on project management and product development. Equipped
-          with a blend of technical prowess and business acumen, I am passionate
-          about utilizing technology to fuel innovation and streamline
-          operations while fostering cross-functional teamwork to yield optimal
-          business value.
+          Hi, I’m Alex! I recently graduated from George Washington University's
+          School of Business, where I studied Information Systems. As a student
+          in the School of Business, my studies provided me with a comprehensive
+          foundation in a diverse range of technologies, and more importantly,
+          taught me how to leverage these technologies in novel situations to
+          maximize value.
           <br />
           <br />
-          My professional journey includes diverse experiences, spanning nimble
-          startups to a large international company, enabling me to excel in
-          both agile and meticulously structured team dynamics. This
-          adaptability has honed my ability to deliver impactful contributions
-          within rapidly evolving business landscapes, while infusing creativity
-          and pragmatism.
+          I was a Division I varsity athlete and executive board member of the
+          GW Men’s Rowing team, where I built the dedication and resilience to
+          strive to be faster every day, adapt to diverse team dynamics, and
+          achieve common goals, such as becoming a championship-winning team. As
+          one of the team’s leaders, I polished my teamwork skills and learned
+          to bring innovative solutions to challenges to strengthen team
+          performance.
+          <br />
+          <br />I love to learn new things and take on new challenges, and my
+          professional journey includes a diverse set of experiences. I have a
+          background working in a variety of organizations, from a cybersecurity
+          startup to a small family-owned business to a large international
+          company, which has made me adaptable and able to deliver impactful
+          contributions within rapidly evolving business landscapes. I am able
+          to infuse creativity and pragmatism into my work, which has been
+          beneficial in all of my roles.
         </p>
       </div>
       <Cards />
@@ -124,29 +133,33 @@ const HomePage = () => {
 
         <Projects />
       </div>
-      <div className="pageContainer connect" style={{marginTop: "5rem", minHeight: "50vh"}}>
-       <div className="sectionTitle">
-         <h1>
-          LET'S CONNECT!
-         </h1>
-         <h1 className="titleDupe">LET'S CONNECT!</h1>
-       </div>
-       <p>I am always looking for new opportunities to accelerate my career. I would love to hear from you!</p>
-     <div className="connectionInfo">
-         <h3>Shoot Me An Email</h3>
-         <p>james.alexander.canfield@gmail.com</p>
-         <h3>Connect With Me</h3>
-         <p><a
-            href="https://www.linkedin.com/in/jamescanfield"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            linkedin.com/in/jamescanfield
-          </a></p>
-     </div>
-        
+      <div
+        className="pageContainer connect"
+        style={{ marginTop: "5rem", minHeight: "50vh" }}
+      >
+        <div className="sectionTitle">
+          <h2>LET'S CONNECT!</h2>
+          <h2 className="titleDupe">LET'S CONNECT!</h2>
+        </div>
+        <p>
+          I am always looking for new opportunities to meet new people and
+          accelerate my career. I would love to hear from you!
+        </p>
+        <div className="connectionInfo">
+          <h3>Shoot Me An Email</h3>
+          <p>james.alexander.canfield@gmail.com</p>
+          <h3>Connect With Me</h3>
+          <p>
+            <a
+              href="https://www.linkedin.com/in/jamescanfield"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              linkedin.com/in/jamescanfield
+            </a>
+          </p>
+        </div>
       </div>
-
     </>
   );
 };

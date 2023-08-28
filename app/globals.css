@@ -151,7 +151,7 @@ body {
   position: relative;
   color: white;
   opacity: 1;
-  width: min-content;
+  width: 100%;
   height: min-content;
 
   filter: brightness(175%); /* Adjust the percentage as needed */
