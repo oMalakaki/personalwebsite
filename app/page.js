@@ -91,7 +91,7 @@ const HomePage = () => {
           in the School of Business, my studies provided me with a comprehensive
           foundation in a diverse range of technologies, and more importantly,
           taught me how to leverage these technologies in novel situations to
-          maximize value.
+          maximize business value.
           <br />
           <br />
           I was a Division I varsity athlete and executive board member of the
@@ -142,8 +142,8 @@ const HomePage = () => {
           <h2 className="titleDupe">LET'S CONNECT!</h2>
         </div>
         <p>
-          I am always looking for new opportunities to meet new people and
-          accelerate my career. I would love to hear from you!
+          I am always looking to meet new people and
+          explore new opportunities. I would love to hear from you!
         </p>
         <div className="connectionInfo">
           <h3>Shoot Me An Email</h3>
