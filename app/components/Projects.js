@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/Projects.module.css";
-
+import { useWindowSize } from "rooks";
 function ProjectDescription(props) {
   return (
     <>
@@ -39,7 +39,7 @@ function ProjectDescriptionMobile(props) {
 
 export default function Projects() {
   const organizations = ["SONY", "MAG7", "SYNACK", "GW"];
-
+  const { innerWidth } = useWindowSize();
   const organizationData = [
     {
       name: "SONY",
