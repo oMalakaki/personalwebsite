@@ -76,7 +76,7 @@ export default function Cards() {
 
     const handleScroll = () => {
       if (typeof window !== "undefined") {
-        if (window.scrollY < 475 || window.scrollY > 2000) {
+        if (window.scrollY < 1000 || window.scrollY > 2400) {
           setTranslationsEnabled(false);
         } else {
           setTranslationsEnabled(true);

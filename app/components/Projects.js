@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../styles/Projects.module.css";
 
 function ProjectDescription(props) {
   return (
@@ -6,12 +7,31 @@ function ProjectDescription(props) {
       <div>
         <h1>{props.name}</h1>
         <h2>{props.title}</h2>
-        <p className="description">{props.description}</p>
+        <p className={styles.description}>{props.description}</p>
       </div>
-      
+
       <div>
-      <h3>Skills Learned</h3>
-      <p>{props.skills}</p>
+        <h3>Skills Learned</h3>
+        <p>{props.skills}</p>
+      </div>
+    </>
+  );
+}
+function ProjectDescriptionMobile(props) {
+  return (
+    <>
+      <div>
+        <h1>{props.name}</h1>
+       
+          <h2>{props.org}</h2>
+          <h3>{props.title}</h3>
+
+        <p className={styles.description}>{props.description}</p>
+      </div>
+
+      <div>
+        <h3>Skills Learned</h3>
+        <p>{props.skills}</p>
       </div>
     </>
   );
@@ -107,42 +127,62 @@ export default function Projects() {
   const activeOrgProjects = organizationData[activeOrgIndex].projects;
 
   return (
-    <div className="projectsText">
-      
-      <div className="projectsList">
-        {organizations.map((org, orgIndex) => (
-          <div
-            key={org}
-            className={`orgContainer ${
-              activeOrgIndex === orgIndex ? "active" : ""
-            }`}
-            onClick={() => handleOrgContainerClick(orgIndex)}
-          >
-            <h3>{org}</h3>
+    <div className={styles.projectsText}>
+      {innerWidth >= 700 ? (
+        <>
+          <div className={styles.projectsList}>
+            {organizations.map((org, orgIndex) => (
+              <div
+                key={org}
+                className={`${styles.orgContainer} ${
+                  activeOrgIndex === orgIndex ? styles.active : ""
+                }`}
+                onClick={() => handleOrgContainerClick(orgIndex)}
+              >
+                <h3>{org}</h3>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="projectsHero">
-        <ProjectDescription
-          name={activeOrgProjects[activeProjIndex].name}
-          title={activeOrgProjects[activeProjIndex].title}
-          description={activeOrgProjects[activeProjIndex].description}
-          skills={activeOrgProjects[activeProjIndex].skills}
-        />
-        
-          <div className="arrowButtons">
-          {activeOrgProjects.length > 1 && (
-            <>
-            <button onClick={handlePrevProject}>{"<"}</button>
-            <h4>
-              {activeProjIndex + 1} of {activeOrgProjects.length}
-            </h4>
-            <button onClick={handleNextProject}>{">"}</button>
-            </>
-            )}
+          <div className={styles.projectsHero}>
+            <ProjectDescription
+              name={activeOrgProjects[activeProjIndex].name}
+              title={activeOrgProjects[activeProjIndex].title}
+              description={activeOrgProjects[activeProjIndex].description}
+              skills={activeOrgProjects[activeProjIndex].skills}
+            />
+
+            <div className={styles.arrowButtons}>
+              {activeOrgProjects.length > 1 && (
+                <>
+                  <button onClick={handlePrevProject}>{"<"}</button>
+                  <h4>
+                    {activeProjIndex + 1} of {activeOrgProjects.length}
+                  </h4>
+                  <button onClick={handleNextProject}>{">"}</button>
+                </>
+              )}
+            </div>
           </div>
-        
-      </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.mobileProjectList}>
+            {organizations.map((org, orgIndex) => {
+              const projects = organizationData[orgIndex].projects; // Get all projects for the current organization
+              return projects.map((activeProject, projectIndex) => (
+                <ProjectDescriptionMobile
+                  key={`${orgIndex}-${projectIndex}`}
+                  org={org}
+                  name={activeProject.name}
+                  title={activeProject.title}
+                  description={activeProject.description}
+                  skills={activeProject.skills}
+                />
+              ));
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }

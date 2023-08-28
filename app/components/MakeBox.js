@@ -59,6 +59,7 @@ const data = [
       "Web Dev",
       "Data Analysis",
       "Product Dev",
+      "Formula 1"
 
     ],
   },
