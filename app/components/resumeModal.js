@@ -12,7 +12,7 @@ export default function ResumeModal() {
 
   useEffect(() => {
     const closeModalOnOutsideClick = (event) => {
-      if (event.target.classList.contains("modalBackground")) {
+      if (event.target.classList.contains(styles.modalBackground)) {
         closeModal();
       }
     };
