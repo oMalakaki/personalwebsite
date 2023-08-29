@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head><link rel="icon" href="/logo.svg" type="image/x-icon"/></head>
+      <head><link rel="icon" href="/logo.svg" type="image/x-icon"/><meta property="og:image" content="https://i.imgur.com/KxmeXlT.png"/></head>
       <body>{children}</body>
     </html>
   )
