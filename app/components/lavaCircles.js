@@ -21,7 +21,7 @@ const RandomSquare = () => {
   const [color, setColor] = useState("");
 
  
-  useEffect(() => {
+  useLayoutEffect(() => {
     const minSize = 500;
     const maxSize = innerWidth - (innerWidth / 2.5);
     const randomSize = Math.random() * (maxSize - minSize) + minSize;
