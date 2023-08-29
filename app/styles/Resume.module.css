@@ -132,7 +132,7 @@
     .boxList p {
       width: 40%;
     }
-    .modal-background {
+    .modalBackground {
       flex-direction: column-reverse;
       gap: 0;
     }
@@ -142,7 +142,7 @@
       width: 50px;
       height: 50px;
     }
-    .pdf-container {
+    .pdfContainer {
       height: min-content;
       width: 100%;
     }
