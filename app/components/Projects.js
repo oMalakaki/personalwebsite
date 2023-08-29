@@ -21,9 +21,8 @@ function ProjectDescriptionMobile(props) {
   return (
     <>
       <div>
-        <h1>{props.name}</h1>
-       
-          <h2>{props.org}</h2>
+        <h1>{props.org}</h1>
+          <h2>{props.name}</h2>
           <h3>{props.title}</h3>
 
         <p className={styles.description}>{props.description}</p>

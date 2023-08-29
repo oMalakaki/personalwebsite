@@ -24,9 +24,10 @@
   all: unset;
   font-size: 1.5rem;
   font-weight: 500;
+  
 }
 .projectsText p {
-  font-size: 1.125rem;
+ 
   text-wrap: word-break;
   white-space: pre-wrap;
 }
@@ -111,7 +112,7 @@
 }
 .mobileProjectList h1 {
   color: white;
-  font-size: 2rem;
+  font-size: 2.25rem;
   text-transform: uppercase;
 }
 .mobileProjectList h2 {
@@ -119,7 +120,8 @@
   color: white;
   font-size: 1.5rem;
   font-weight: 700;
-
+  line-height: 1.5rem;
+  text-transform: capitalize;
 }
 .mobileProjectList h3 {
   
@@ -128,13 +130,7 @@
   font-weight: 500;
 
 }
-.mobileProjectList p {
-  
 
-  font-size: 1rem;
-
-
-}
 .mobileProjectList {
   display: flex;
   flex-direction: column;

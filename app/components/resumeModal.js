@@ -7,7 +7,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export default function ResumeModal() {
-  const { innerWidth } = useWindowSize();
+  const [innerWidth, setInnerWidth] = useState(0)
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ export default function ResumeModal() {
         closeModal();
       }
     };
+    setInnerWidth(window.innerWidth);
 
     if (modalVisible) {
       document.body.style.overflowY = "hidden";
@@ -29,6 +30,8 @@ export default function ResumeModal() {
       document.body.style.overflowY = "auto";
       document.removeEventListener("click", closeModalOnOutsideClick);
     };
+
+    
   }, [modalVisible]);
 
   const closeModal = () => {
@@ -75,7 +78,7 @@ export default function ResumeModal() {
                 <Page 
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                 scale={1}
+                 scale={.9-(100/innerWidth)}
                  canvasBackground="transparent"
                  
                   

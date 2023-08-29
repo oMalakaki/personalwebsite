@@ -14,7 +14,7 @@ const GenerateBackground = () => {
         setNumSquares(10);
       } else {
         
-        setNumSquares(4);
+        setNumSquares(6);
       }
 
       // Remove the event listener after the initial check
