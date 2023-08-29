@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useLayoutEffect  } from "react";
 import { useWindowSize } from "rooks";
 
 const getRandomDirection = () => ({
@@ -36,11 +36,8 @@ const RandomSquare = () => {
     setColor(getRandomColor());
   }, []);
   
-
   
-
-  
-  useEffect(() => {
+  useLayoutEffect (() => {
     const moveSquare = () => {
      
       const newPosition = {
