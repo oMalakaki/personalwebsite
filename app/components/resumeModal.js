@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { useWindowSize } from "rooks";
+import styles from "../styles/Resume.module.css";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url
@@ -12,7 +12,7 @@ export default function ResumeModal() {
 
   useEffect(() => {
     const closeModalOnOutsideClick = (event) => {
-      if (event.target.classList.contains("modal-background")) {
+      if (event.target.classList.contains("modalBackground")) {
         closeModal();
       }
     };
@@ -44,7 +44,7 @@ export default function ResumeModal() {
 
   return (
     <>
-      <div id="openModalBtn" onClick={openModal}>
+      <div id={styles.openModalBtn} onClick={openModal}>
         <p>View PDF</p>
         <Document file="/AlexCanfieldResume.pdf">
           <Page 
@@ -57,10 +57,10 @@ export default function ResumeModal() {
       </div>
 
       {modalVisible && (
-        <div className="modal-background">
-          <div id="closeModalBtn" onClick={closeModal} />
+        <div className={styles.modalBackground}>
+          <div id={styles.closeModalBtn} onClick={closeModal} />
 
-          <div className="pdf-container">
+          <div className={styles.pdfContainer}>
             {innerWidth >= 700 ? (
               <object
                 data="/AlexCanfieldResume.pdf"

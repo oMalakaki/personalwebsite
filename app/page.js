@@ -4,7 +4,7 @@ import MakeBox from "./components/MakeBox";
 import { useEffect, useState } from "react";
 import GenerateBackground from "./components/GenerateBackground";
 import Projects from "./components/Projects";
-import { Link, Element } from "react-scroll";
+import { Link } from "react-scroll";
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);

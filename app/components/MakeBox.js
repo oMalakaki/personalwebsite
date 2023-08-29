@@ -1,5 +1,7 @@
 import React from "react";
 import ResumeModal from "./resumeModal"; 
+import styles from "../styles/Resume.module.css";
+
 const data = [
   {
     title: "EDUCATION",
@@ -89,17 +91,17 @@ export default function MakeBox() {
   return (
     <>
       {data.map((item, index) => (
-        <div className="resumeBox" key={index}>
+        <div className={styles.resumeBox} key={index}>
           <h3>{item.title}</h3>
           {Array.isArray(item.content) ? (
-            <div className="boxList">
+            <div className={styles.boxList}>
               {item.content.map((skill, subIndex) => (
                 <p key={subIndex}>{skill}</p>
               ))}
             </div>
           ) : (
             Object.keys(item.content).map((key, subIndex) => (
-              <div key={subIndex} className="pair">
+              <div key={subIndex} className={styles.pair}>
                 <h4>{key}</h4>
                   <p>{item.content[key]}</p>
           

@@ -1,19 +1,15 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Cards.module.css";
 
-
-function Cardo({source, title, percentage}) {
+function Cardo({source}) {
 
   return (
     <div className={styles.cardTemp}>
-      {/* div Img */}
       <img
         className={styles.image}
         src={source}
         draggable="false"
-        
+        alt="Picture of Alex"
       ></img>
-
-   
     </div>
   );
 }

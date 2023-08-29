@@ -1,0 +1,149 @@
+.pdfContainer {
+    width: 90%;
+    height: 95%;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .modalBackground {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    gap: 2%;
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+  #closeModalBtn {
+    position: relative;
+    align-self: flex-start;
+    width: 48px;
+    height: 48px;
+    top: 2.5%;
+    background-repeat: no-repeat;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Cross_icon_%28white%29.svg/2048px-Cross_icon_%28white%29.svg.png");
+    background-size: contain;
+    cursor: pointer;
+    transition: 0.1s linear;
+  }
+  #closeModalBtn:hover {
+    scale: 1.05;
+  }
+  #openModalBtn {
+    cursor: pointer;
+    width: min-content;
+    position: relative;
+    display: inline-block;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+  }
+  
+  #openModalBtn:hover::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    top: -3px;
+    left: -3px;
+    border: 3px solid white;
+    background-color: white;
+    opacity: 70%;
+    z-index: 1;
+  }
+  #openModalBtn:hover p {
+    opacity: 1;
+  }
+  #openModalBtn p {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: grey;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+  
+  .resumeBox {
+    width: 30rem;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 0.5em;
+    overflow: hidden;
+  }
+  .resumeBox h3 {
+    text-transform: uppercase;
+    font-size: 1.75rem;
+  }
+  
+  .pair {
+    display: flex;
+    align-items: center;
+    width: 100%;
+   
+  }
+  .boxList {
+    display: flex;
+    align-items: center;
+    max-width: 30rem;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 3%;
+    row-gap: 0.3em;
+    flex-wrap: wrap;
+  }
+  .boxList p {
+    width: 30%;
+  }
+  .pair p {
+    text-align: left;
+    width: 100%;
+    white-space: normal;
+  }
+  .pair h4 {
+    width: 40%;
+    font-size: 1.25em;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .pair {
+      width: 100%;
+      flex-direction: column;
+      padding-bottom: 1em;
+    }
+    .resumeBox {
+      width: 100%;
+    }
+    .pair h4 {
+      align-self: flex-start;
+    }
+    .boxList p {
+      width: 40%;
+    }
+    .modal-background {
+      flex-direction: column-reverse;
+      gap: 0;
+    }
+    #closeModalBtn {
+      position: relative;
+      align-self: center;
+      width: 50px;
+      height: 50px;
+    }
+    .pdf-container {
+      height: min-content;
+      width: 100%;
+    }
+  }

@@ -29,7 +29,7 @@ function ProjectDescriptionMobile(props) {
       </div>
 
       <div>
-        <h3>Skills Learned</h3>
+        <h4>Skills Learned</h4>
         <p>{props.skills}</p>
       </div>
     </>

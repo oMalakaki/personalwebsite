@@ -1,5 +1,5 @@
 "use client";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Cards.module.css";
 import { useEffect, useRef, useState } from "react";
 import Cardo from "./CardTemplate";
 
