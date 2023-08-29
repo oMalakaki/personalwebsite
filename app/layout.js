@@ -23,7 +23,10 @@ export default function RootLayout({ children }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={metadata.description} />
-
+        <meta
+          property="og:image"
+          content={metadata.image}
+        />
       </head>
       <body>
         {children}
