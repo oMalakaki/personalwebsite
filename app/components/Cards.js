@@ -3,7 +3,7 @@ import styles from "../styles/Cards.module.css";
 import { useEffect, useRef, useState } from "react";
 import Cardo from "./CardTemplate";
 
-export default function Cards() {
+export default function Cards({stopTranslations}) {
   const scrollRef = useRef(null);
   const [direction, setDirection] = useState(1);
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
@@ -57,6 +57,7 @@ export default function Cards() {
     container.addEventListener("touchmove", handleTouchInteractionStart);
 
     const moveTrack = () => {
+      if (!stopTranslations) {
       if (!isTranslationsEnabled) return;
       pos = {
         left: container.scrollLeft,
@@ -70,6 +71,7 @@ export default function Cards() {
         setDirection(1);
       } 
       container.scrollLeft += direction*1;
+    }
     };
 
     const interval = setInterval(moveTrack, 10);
@@ -99,7 +101,7 @@ export default function Cards() {
         window.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [direction, isTranslationsEnabled]);
+  }, [direction, isTranslationsEnabled, stopTranslations]);
  
   return (
     <div className={styles.scrollContainer} ref={scrollRef}

@@ -8,12 +8,12 @@ const getRandomDirection = () => ({
 })
 
 const getRandomColor = () => {
-  var colors = ["#0e0502", "#229b63", "#12918b", "#f25d0a", "#380d54"];
+  var colors = ["#000000", "#229b63", "#12918b", "#f25d0a", "#380d54"];
   let color = colors[Math.floor(Math.random() * colors.length)];
   return color;
 };
 
-const RandomSquare = () => {
+const RandomSquare = ({ stopTranslations }) => {
   const { innerWidth, innerHeight } = useWindowSize();
   const [objectSize, setObjectSize] = useState(0);
   const [position, setPosition] = useState(0);
@@ -37,28 +37,29 @@ const RandomSquare = () => {
   }, []);
   
   
-  useLayoutEffect (() => {
+  useLayoutEffect(() => {
     const moveSquare = () => {
-     
-      const newPosition = {
-        x: position.x + direction.x * .75, // Adjust speed as needed
-        y: position.y + direction.y * .75,
-      };
-
-      if (
-        newPosition.x < 0 - (objectSize / 2) ||
-        newPosition.x > innerWidth - objectSize / 2 ||
-        newPosition.y < 0 - (objectSize / 2) ||
-        newPosition.y > innerHeight - objectSize / 2
-      ) {
-        // If hitting the edge, change direction and continue moving
-        const newDirection = getRandomDirection();
-        setDirection(newDirection);
-      } else {
-        setPosition(newPosition);
+      if (!stopTranslations) {
+        const newPosition = {
+          x: position.x + direction.x * 0.75, // Adjust speed as needed
+          y: position.y + direction.y * 0.75,
+        };
+  
+        if (
+          newPosition.x < 0 - objectSize / 2 ||
+          newPosition.x > innerWidth - objectSize / 2 ||
+          newPosition.y < 0 - objectSize / 2 ||
+          newPosition.y > innerHeight - objectSize / 2
+        ) {
+          // If hitting the edge, change direction and continue moving
+          const newDirection = getRandomDirection();
+          setDirection(newDirection);
+        } else {
+          setPosition(newPosition);
+        }
       }
     };
-
+  
     const handleResize = () => {
       if (position.x > innerWidth - objectSize / 2) {
         // If over the boundary, keep inside
@@ -69,29 +70,28 @@ const RandomSquare = () => {
       } else if (
         position.y > innerHeight - objectSize / 2 &&
         position.x > innerWidth - objectSize / 2
-      )
-        (position.x = innerWidth - position.x + position.x - objectSize / 2),
-          (position.y = innerHeight - position.y + position.y - objectSize / 2);
+      ) {
+        position.x =
+          innerWidth - position.x + position.x - objectSize / 2;
+        position.y =
+          innerHeight - position.y + position.y - objectSize / 2;
+      }
     };
-
-
-
-
+  
     if (typeof window !== "undefined") {
-      
       window.addEventListener("resize", handleResize);
     }
-
+  
     const interval = setInterval(moveSquare, 10); // Adjust interval as needed
-
+  
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", handleResize);
-    
       }
       clearInterval(interval);
     };
-  }, [objectSize, position, direction]);
+  }, [objectSize, position, direction, stopTranslations]);
+  
   return (
     <div
       id="blob"

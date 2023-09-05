@@ -9,11 +9,14 @@ import { Link } from "react-scroll";
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowPos, setWindowPos] = useState(0);
+  const [stopTranslations, setStopTranslations] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
+    let prevScrollPos = 0; // Initialize the previous scroll position
 
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -21,11 +24,23 @@ const HomePage = () => {
       } else {
         setWindowPos(window.scrollY);
       }
+      const currentScrollPos = window.scrollY;
+
+      if (currentScrollPos > prevScrollPos) {
+        // Scrolling down
+        setIsButtonVisible(false);
+      } else {
+        // Scrolling up
+        setIsButtonVisible(true);
+      }
+
+      prevScrollPos = currentScrollPos; // Update the previous scroll position
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
+
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -35,6 +50,13 @@ const HomePage = () => {
   return (
     <>
       {windowWidth > 744 && <div className="noise" />}
+      {isButtonVisible == true && 
+      <button
+        className="sticky-button"
+        onClick={() => setStopTranslations(!stopTranslations)}
+      >
+        {stopTranslations ? "Animations Off" : "Animations On"}
+      </button>}
       <div className="pageContainerSplash">
         <div className="titleText cut-out-text">
           <div className="menu">
@@ -59,6 +81,7 @@ const HomePage = () => {
             Canfield
           </h1>
         </div>
+
         <div
           style={{
             position: "fixed",
@@ -72,11 +95,8 @@ const HomePage = () => {
             filter: `blur(${windowPos / 2 + "px"})`,
           }}
         >
-          <GenerateBackground />
+          <GenerateBackground stopTranslations={stopTranslations} />
         </div>
-        {/* <div className="graffiti">
-        <img src="alexgraffiti.svg"/>
-        </div> */}
       </div>
       <div className="pageContainer about" name="aboutLink">
         <div className="sectionTitle">
@@ -112,7 +132,7 @@ const HomePage = () => {
           beneficial in all of my roles.
         </p>
       </div>
-      <Cards />
+      <Cards stopTranslations={stopTranslations} />
       <div className="pageContainer resume" name="resumeLink">
         <div className="sectionTitle">
           {" "}
@@ -142,8 +162,8 @@ const HomePage = () => {
           <h2 className="titleDupe">LET'S CONNECT!</h2>
         </div>
         <p>
-          I am always looking to meet new people and
-          explore new opportunities. I would love to hear from you!
+          I am always looking to meet new people and explore new opportunities.
+          I would love to hear from you!
         </p>
         <div className="connectionInfo">
           <h3>Shoot Me An Email</h3>

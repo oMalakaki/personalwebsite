@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RandomSquare from "./lavaCircles";
 
-const GenerateBackground = () => {
+const GenerateBackground = ({ stopTranslations }) => {
   const [numSquares, setNumSquares] = useState(4);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const GenerateBackground = () => {
   const squares = [];
 
   for (let i = 0; i < numSquares; i++) {
-    squares.push(<RandomSquare key={i} />);
+    squares.push(<RandomSquare key={i} stopTranslations={stopTranslations} />);
   }
 
   return squares;
