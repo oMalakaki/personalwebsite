@@ -1,5 +1,5 @@
 "use client";
-import { useState, useLayoutEffect  } from "react";
+import { useState, useLayoutEffect, useMemo  } from "react";
 import { useWindowSize } from "rooks";
 
 const getRandomDirection = () => ({
@@ -36,29 +36,28 @@ const RandomSquare = ({ stopTranslations }) => {
     setColor(getRandomColor());
   }, []);
   
-  
-  useLayoutEffect(() => {
-    const moveSquare = () => {
-      if (!stopTranslations) {
-        const newPosition = {
-          x: position.x + direction.x * 0.75, // Adjust speed as needed
-          y: position.y + direction.y * 0.75,
-        };
-  
-        if (
-          newPosition.x < 0 - objectSize / 2 ||
-          newPosition.x > innerWidth - objectSize / 2 ||
-          newPosition.y < 0 - objectSize / 2 ||
-          newPosition.y > innerHeight - objectSize / 2
-        ) {
-          // If hitting the edge, change direction and continue moving
-          const newDirection = getRandomDirection();
-          setDirection(newDirection);
-        } else {
-          setPosition(newPosition);
-        }
+  const moveSquare = useMemo(() => () => {
+    if (!stopTranslations) {
+      const newPosition = {
+        x: position.x + direction.x * 0.75,
+        y: position.y + direction.y * 0.75,
+      };
+
+      if (
+        newPosition.x < 0 - objectSize / 2 ||
+        newPosition.x > innerWidth - objectSize / 2 ||
+        newPosition.y < 0 - objectSize / 2 ||
+        newPosition.y > innerHeight - objectSize / 2
+      ) {
+        const newDirection = getRandomDirection();
+        setDirection(newDirection);
+      } else {
+        setPosition(newPosition);
       }
-    };
+    }
+  }, [position, direction, stopTranslations, objectSize, innerWidth, innerHeight]);
+  useLayoutEffect(() => {
+    
   
     const handleResize = () => {
       if (position.x > innerWidth - objectSize / 2) {
@@ -91,7 +90,7 @@ const RandomSquare = ({ stopTranslations }) => {
       clearInterval(interval);
     };
   }, [objectSize, position, direction, stopTranslations]);
-  
+
   return (
     <div
       id="blob"

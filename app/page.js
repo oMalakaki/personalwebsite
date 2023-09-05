@@ -209,28 +209,33 @@ const HomePage = () => {
         className="pageContainer connect"
         style={{ marginTop: "5rem", minHeight: "50vh" }}
         ref={sectionRefs.connect}
+        name="contactLink"
       >
-        <div className="sectionTitle">
+        <div className="sectionTitle" >
           <h2>LET'S CONNECT!</h2>
           <h2 className="titleDupe">LET'S CONNECT!</h2>
         </div>
         <p>
-          I am always looking to meet new people and explore new opportunities.
+          I am always looking to meet new people and explore new opportunities. <br/>
           I would love to hear from you!
         </p>
         <div className="connectionInfo">
-          <h3>Shoot Me An Email</h3>
-          <p>james.alexander.canfield@gmail.com</p>
-          <h3>Connect With Me</h3>
-          <p>
-            <a
-              href="https://www.linkedin.com/in/jamescanfield"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              linkedin.com/in/jamescanfield
-            </a>
-          </p>
+          <div>
+            <h3>Email Me</h3>
+            <p>james.alexander.canfield@gmail.com</p>
+          </div>
+          <div>
+            <h3>Connect With Me</h3>
+            <p>
+              <a
+                href="https://www.linkedin.com/in/jamescanfield"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                linkedin.com/in/jamescanfield
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </>
