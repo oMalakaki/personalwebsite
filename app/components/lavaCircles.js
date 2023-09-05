@@ -35,29 +35,29 @@ const RandomSquare = ({ stopTranslations }) => {
     setDirection(getRandomDirection());
     setColor(getRandomColor());
   }, []);
-  
-  const moveSquare = useMemo(() => () => {
-    if (!stopTranslations) {
+   
+  useLayoutEffect (() => {
+    const moveSquare = () => {
+      if (!stopTranslations) {
       const newPosition = {
-        x: position.x + direction.x * 0.75,
-        y: position.y + direction.y * 0.75,
+        x: position.x + direction.x * .75, // Adjust speed as needed
+        y: position.y + direction.y * .75,
       };
 
       if (
-        newPosition.x < 0 - objectSize / 2 ||
+        newPosition.x < 0 - (objectSize / 2) ||
         newPosition.x > innerWidth - objectSize / 2 ||
-        newPosition.y < 0 - objectSize / 2 ||
+        newPosition.y < 0 - (objectSize / 2) ||
         newPosition.y > innerHeight - objectSize / 2
       ) {
+        // If hitting the edge, change direction and continue moving
         const newDirection = getRandomDirection();
         setDirection(newDirection);
       } else {
         setPosition(newPosition);
       }
-    }
-  }, [position, direction, stopTranslations, objectSize, innerWidth, innerHeight]);
-  useLayoutEffect(() => {
-    
+    };
+  };
   
     const handleResize = () => {
       if (position.x > innerWidth - objectSize / 2) {

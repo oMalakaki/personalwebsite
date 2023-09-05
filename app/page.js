@@ -64,8 +64,8 @@ const HomePage = () => {
     let prevScrollPos = 0; // Initialize the previous scroll position
 
     const handleScroll = () => {
-      if (window.scrollY >= 100) {
-        setWindowPos(100);
+      if (window.scrollY >= 200) {
+        setWindowPos(200);
       } else {
         setWindowPos(window.scrollY);
       }
@@ -156,7 +156,7 @@ const HomePage = () => {
             top: "0",
             overflow: "hidden",
 
-            filter: `blur(${windowPos / 2 + "px"})`,
+            filter: `blur(${windowPos /2 + "px"})`,
           }}
         >
           <GenerateBackground stopTranslations={stopTranslations} />

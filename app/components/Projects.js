@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Projects.module.css";
+import { Link } from "react-scroll";
 
 function ProjectDescription(props) {
   return (
     <>
-     <div className={styles.projectsInfo}>
+     <div className={styles.projectsInfo} >
         <div>
           <h1>{props.name}</h1>
           <h2>{props.title}</h2>
@@ -159,7 +160,7 @@ export default function Projects() {
     <div className={styles.projectsText}>
       {windowWidth >= 900 ? (
         <>
-          <div className={styles.projectsList}>
+          <div className={styles.projectsList} name="projectTitlesLink">
             {organizations.map((org, orgIndex) => (
               <div
                 key={org}
@@ -185,12 +186,17 @@ export default function Projects() {
           
           <div className={styles.arrowButtons}>
               {activeOrgProjects.length > 1 && (
-                <>
+                <>    <Link style={{all: "unset"}} to="projectTitlesLink" smooth={true} duration={500}>
+                
+              
                   <button onClick={handlePrevProject}>{"<"}</button>
+                  </Link>
                   <h4>
                     {activeProjIndex + 1} of {activeOrgProjects.length}
                   </h4>
+                  <Link style={{all: "unset"}} to="projectTitlesLink" smooth={true} duration={500}>
                   <button onClick={handleNextProject}>{">"}</button>
+                  </Link>
                 </>
               )}
             </div>

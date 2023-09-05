@@ -20,7 +20,7 @@ body {
   z-index: 9999999;
   width: 100%;
   height: 100vh;
-  opacity: 0.7;
+  opacity: 0.6;
   filter: brightness(150%);
   background-image: url("https://uploads-ssl.webflow.com/604e45bd21701352c1131f56/604e45bd217013478e131f6a_5ffddb954a49ee060a580d5a_ezgif.com-gif-maker.gif");
   background-position: 0 0;

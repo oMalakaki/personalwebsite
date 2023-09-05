@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from "react-scroll";
 
 function CircleNav({ activeCircleIndex, showNav}) {
