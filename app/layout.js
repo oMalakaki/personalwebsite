@@ -2,9 +2,6 @@ import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
 
-import Head from 'next/head';
-
-
 
 export const metadata = {
   title: "Alex Canfield | Portfolio",
@@ -17,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <link rel="icon" href="/logo.svg" type="image/x-icon" />
         <meta property="og:url" content={metadata.url} />
         <meta property="og:description" content={metadata.description} />
@@ -29,7 +26,7 @@ export default function RootLayout({ children }) {
           property="og:image"
           content={metadata.image}
         />
-      </Head>
+      </head>
       <body>
         {children}
         <Analytics />
