@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from "react-scroll";
 
-function CircleNav({ activeCircleIndex }) {
+function CircleNav({ activeCircleIndex, showNav}) {
 
 
   const circles = [
@@ -12,7 +12,7 @@ function CircleNav({ activeCircleIndex }) {
   ];
 
   return (
-    <div className="navCircles">
+    <div  className={`navCircles ${showNav ? 'show' : ''}`}>
       {circles.map((circle, index) => (
         <Link key={index} to={circle.link} smooth={true} duration={500}>
           <div

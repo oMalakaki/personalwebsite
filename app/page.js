@@ -13,6 +13,7 @@ const HomePage = () => {
   const [stopTranslations, setStopTranslations] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [activeCircleIndex, setActiveCircleIndex] = useState(null);
+  const [showNav, setShowNav] = useState(null);
   const sectionRefs = {
     landing: useRef(null),
     about: useRef(null),
@@ -51,7 +52,7 @@ const HomePage = () => {
       }
     });
     
-    // Don't forget to disconnect the observer when the component unmounts
+   
     return () => {
       observer.disconnect();
     };
@@ -81,6 +82,15 @@ const HomePage = () => {
         setIsButtonVisible(true);
       }
 
+      if (window.scrollY == 0) {
+        setIsButtonVisible(true);
+      }
+      if (window.scrollY > 300) {
+        setShowNav(true);
+      }else {
+        setShowNav(false);
+      }
+
       prevScrollPos = currentScrollPos; // Update the previous scroll position
     };
 
@@ -96,11 +106,11 @@ const HomePage = () => {
   return (
     <>
       {windowWidth > 744 && <div className="noise" />}
-      {activeCircleIndex > 0 && <CircleNav activeCircleIndex={activeCircleIndex} />}
+      <CircleNav activeCircleIndex={activeCircleIndex} showNav={showNav}></CircleNav>
       
-      {isButtonVisible == true && (
+ 
         <button
-          className="animationBtn"
+        className={`animationBtn ${isButtonVisible ? "visible" : ""}`}
           onClick={() => setStopTranslations(!stopTranslations)}
         >Animations
           <div className={`sticky-button ${stopTranslations ? "off" : "on"}`}>
@@ -108,7 +118,7 @@ const HomePage = () => {
           <div className="slider"></div>
           </div>
         </button>
-      )}
+    
       <div className="pageContainerSplash" >
         <div className="titleText cut-out-text" ref={sectionRefs.landing}>
           <div className="menu">
@@ -125,6 +135,11 @@ const HomePage = () => {
             <h2>
               <Link to="projectsLink" smooth={true} duration={500}>
                 Projects
+              </Link>
+            </h2>
+            <h2>
+              <Link to="contactLink" smooth={true} duration={500}>
+                Contact
               </Link>
             </h2>
           </div>

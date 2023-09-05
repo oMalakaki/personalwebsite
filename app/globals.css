@@ -111,6 +111,11 @@ body {
   color: white;
   gap: 1rem;
   cursor: pointer;
+  opacity: 0%;
+  transition: .5s;
+}
+.animationBtn.visible {
+  opacity: 100%;
 }
 .sticky-button {
   position: relative;
@@ -265,6 +270,7 @@ a {
 }
 
 .navCircles {
+  opacity: 0;
   position: fixed;
   left: 0;
   top: 0;
@@ -276,6 +282,10 @@ a {
   align-items: center;
   justify-content: center;
   z-index: 999;
+  transition: .5s;
+}
+.navCircles.show {
+  opacity: 100;
  
 }
 .circleNav {
