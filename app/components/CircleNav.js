@@ -16,7 +16,7 @@ function CircleNav({ activeCircleIndex, showNav}) {
       {circles.map((circle, index) => (
         <Link key={index} to={circle.link} smooth={true} duration={500}>
           <div
-            className={`circleNav ${activeCircleIndex-1=== index ? 'active' : ''}`}
+            className={`circleNav ${activeCircleIndex === index ? 'active' : ''}`}
             title={circle.title}
           ></div>
         </Link>

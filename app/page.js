@@ -15,36 +15,33 @@ const HomePage = () => {
   const [activeCircleIndex, setActiveCircleIndex] = useState(null);
   const [showNav, setShowNav] = useState(null);
   const sectionRefs = {
-    landing: useRef(null),
     about: useRef(null),
     resume: useRef(null),
     projects: useRef(null),
     connect: useRef(null),
   };
   const sectionTargets = [
-    { ref: sectionRefs.landing, index: 0 },
-    { ref: sectionRefs.about, index: 1 },
-    { ref: sectionRefs.resume, index: 2 },
-    { ref: sectionRefs.projects, index: 3 },
-    { ref: sectionRefs.connect, index: 4 },
+ 
+    { ref: sectionRefs.about, index: 0 },
+    { ref: sectionRefs.resume, index: 1 },
+    { ref: sectionRefs.projects, index: 2 },
+    { ref: sectionRefs.connect, index: 3 },
   ];
   
   const callback = (entries) => {
     entries.forEach((entry) => {
       sectionTargets.forEach((section) => {
-        if (entry.target === section.ref.current) {
-          if (entry.isIntersecting) {
-            setActiveCircleIndex(section.index);
-          } 
-          
+        if (entry.target === section.ref.current && entry.isIntersecting) {
+          setActiveCircleIndex(section.index);
         }
       });
     });
   };
 
   useEffect(() => {
+    let thresholdValue = window.innerWidth < 900 ? 0.1 : 0.5;
     const observer = new IntersectionObserver(callback, {
-      threshold: [0.25], 
+      threshold: thresholdValue,
     });
     Object.values(sectionRefs).forEach((sectionRef) => {
       if (sectionRef.current) {
@@ -120,7 +117,7 @@ const HomePage = () => {
         </button>
     
       <div className="pageContainerSplash" >
-        <div className="titleText cut-out-text" ref={sectionRefs.landing}>
+        <div className="titleText cut-out-text" >
           <div className="menu">
             <h2>
               <Link to="aboutLink" smooth={true} duration={500}>
@@ -212,7 +209,7 @@ const HomePage = () => {
       </div>
 
       <div className="pageContainer projects" name="projectsLink" ref={sectionRefs.projects}>
-        <div className="sectionTitle">
+        <div className="sectionTitle" >
           {" "}
           <h2>Projects</h2>
           <h2 className="titleDupe">Projects</h2>
@@ -223,10 +220,10 @@ const HomePage = () => {
       <div
         className="pageContainer connect"
         style={{ marginTop: "5rem", minHeight: "50vh" }}
-        ref={sectionRefs.connect}
+        
         name="contactLink"
       >
-        <div className="sectionTitle" >
+        <div className="sectionTitle" ref={sectionRefs.connect}>
           <h2>LET'S CONNECT!</h2>
           <h2 className="titleDupe">LET'S CONNECT!</h2>
         </div>
