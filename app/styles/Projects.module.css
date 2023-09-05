@@ -1,6 +1,6 @@
 .projectsText {
   display: flex;
-  justify-content: space-between;
+
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -10,7 +10,7 @@
 }
 .projectsHero {
   width: 100%;
-  min-height: 45em;
+  min-height: 42.5em;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -22,8 +22,8 @@
   
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 
-  justify-content: space-between;
 }
 .projectsHero h1 {
   text-transform: uppercase;

@@ -96,23 +96,58 @@ body {
   letter-spacing: -0.8em;
 }
 
-.sticky-button {
-  
+.animationBtn {
+  all: unset;
   position: fixed;
-
+  display: flex;
   top: .5rem; /* Adjust this value to control the distance from the top */
   right: .5rem; /* Adjust this value to control the distance from the right */
   z-index: 999; /* Adjust the z-index as needed to control the stacking order */
-  background-color: rgba(0,0,0,.2); /* Background color for the button */
-  color: #fff; /* Text color for the button */
-  padding: .25rem ; /* Padding for the button */
-  border: none;
-  border-radius: 5px;
+  align-items: center;
+  background-color: rgba(0,0,0,.2);
+  padding: .5rem;
+  border-radius: .5rem;
   font-size: .75rem;
-  width: 9rem;
+  color: white;
+  gap: 1rem;
   cursor: pointer;
+
+}
+.sticky-button {
+ 
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+
+  border-radius: 2rem;
+  
+}
+.sticky-button.on {
+  background-color: #4caf50;
 }
 
+.sticky-button.off {
+  background-color: #ccc;
+}
+
+.slider {
+  position: absolute;
+  top: .175em;
+  left: .175em;
+  width: .75rem;
+  height:  .75rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.sticky-button.on .slider {
+  transform: translateX(1rem);
+}
+
+.sticky-button.off .slider {
+  transform: translateX(.1em);
+}
 /* Add a media query for smaller screens */
 @media screen and (max-width: 915px) {
   .titleText h1 {

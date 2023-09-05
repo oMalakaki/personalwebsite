@@ -41,7 +41,6 @@ const HomePage = () => {
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
-
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
@@ -50,13 +49,17 @@ const HomePage = () => {
   return (
     <>
       {windowWidth > 744 && <div className="noise" />}
-      {isButtonVisible == true && 
-      <button
-        className="sticky-button"
-        onClick={() => setStopTranslations(!stopTranslations)}
-      >
-        {stopTranslations ? "Animations Off" : "Animations On"}
-      </button>}
+      {isButtonVisible == true && (
+        <button
+          className="animationBtn"
+          onClick={() => setStopTranslations(!stopTranslations)}
+        >Animations
+          <div className={`sticky-button ${stopTranslations ? "off" : "on"}`}>
+           
+          <div className="slider"></div>
+          </div>
+        </button>
+      )}
       <div className="pageContainerSplash">
         <div className="titleText cut-out-text">
           <div className="menu">

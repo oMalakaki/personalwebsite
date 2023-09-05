@@ -16,7 +16,7 @@ function ProjectDescription(props) {
           <p>{props.skills}</p>
         </div>
      </div>
-     <div className={styles.projectsVisual}>
+     {/* <div className={styles.projectsVisual}>
  
      <img
   className={styles.projectsImage}
@@ -24,7 +24,7 @@ function ProjectDescription(props) {
 
 ></img>
 
-     </div>
+     </div> */}
     </>
   );
 }
