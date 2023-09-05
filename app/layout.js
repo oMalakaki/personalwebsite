@@ -1,17 +1,9 @@
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
-const puppeteer = require('puppeteer');
 
-async function generateOpenGraphImage() {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto('https://alexcanfield.us');
-  await page.screenshot({ path: 'og-image.png' });
-  await browser.close();
-}
+import Head from 'next/head';
 
-generateOpenGraphImage();
 
 
 export const metadata = {
@@ -19,13 +11,13 @@ export const metadata = {
   description: `Alex Canfield's Portfolio`,
   type: "website",
   url: "https://alexcanfield.us",
-  image: "og-image.png"
+  image: "https://imgur.com/KxmeXlT"
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         <link rel="icon" href="/logo.svg" type="image/x-icon" />
         <meta property="og:url" content={metadata.url} />
         <meta property="og:description" content={metadata.description} />
@@ -37,7 +29,7 @@ export default function RootLayout({ children }) {
           property="og:image"
           content={metadata.image}
         />
-      </head>
+      </Head>
       <body>
         {children}
         <Analytics />
