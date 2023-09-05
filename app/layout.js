@@ -11,7 +11,7 @@ export const metadata = {
   description: `Alex Canfield's Portfolio`,
   type: "website",
   url: "https://alexcanfield.us",
-  image: "https://imgur.com/KxmeXlT"
+  image: "https://i.imgur.com/KxmeXlT.png"
 };
 
 export default function RootLayout({ children }) {
