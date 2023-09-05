@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  position: relative;
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
@@ -9,9 +10,19 @@
 }
 .projectsHero {
   width: 100%;
-  min-height: 42.5em;
+  min-height: 45em;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+.projectsInfo {
+  width: 100%;
+  
   display: flex;
   flex-direction: column;
+
   justify-content: space-between;
 }
 .projectsHero h1 {
@@ -48,6 +59,13 @@
   width: 100%;
 }
 
+.projectsImage{
+  height: 45rem;
+  width: 18rem;
+  object-fit: cover;
+  position:relative;
+}
+
 .orgContainer {
   display: flex;
   align-items: center;
@@ -79,7 +97,7 @@
   transition: 0.3s;
 }
 
-.projectsHero .arrowButtons {
+.arrowButtons {
   display: flex;
   font-size: 1.5em;
   align-self: center;
@@ -87,7 +105,7 @@
   justify-content: space-between;
 }
 
-.projectsHero .arrowButtons button {
+ .arrowButtons button {
   all: unset;
   cursor: pointer;
   color: white;
@@ -95,7 +113,7 @@
   padding: 0 0.5em 0 0.5em;
   user-select: none;
 }
-.projectsHero .arrowButtons h4 {
+ .arrowButtons h4 {
   width: 4rem;
   text-align: center;
 }

@@ -46,6 +46,8 @@ const data = [
       "Sharepoint",
       "Lucid",
       "Splunk (Basic)",
+      "Python",
+
     ],
   },
 
@@ -61,7 +63,9 @@ const data = [
       "Web Dev",
       "Data Analysis",
       "Product Dev",
-      "Formula 1"
+      "Formula 1",
+      "Cybersecurity",
+      " "
 
     ],
   },

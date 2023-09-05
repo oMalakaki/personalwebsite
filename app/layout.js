@@ -1,15 +1,25 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Analytics } from "@vercel/analytics/react";
+const puppeteer = require('puppeteer');
+
+async function generateOpenGraphImage() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('https://alexcanfield.us');
+  await page.screenshot({ path: 'og-image.png' });
+  await browser.close();
+}
+
+generateOpenGraphImage();
+
 
 export const metadata = {
   title: "Alex Canfield | Portfolio",
   description: `Alex Canfield's Portfolio`,
   type: "website",
   url: "https://alexcanfield.us",
-  image: "https://i.imgur.com/KxmeXlT.png"
+  image: "og-image.png"
 };
 
 export default function RootLayout({ children }) {

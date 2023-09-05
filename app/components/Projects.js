@@ -4,16 +4,27 @@ import styles from "../styles/Projects.module.css";
 function ProjectDescription(props) {
   return (
     <>
-      <div>
-        <h1>{props.name}</h1>
-        <h2>{props.title}</h2>
-        <p className={styles.description}>{props.description}</p>
-      </div>
+     <div className={styles.projectsInfo}>
+        <div>
+          <h1>{props.name}</h1>
+          <h2>{props.title}</h2>
+          <p className={styles.description}>{props.description}</p>
+        </div>
+  
+        <div>
+          <h3>Skills Learned</h3>
+          <p>{props.skills}</p>
+        </div>
+     </div>
+     <div className={styles.projectsVisual}>
+ 
+     <img
+  className={styles.projectsImage}
+  src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXJpN2d0ZnBzcTRrZWdjNnJnMzUxZHN0YjljNHM5NTRlcW82ejRldiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j6GPJzqAsY0s2dot24/giphy.gif"
 
-      <div>
-        <h3>Skills Learned</h3>
-        <p>{props.skills}</p>
-      </div>
+></img>
+
+     </div>
     </>
   );
 }
@@ -164,7 +175,9 @@ export default function Projects() {
               skills={activeOrgProjects[activeProjIndex].skills}
             />
 
-            <div className={styles.arrowButtons}>
+          </div>
+          
+          <div className={styles.arrowButtons}>
               {activeOrgProjects.length > 1 && (
                 <>
                   <button onClick={handlePrevProject}>{"<"}</button>
@@ -175,7 +188,6 @@ export default function Projects() {
                 </>
               )}
             </div>
-          </div>
         </>
       ) : (
         <>
