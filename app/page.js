@@ -1,16 +1,63 @@
 "use client";
 import Cards from "./components/Cards";
 import MakeBox from "./components/MakeBox";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import GenerateBackground from "./components/GenerateBackground";
 import Projects from "./components/Projects";
 import { Link } from "react-scroll";
+import CircleNav from "./components/CircleNav";
 
 const HomePage = () => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowPos, setWindowPos] = useState(0);
   const [stopTranslations, setStopTranslations] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const [activeCircleIndex, setActiveCircleIndex] = useState(null);
+  const sectionRefs = {
+    landing: useRef(null),
+    about: useRef(null),
+    resume: useRef(null),
+    projects: useRef(null),
+    connect: useRef(null),
+  };
+  const sectionTargets = [
+    { ref: sectionRefs.landing, index: 0 },
+    { ref: sectionRefs.about, index: 1 },
+    { ref: sectionRefs.resume, index: 2 },
+    { ref: sectionRefs.projects, index: 3 },
+    { ref: sectionRefs.connect, index: 4 },
+  ];
+  
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      sectionTargets.forEach((section) => {
+        if (entry.target === section.ref.current) {
+          if (entry.isIntersecting) {
+            setActiveCircleIndex(section.index);
+          } 
+          
+        }
+      });
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callback, {
+      threshold: [0.25], 
+    });
+    Object.values(sectionRefs).forEach((sectionRef) => {
+      if (sectionRef.current) {
+        observer.observe(sectionRef.current);
+      }
+    });
+    
+    // Don't forget to disconnect the observer when the component unmounts
+    return () => {
+      observer.disconnect();
+    };
+    
+  }, []);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,6 +96,8 @@ const HomePage = () => {
   return (
     <>
       {windowWidth > 744 && <div className="noise" />}
+      {activeCircleIndex > 0 && <CircleNav activeCircleIndex={activeCircleIndex} />}
+      
       {isButtonVisible == true && (
         <button
           className="animationBtn"
@@ -60,8 +109,8 @@ const HomePage = () => {
           </div>
         </button>
       )}
-      <div className="pageContainerSplash">
-        <div className="titleText cut-out-text">
+      <div className="pageContainerSplash" >
+        <div className="titleText cut-out-text" ref={sectionRefs.landing}>
           <div className="menu">
             <h2>
               <Link to="aboutLink" smooth={true} duration={500}>
@@ -79,7 +128,7 @@ const HomePage = () => {
               </Link>
             </h2>
           </div>
-          <h1>
+          <h1 >
             Alex <br />
             Canfield
           </h1>
@@ -101,7 +150,7 @@ const HomePage = () => {
           <GenerateBackground stopTranslations={stopTranslations} />
         </div>
       </div>
-      <div className="pageContainer about" name="aboutLink">
+      <div className="pageContainer about" name="aboutLink" ref={sectionRefs.about}>
         <div className="sectionTitle">
           {" "}
           <h2>About</h2>
@@ -136,7 +185,7 @@ const HomePage = () => {
         </p>
       </div>
       <Cards stopTranslations={stopTranslations} />
-      <div className="pageContainer resume" name="resumeLink">
+      <div className="pageContainer resume" name="resumeLink" ref={sectionRefs.resume}>
         <div className="sectionTitle">
           {" "}
           <h2>Resume</h2>
@@ -147,7 +196,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="pageContainer projects" name="projectsLink">
+      <div className="pageContainer projects" name="projectsLink" ref={sectionRefs.projects}>
         <div className="sectionTitle">
           {" "}
           <h2>Projects</h2>
@@ -159,6 +208,7 @@ const HomePage = () => {
       <div
         className="pageContainer connect"
         style={{ marginTop: "5rem", minHeight: "50vh" }}
+        ref={sectionRefs.connect}
       >
         <div className="sectionTitle">
           <h2>LET'S CONNECT!</h2>
