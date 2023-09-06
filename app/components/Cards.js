@@ -61,14 +61,15 @@ export default function Cards({ stopTranslations }) {
       setTranslationsEnabled(false);
     };
     const handleTouchInteractionEnd = () => {
-      
       setTranslationsEnabled(true);
     };
+
     container.addEventListener("mousedown", mouseDownHandler);
     container.addEventListener("mouseenter", mouseEnterHandler);
     container.addEventListener("mouseleave", mouseLeaveHandler);
     container.addEventListener("touchmove", handleTouchInteractionStart);
-    window.addEventListener("touchend", handleTouchInteractionEnd);
+    container.addEventListener("touchcancel", handleTouchInteractionEnd);
+
     const moveTrack = () => {
       pos = {
         left: container.scrollLeft,
