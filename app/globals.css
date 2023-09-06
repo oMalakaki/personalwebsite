@@ -37,17 +37,19 @@ body {
   pointer-events: none;
 }
 
-.titleText h1 {
+.cut-out-text h1 {
   font-size: 12rem;
   line-height: 0.8em;
   letter-spacing: -0.05em;
+ 
+  
 }
 .cut-out-text {
   color: white; /* Text color */
   background-color: transparent; /* Transparent text background */
-  z-index: 2;
-  mix-blend-mode: difference;
+  z-index: 1;
   background-clip: text; /* Clip background to the text */
+  mix-blend-mode: difference;
 }
 
 .pageContainerSplash {
@@ -59,6 +61,12 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #e61f3a;
+  display: flex;
+  z-index: 0;
+  gap: 1em;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu {
@@ -66,30 +74,31 @@ body {
   flex-direction: row;
   gap: 3em;
   justify-content: flex-end;
-  width: 100%;
-  z-index: 8;
+  width: 760px;
+  z-index: 9;
+  
 }
+
 .menu h2 {
   font-size: 2em;
   transition: 0.1s ease-in-out;
   cursor: pointer;
   letter-spacing: -0.03em;
   font-weight: 500;
+  color: white;
+  
 }
+
 .menu h2:hover {
   scale: 1.05;
 }
+
 .menu h2 a {
   all: unset;
 }
-.titleText {
-  display: flex;
-  z-index: 2;
-  gap: 1em;
-  flex-direction: column-reverse;
-  align-items: center;
-  justify-content: center;
-}
+
+
+
 .name {
   display: flex;
   flex-direction: column;
@@ -114,9 +123,11 @@ body {
   cursor: pointer;
   opacity: 0%;
   transition: .5s;
+  visibility: hidden;
 }
 .animationBtn.visible {
   opacity: 100%;
+  visibility: visible;
 }
 .sticky-button {
   position: relative;
@@ -153,7 +164,7 @@ body {
 }
 /* Add a media query for smaller screens */
 @media screen and (max-width: 915px) {
-  .titleText h1 {
+  .pageContainerSplash h1 {
     font-size: 5rem;
     line-height: 0.8em;
     text-align: center;
@@ -170,7 +181,7 @@ body {
     transition: 0.1s ease-in-out;
     cursor: pointer;
   }
-  .titleText {
+  .pageContainerSplash {
     display: flex;
     z-index: 2;
     gap: 2em;
@@ -189,7 +200,7 @@ body {
 
 .pageContainer h2 {
   font-size: 4rem;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.05em;
   mix-blend-mode: difference;
   margin-bottom: 3rem;
   line-height: 1;
@@ -206,10 +217,10 @@ body {
 }
 .sectionTitle .titleDupe {
   mix-blend-mode: normal;
-  transform: translate3d(0,0,0);
+  
   position: absolute;
   color: white;
-  opacity: 0.25;
+  opacity: 0.15;
   top: 0;
   left: 0;
 }

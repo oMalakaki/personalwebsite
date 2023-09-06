@@ -127,6 +127,7 @@ const HomePage = () => {
       
  
         <button
+        title="Help Performance"
         className={`animationBtn ${isButtonVisible ? "visible" : ""}`}
           onClick={() => setStopTranslations(!stopTranslations)}
         >Animations
@@ -136,46 +137,51 @@ const HomePage = () => {
           </div>
         </button>
     
-      <div className="pageContainerSplash" name="homeLink" ref={sectionRefs.home} >
-        <div className="titleText cut-out-text"  >
-          <div className="menu">
-            <h2>
-              <Link to="aboutLink" smooth={true} duration={500}>
-                About
-              </Link>
-            </h2>
-            <h2>
-              <Link to="resumeLink" smooth={true} duration={500}>
-                Resume
-              </Link>
-            </h2>
-            <h2>
-              <Link to="projectsLink" smooth={true} duration={500}>
-                Projects
-              </Link>
-            </h2>
-            <h2>
-              <Link to="contactLink" smooth={true} duration={500}>
-                Contact
-              </Link>
-            </h2>
-          </div>
-          <h1 >
-            Alex <br />
-            Canfield
-          </h1>
-        </div>
+        <div className="pageContainerSplash" name="homeLink">
+  <div ref={sectionRefs.home} style={{ position: "absolute", height: "10rem", width: "1rem", top: "0", left: "0" }}></div>
+ 
+    <div className="menu">
+      <h2>
+        <Link to="aboutLink" smooth={true} duration={500}>
+          About
+        </Link>
+      </h2>
+      <h2>
+        <Link to="resumeLink" smooth={true} duration={500}>
+          Resume
+        </Link>
+      </h2>
+      <h2>
+        <Link to="projectsLink" smooth={true} duration={500}>
+          Projects
+        </Link>
+      </h2>
+      <h2>
+        <Link to="contactLink" smooth={true} duration={500}>
+          Contact
+        </Link>
+      </h2>
+    </div>
+    <div className="cut-out-text">
+      <h1>
+        Alex <br />
+        Canfield
+      </h1>
+   
+  </div>
+
+
 
         <div
           style={{
             position: "fixed",
+            zIndex: "0",
             width: "100vw",
             scale: "1.5",
             height: "100%",
             left: "0",
             top: "0",
             overflow: "hidden",
-
             filter: `blur(${windowPos /2 + "px"})`,
           }}
         >
