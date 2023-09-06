@@ -40,8 +40,8 @@ const RandomSquare = ({ stopTranslations }) => {
     const moveSquare = () => {
       
         const newPosition = {
-          x: position.x + direction.x * 1, // Adjust speed as needed
-          y: position.y + direction.y * 1,
+          x: position.x + direction.x * .75, // Adjust speed as needed
+          y: position.y + direction.y * .75,
         };
 
         if (
@@ -99,6 +99,7 @@ const RandomSquare = ({ stopTranslations }) => {
         backgroundColor: color,
         borderRadius: "100%",
         transform: `translate(${position.x}px, ${position.y}px)`,
+        transform: "translateZ(0)"
       }}
     ></div>
   );

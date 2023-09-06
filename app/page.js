@@ -177,12 +177,6 @@ const HomePage = () => {
             top: "0",
             overflow: "hidden",
             filter: `blur(${Math.min(windowPos / 2, 200)}px)`,
-            WebkitBackfaceVisibility: "hidden", // Use capital "W" for WebKit properties
-            WebkitPerspective: "1000",
-            WebkitTransform: "translate3d(0,0,0) translateZ(0)", // Combine multiple transforms
-            backfaceVisibility: "hidden",
-            perspective: "1000",
-            transform: "translate3d(0,0,0) translateZ(0)", // Combine multiple transforms
           }}
         >
           <GenerateBackground stopTranslations={stopTranslations} />
