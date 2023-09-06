@@ -97,6 +97,7 @@ body {
 }
 
 .animationBtn {
+  
   all: unset;
   position: fixed;
   display: flex;
@@ -188,7 +189,7 @@ body {
 
 .pageContainer h2 {
   font-size: 4rem;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.06em;
   mix-blend-mode: difference;
   margin-bottom: 3rem;
   line-height: 1;
@@ -275,11 +276,13 @@ a {
   justify-content: center;
   z-index: 999;
   transition: .5s;
+  visibility: hidden;
+
 }
 
 .navCircles.show {
   opacity: 100;
- 
+  visibility: visible;
 }
 .circleNav {
   width: 0.5rem;
