@@ -7,7 +7,7 @@ export default function Cards({ stopTranslations }) {
   const scrollRef = useRef(null);
   const [direction, setDirection] = useState(1);
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
-  let intervalId;
+  let animationFrameId;
   const imageLinks = [
     "https://i.imgur.com/Wwol4o6.jpg",
     "https://i.imgur.com/KqvP7LG.jpg",
@@ -51,12 +51,10 @@ export default function Cards({ stopTranslations }) {
 
     const mouseEnterHandler = function () {
       setTranslationsEnabled(false);
-      
     };
 
     const mouseLeaveHandler = function () {
       setTranslationsEnabled(true);
-      
     };
 
     const handleTouchInteractionStart = () => {
@@ -69,51 +67,40 @@ export default function Cards({ stopTranslations }) {
     container.addEventListener("touchmove", handleTouchInteractionStart);
 
     const moveTrack = () => {
-        pos = {
-          left: container.scrollLeft,
-        };
+      pos = {
+        left: container.scrollLeft,
+      };
 
-        const trackEnd =
-          ((pos.left + window.innerWidth) / container.scrollWidth) * 100;
+      const trackEnd =
+        ((pos.left + window.innerWidth) / container.scrollWidth) * 100;
 
-        if (trackEnd >= 100 && direction === 1) {
-          setDirection(-1);
-        } else if (container.scrollLeft === 0 && direction === -1) {
-          setDirection(1);
-        }
-        container.scrollLeft += direction * 1;
-      
-    };
-    // Function to start the interval
-    const startInterval = () => {
-      intervalId = setInterval(moveTrack, 10);
-    };
+      if (trackEnd >= 100 && direction === 1) {
+        setDirection(-1);
+      } else if (container.scrollLeft === 0 && direction === -1) {
+        setDirection(1);
+      }
+      container.scrollLeft += direction * 1;
 
-    // Function to pause the interval
-    const pauseInterval = () => {
-      clearInterval(intervalId);
+      if (!stopTranslations && isTranslationsEnabled) {
+        // Continue the animation using requestAnimationFrame
+        animationFrameId = requestAnimationFrame(moveTrack);
+      }
     };
 
+    // Start the animation loop
     if (!stopTranslations && isTranslationsEnabled) {
-      // Start the interval timer when stopTranslations is false
-      startInterval();
-    } else {
-      // Pause the interval timer when stopTranslations is true
-      pauseInterval();
+      animationFrameId = requestAnimationFrame(moveTrack);
     }
 
-
-
     return () => {
-      clearInterval(intervalId);
+      cancelAnimationFrame(animationFrameId);
       container.removeEventListener("mousedown", mouseDownHandler);
       container.removeEventListener("mouseenter", mouseEnterHandler);
       container.removeEventListener("mouseleave", mouseLeaveHandler);
       container.removeEventListener("touchmove", handleTouchInteractionStart);
-
     };
   }, [direction, isTranslationsEnabled, stopTranslations]);
-
+  
   return (
     <div className={styles.scrollContainer} ref={scrollRef}>
       <div className={styles.imageTrack} id="imageTrack">

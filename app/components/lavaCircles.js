@@ -19,7 +19,7 @@ const RandomSquare = ({ stopTranslations }) => {
   const [position, setPosition] = useState(0);
   const [direction, setDirection] = useState(0);
   const [color, setColor] = useState("");
-  let intervalId;
+  let animationFrameId;
 
   useLayoutEffect(() => {
     const minSize = 500;
@@ -40,8 +40,8 @@ const RandomSquare = ({ stopTranslations }) => {
     const moveSquare = () => {
       
         const newPosition = {
-          x: position.x + direction.x * 0.75, // Adjust speed as needed
-          y: position.y + direction.y * 0.75,
+          x: position.x + direction.x * 0.5, // Adjust speed as needed
+          y: position.y + direction.y * 0.5,
         };
 
         if (
@@ -56,22 +56,17 @@ const RandomSquare = ({ stopTranslations }) => {
         } else {
           setPosition(newPosition);
         }
-      
+        if (!stopTranslations) {
+          // Continue the animation using requestAnimationFrame
+          animationFrameId = requestAnimationFrame(moveSquare);
+        }
     };
 
     const handleResize = () => {
       if (position.x > innerWidth - objectSize / 2) {
-        // If over the boundary, keep inside
-        position.x = innerWidth - position.x + position.x - objectSize / 2;
+        setPosition({ ...position, x: innerWidth - objectSize / 2 });
       } else if (position.y > innerHeight - objectSize / 2) {
-        // If over the boundary, keep inside
-        position.y = innerHeight - position.y + position.y - objectSize / 2;
-      } else if (
-        position.y > innerHeight - objectSize / 2 &&
-        position.x > innerWidth - objectSize / 2
-      ) {
-        position.x = innerWidth - position.x + position.x - objectSize / 2;
-        position.y = innerHeight - position.y + position.y - objectSize / 2;
+        setPosition({ ...position, y: innerHeight - objectSize / 2 });
       }
     };
 
@@ -79,22 +74,10 @@ const RandomSquare = ({ stopTranslations }) => {
       window.addEventListener("resize", handleResize);
     }
 
-    // Function to start the interval
-    const startInterval = () => {
-      intervalId = setInterval(moveSquare, 10);
-    };
 
-    // Function to pause the interval
-    const pauseInterval = () => {
-      clearInterval(intervalId);
-    };
 
     if (!stopTranslations) {
-      // Start the interval timer when stopTranslations is false
-      startInterval();
-    } else {
-      // Pause the interval timer when stopTranslations is true
-      pauseInterval();
+      animationFrameId = requestAnimationFrame(moveSquare);
     }
 
     return () => {
@@ -102,7 +85,7 @@ const RandomSquare = ({ stopTranslations }) => {
         window.removeEventListener("resize", handleResize);
    
       }
-      clearInterval(intervalId);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [objectSize, position, direction, stopTranslations]);
 
