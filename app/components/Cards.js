@@ -68,7 +68,7 @@ export default function Cards({ stopTranslations }) {
     container.addEventListener("mouseenter", mouseEnterHandler);
     container.addEventListener("mouseleave", mouseLeaveHandler);
     container.addEventListener("touchmove", handleTouchInteractionStart);
-    container.addEventListener("touchcancel", handleTouchInteractionEnd);
+    document.body.addEventListener("touchstart", handleTouchInteractionEnd);
 
     const moveTrack = () => {
       pos = {
