@@ -285,6 +285,7 @@ a {
   z-index: 999;
   transition: .5s;
 }
+
 .navCircles.show {
   opacity: 100;
  
@@ -305,6 +306,26 @@ a {
 .circleNav.active {
   scale: 1.5;
   opacity: 1;
+  
+}
+.circleNav.home {
+  width: 1rem; /* Adjust the width as needed to fit your design */
+  height: 1rem; /* Adjust the height as needed to fit your design */
+  border-radius: 0%; /* To keep it a circle */
+  background-color: transparent;
+  background-image: url("/icons8-home.svg");
+  background-repeat: no-repeat;
+  background-size: contain; /* This will shrink the image to fit inside the circle */
+  background-position: center; /* Center the image inside the circle */
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  
+}
+.circleNav.home:hover{
+  
+    scale: 1.25;
+
+
   
 }
 /* Add a media query for smaller screens */

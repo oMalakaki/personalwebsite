@@ -15,6 +15,7 @@ const HomePage = () => {
   const [activeCircleIndex, setActiveCircleIndex] = useState(null);
   const [showNav, setShowNav] = useState(null);
   const sectionRefs = {
+    home: useRef(null),
     about: useRef(null),
     resume: useRef(null),
     projects: useRef(null),
@@ -22,10 +23,11 @@ const HomePage = () => {
   };
   const sectionTargets = [
  
-    { ref: sectionRefs.about, index: 0 },
-    { ref: sectionRefs.resume, index: 1 },
-    { ref: sectionRefs.projects, index: 2 },
-    { ref: sectionRefs.connect, index: 3 },
+    { ref: sectionRefs.home, index: 0 },
+    { ref: sectionRefs.about, index: 1 },
+    { ref: sectionRefs.resume, index: 2 },
+    { ref: sectionRefs.projects, index: 3 },
+    { ref: sectionRefs.connect, index: 4 },
   ];
   
   const callback = (entries) => {
@@ -39,7 +41,16 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    let thresholdValue = window.innerWidth < 900 ? 0.1 : 0.5;
+    let thresholdValue =
+    window.innerWidth < 600
+      ? 0.1
+      : window.innerWidth >= 600 && window.innerWidth <= 900
+      ? 0.125
+      : window.innerWidth >= 900 && window.innerWidth <= 1000
+      ? 0.20
+      : window.innerWidth >= 1000 && window.innerWidth <= 1200
+      ? 0.225
+      : 0.4;
     const observer = new IntersectionObserver(callback, {
       threshold: thresholdValue,
     });
@@ -116,8 +127,8 @@ const HomePage = () => {
           </div>
         </button>
     
-      <div className="pageContainerSplash" >
-        <div className="titleText cut-out-text" >
+      <div className="pageContainerSplash" name="homeLink" ref={sectionRefs.home} >
+        <div className="titleText cut-out-text"  >
           <div className="menu">
             <h2>
               <Link to="aboutLink" smooth={true} duration={500}>
@@ -150,7 +161,7 @@ const HomePage = () => {
           style={{
             position: "fixed",
             width: "100vw",
-            scale: "1.4",
+            scale: "1.5",
             height: "100%",
             left: "0",
             top: "0",
