@@ -98,8 +98,8 @@ const RandomSquare = ({ stopTranslations }) => {
         height: objectSize,
         backgroundColor: color,
         borderRadius: "100%",
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        transform: "translateZ(0)"
+        transform: `translate(${position.x}px, ${position.y}px) translateZ(0)`,
+    
       }}
     ></div>
   );
