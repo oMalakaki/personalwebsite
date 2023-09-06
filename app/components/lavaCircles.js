@@ -95,7 +95,7 @@ const RandomSquare = ({ stopTranslations }) => {
         window.removeEventListener("resize", handleResize);
    
       }
-      cancelAnimationFrame(animationFrameId);
+      clearInterval(intervalId);
     };
   }, [objectSize, position, direction, stopTranslations]);
 
