@@ -87,19 +87,6 @@ export default function Cards({ stopTranslations }) {
     }
 
 
-    const handleScroll = () => {
-      if (typeof window !== "undefined") {
-        if (window.scrollY < 1000 || window.scrollY > 3000) {
-          setTranslationsEnabled(false);
-        } else {
-          setTranslationsEnabled(true);
-        }
-      }
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
-    }
 
     return () => {
       clearInterval(intervalId);
@@ -108,9 +95,6 @@ export default function Cards({ stopTranslations }) {
       container.removeEventListener("mouseleave", mouseLeaveHandler);
       container.removeEventListener("touchmove", handleTouchInteractionStart);
 
-      if (typeof window !== "undefined") {
-        window.removeEventListener("scroll", handleScroll);
-      }
     };
   }, [direction, isTranslationsEnabled, stopTranslations]);
 

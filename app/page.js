@@ -6,9 +6,10 @@ import GenerateBackground from "./components/GenerateBackground";
 import Projects from "./components/Projects";
 import { Link } from "react-scroll";
 import CircleNav from "./components/CircleNav";
+import debounce from 'lodash/debounce';
 
 const HomePage = () => {
-  const [windowWidth, setWindowWidth] = useState(0);
+
   const [windowPos, setWindowPos] = useState(0);
   const [stopTranslations, setStopTranslations] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
@@ -64,65 +65,71 @@ const HomePage = () => {
     };
     
   }, []);
-
-
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
     let prevScrollPos = 0; // Initialize the previous scroll position
-
+    let debounceEnabled = 0; // Flag to enable debounce after 200 pixels
+  
     const handleScroll = () => {
       if (window.scrollY <= 0) {
         setWindowPos(0);
       }
-      if (windowWidth > 744){
-      if (window.scrollY >= 200) {
-        setWindowPos(200);
-      } else {
-        setWindowPos(window.scrollY);
-      }
-    }else {
+  
       if (window.scrollY >= 150) {
         setWindowPos(150);
+        debounceEnabled = 100; // Enable debounce once scroll position reaches 200 pixels
+        
       } else {
         setWindowPos(window.scrollY);
-    }
-  }
-      const currentScrollPos = window.scrollY;
-
-      if (currentScrollPos > prevScrollPos) {
-        // Scrolling down
-        setIsButtonVisible(false);
-      } else {
-        // Scrolling up
-        setIsButtonVisible(true);
+        console.log(debounceEnabled);
+        debounceEnabled = 0; // Disable debounce when scroll position is less than 200 pixels
       }
-
+  
+      const currentScrollPos = window.scrollY;
+  
+      if (debounceEnabled) {
+        // Only execute debounce logic after reaching 200 pixels
+        if (currentScrollPos > prevScrollPos) {
+          // Scrolling down
+          setIsButtonVisible(false);
+        } else {
+          // Scrolling up
+          setIsButtonVisible(true);
+        }
+      } else {
+        // Execute handleScroll immediately when scroll position is less than 200 pixels
+        if (currentScrollPos > prevScrollPos) {
+          // Scrolling down
+          setIsButtonVisible(false);
+        } else {
+          // Scrolling up
+          setIsButtonVisible(true);
+        }
+      }
+  
       if (window.scrollY == 0) {
         setIsButtonVisible(true);
       }
       if (window.scrollY > 300) {
         setShowNav(true);
-      }else {
+      } else {
         setShowNav(false);
       }
-
+  
       prevScrollPos = currentScrollPos; // Update the previous scroll position
     };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll);
-
+  
+    const debouncedScrollHandler = debounce(handleScroll, debounceEnabled); // Adjust the delay as needed
+  
+    window.addEventListener('scroll', debouncedScrollHandler);
+  
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', debouncedScrollHandler);
     };
   }, []);
+  
   return (
     <>
-      {windowWidth > 744 && <div className="noise" />}
+       <div className="noise" />
       <CircleNav activeCircleIndex={activeCircleIndex} showNav={showNav}></CircleNav>
       
  
