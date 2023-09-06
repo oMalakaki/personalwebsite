@@ -11,7 +11,7 @@ const GenerateBackground = ({ stopTranslations }) => {
       
       if (e.matches) {
         
-        setNumSquares(10);
+        setNumSquares(7);
       } else {
         
         setNumSquares(6);

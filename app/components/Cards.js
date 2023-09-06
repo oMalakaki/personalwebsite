@@ -8,7 +8,23 @@ export default function Cards({ stopTranslations }) {
   const [direction, setDirection] = useState(1);
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
   let intervalId;
-
+  const imageLinks = [
+    "https://i.imgur.com/Wwol4o6.jpg",
+    "https://i.imgur.com/KqvP7LG.jpg",
+    "https://i.imgur.com/RSJb66N.jpg",
+    "https://i.imgur.com/ErvLyef.jpg",
+    "https://i.imgur.com/ds0U0TT.jpg",
+    "https://i.imgur.com/Ol7AB9K.jpg",
+    "https://i.imgur.com/EKRJqHE.jpg",
+    "https://i.imgur.com/iuJwYU1.jpg",
+    "https://i.imgur.com/wSZ75M9.jpg",
+    "https://i.imgur.com/y5TUTWD.jpg",
+    "https://i.imgur.com/ldKSUfA.jpg",
+    "https://i.imgur.com/hHdxFbm.jpg",
+    "https://i.imgur.com/Oltuwk2.jpg",
+    "https://i.imgur.com/s2YQVFd.jpg",
+    "https://i.imgur.com/FwSMJvZ.jpg"
+  ];
   useEffect(() => {
     const container = scrollRef.current;
     let pos = { left: 0, x: 0 };
@@ -101,21 +117,9 @@ export default function Cards({ stopTranslations }) {
   return (
     <div className={styles.scrollContainer} ref={scrollRef}>
       <div className={styles.imageTrack} id="imageTrack">
-        <Cardo source="https://i.imgur.com/Wwol4o6.jpg" />
-        <Cardo source="https://i.imgur.com/KqvP7LG.jpg" />
-        <Cardo source="https://i.imgur.com/RSJb66N.jpg" />
-        <Cardo source="https://i.imgur.com/ErvLyef.jpg" />
-        <Cardo source="https://i.imgur.com/ds0U0TT.jpg" />
-        <Cardo source="https://i.imgur.com/Ol7AB9K.jpg" />
-        <Cardo source="https://i.imgur.com/EKRJqHE.jpg" />
-        <Cardo source="https://i.imgur.com/iuJwYU1.jpg" />
-        <Cardo source="https://i.imgur.com/wSZ75M9.jpg" />
-        <Cardo source="https://i.imgur.com/y5TUTWD.jpg" />
-        <Cardo source="https://i.imgur.com/ldKSUfA.jpg" />
-        <Cardo source="https://i.imgur.com/hHdxFbm.jpg" />
-        <Cardo source="https://i.imgur.com/Oltuwk2.jpg" />
-        <Cardo source="https://i.imgur.com/s2YQVFd.jpg" />
-        <Cardo source="https://i.imgur.com/FwSMJvZ.jpg" />
+        {imageLinks.map((source, index) => (
+          <Cardo key={index} source={source} loading="lazy"/>
+        ))}
       </div>
     </div>
   );

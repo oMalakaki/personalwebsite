@@ -23,7 +23,7 @@ const RandomSquare = ({ stopTranslations }) => {
 
   useLayoutEffect(() => {
     const minSize = 500;
-    const maxSize = innerWidth - innerWidth / 2.5;
+    const maxSize = innerWidth - innerWidth / 3;
     const randomSize = Math.random() * (maxSize - minSize) + minSize;
     setObjectSize(randomSize);
 

@@ -6,7 +6,6 @@ import GenerateBackground from "./components/GenerateBackground";
 import Projects from "./components/Projects";
 import { Link } from "react-scroll";
 import CircleNav from "./components/CircleNav";
-import debounce from 'lodash/debounce';
 
 const HomePage = () => {
 
@@ -59,73 +58,61 @@ const HomePage = () => {
       }
     });
     
-   
-    return () => {
-      observer.disconnect();
-    };
+
     
-  }, []);
-  useEffect(() => {
-    let prevScrollPos = 0; // Initialize the previous scroll position
-    let debounceEnabled = 0; // Flag to enable debounce after 200 pixels
+ 
+  let prevScrollPos = 0; // Initialize the previous scroll position
+
+  const handleScroll = () => {
+    if (window.scrollY <= 0) {
+      setWindowPos(0);
+    }
+    if (window.innerWidth > 744){
+    if (window.scrollY >= 200) {
+      setWindowPos(200);
+    } else {
+      setWindowPos(window.scrollY);
+    }
+  }else {
+    if (window.scrollY >= 150) {
+      setWindowPos(150);
+    } else {
+      setWindowPos(window.scrollY);
+  }
+}
+    const currentScrollPos = window.scrollY;
+
+    if (currentScrollPos > prevScrollPos) {
+      // Scrolling down
+      setIsButtonVisible(false);
+    } else {
+      // Scrolling up
+      setIsButtonVisible(true);
+    }
+
+    if (window.scrollY == 0) {
+      setIsButtonVisible(true);
+    }
+    if (window.scrollY > 300) {
+      setShowNav(true);
+    }else {
+      setShowNav(false);
+    }
+
+    prevScrollPos = currentScrollPos; // Update the previous scroll position
+  };
+
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+ 
+    window.removeEventListener("scroll", handleScroll);
   
-    const handleScroll = () => {
-      if (window.scrollY <= 0) {
-        setWindowPos(0);
-      }
-  
-      if (window.scrollY >= 150) {
-        setWindowPos(150);
-        debounceEnabled = 100; // Enable debounce once scroll position reaches 200 pixels
-        
-      } else {
-        setWindowPos(window.scrollY);
-        console.log(debounceEnabled);
-        debounceEnabled = 0; // Disable debounce when scroll position is less than 200 pixels
-      }
-  
-      const currentScrollPos = window.scrollY;
-  
-      if (debounceEnabled) {
-        // Only execute debounce logic after reaching 200 pixels
-        if (currentScrollPos > prevScrollPos) {
-          // Scrolling down
-          setIsButtonVisible(false);
-        } else {
-          // Scrolling up
-          setIsButtonVisible(true);
-        }
-      } else {
-        // Execute handleScroll immediately when scroll position is less than 200 pixels
-        if (currentScrollPos > prevScrollPos) {
-          // Scrolling down
-          setIsButtonVisible(false);
-        } else {
-          // Scrolling up
-          setIsButtonVisible(true);
-        }
-      }
-  
-      if (window.scrollY == 0) {
-        setIsButtonVisible(true);
-      }
-      if (window.scrollY > 300) {
-        setShowNav(true);
-      } else {
-        setShowNav(false);
-      }
-  
-      prevScrollPos = currentScrollPos; // Update the previous scroll position
-    };
-  
-    const debouncedScrollHandler = debounce(handleScroll, debounceEnabled); // Adjust the delay as needed
-  
-    window.addEventListener('scroll', debouncedScrollHandler);
-  
-    return () => {
-      window.removeEventListener('scroll', debouncedScrollHandler);
-    };
-  }, []);
+      observer.disconnect();
+   
+  };
+}, []);
   
   return (
     <>
@@ -189,7 +176,7 @@ const HomePage = () => {
             left: "0",
             top: "0",
             overflow: "hidden",
-            filter: `blur(${windowPos /2 + "px"})`,
+            filter: `blur(${Math.min(windowPos / 2, 200)}px)`,
           }}
         >
           <GenerateBackground stopTranslations={stopTranslations} />
