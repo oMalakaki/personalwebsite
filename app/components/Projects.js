@@ -186,7 +186,7 @@ export default function Projects() {
           
           <div className={styles.arrowButtons}>
               {activeOrgProjects.length > 1 && (
-                <>    <Link style={{all: "unset"}} to="projectTitlesLink" smooth={true} duration={500}>
+                <>    <Link style={{all: "unset"}} to="projectTitlesLink" smooth={true} duration={10}>
                 
               
                   <button onClick={handlePrevProject}>{"<"}</button>
@@ -194,7 +194,7 @@ export default function Projects() {
                   <h4>
                     {activeProjIndex + 1} of {activeOrgProjects.length}
                   </h4>
-                  <Link style={{all: "unset"}} to="projectTitlesLink" smooth={true} duration={500}>
+                  <Link style={{all: "unset"}} to="projectTitlesLink" smooth={true} duration={10}>
                   <button onClick={handleNextProject}>{">"}</button>
                   </Link>
                 </>

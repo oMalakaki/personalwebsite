@@ -186,16 +186,6 @@ body {
   justify-content: center;
 }
 
-.graffiti {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100vw;
-  height: 100vh;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-
 .pageContainer h2 {
   font-size: 4rem;
   letter-spacing: -0.07em;
@@ -240,6 +230,7 @@ p {
   padding: 4em 4em 0 4em;
   align-self: center;
   overflow: visible;
+  
 }
 
 
