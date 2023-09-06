@@ -19,7 +19,7 @@ const RandomSquare = ({ stopTranslations }) => {
   const [position, setPosition] = useState(0);
   const [direction, setDirection] = useState(0);
   const [color, setColor] = useState("");
-  let animationFrameId;
+  let intervalId;
 
   useLayoutEffect(() => {
     const minSize = 500;
@@ -37,11 +37,11 @@ const RandomSquare = ({ stopTranslations }) => {
   }, []);
 
   useLayoutEffect(() => {
-    const moveSquare = () => {
+      const moveSquare = () => {
       
         const newPosition = {
-          x: position.x + direction.x * .75, // Adjust speed as needed
-          y: position.y + direction.y * .75,
+          x: position.x + direction.x * 0.75, // Adjust speed as needed
+          y: position.y + direction.y * 0.75,
         };
 
         if (
@@ -56,11 +56,9 @@ const RandomSquare = ({ stopTranslations }) => {
         } else {
           setPosition(newPosition);
         }
-        if (!stopTranslations) {
-          // Continue the animation using requestAnimationFrame
-          animationFrameId = requestAnimationFrame(moveSquare);
-        }
+      
     };
+
 
     const handleResize = () => {
       if (position.x > innerWidth - objectSize / 2) {
@@ -75,11 +73,23 @@ const RandomSquare = ({ stopTranslations }) => {
     }
 
 
+    // Function to start the interval
+    const startInterval = () => {
+      intervalId = setInterval(moveSquare, 10);
+    };
+
+    // Function to pause the interval
+    const pauseInterval = () => {
+      clearInterval(intervalId);
+    };
 
     if (!stopTranslations) {
-      animationFrameId = requestAnimationFrame(moveSquare);
+      // Start the interval timer when stopTranslations is false
+      startInterval();
+    } else {
+      // Pause the interval timer when stopTranslations is true
+      pauseInterval();
     }
-
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", handleResize);
@@ -98,7 +108,7 @@ const RandomSquare = ({ stopTranslations }) => {
         height: objectSize,
         backgroundColor: color,
         borderRadius: "100%",
-        transform: `translate(${position.x}px, ${position.y}px) translateZ(0)`,
+        transform: `translate(${position.x}px, ${position.y}px)`,
     
       }}
     ></div>
