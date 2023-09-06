@@ -40,8 +40,8 @@ const RandomSquare = ({ stopTranslations }) => {
     const moveSquare = () => {
       
         const newPosition = {
-          x: position.x + direction.x * 0.5, // Adjust speed as needed
-          y: position.y + direction.y * 0.5,
+          x: position.x + direction.x * 1, // Adjust speed as needed
+          y: position.y + direction.y * 1,
         };
 
         if (
