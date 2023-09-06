@@ -183,7 +183,7 @@ body {
   }
   .pageContainerSplash {
     display: flex;
-    z-index: 2;
+    z-index: 0;
     gap: 2em;
     flex-direction: column-reverse;
   }
@@ -242,6 +242,7 @@ p {
   padding: 4em 4em 0 4em;
   align-self: center;
   overflow: visible;
+  
   
 }
 
