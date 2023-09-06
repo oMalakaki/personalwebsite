@@ -48,7 +48,7 @@ const HomePage = () => {
       ? 0.125
       : window.innerWidth >= 900 && window.innerWidth <= 1200
       ? 0.3
-      : 0.4;
+      : 0.5;
     const observer = new IntersectionObserver(callback, {
       threshold: thresholdValue,
     });
