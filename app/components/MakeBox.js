@@ -32,7 +32,6 @@ const data = [
       "CSS",
       "PHP",
       "SQL",
-      "MySQL",
       "Adobe Suite",
       "Excel",
       "Word",
@@ -40,13 +39,13 @@ const data = [
       "Databricks",
       "Java (Basic)",
       "R (Basic)",
-      "React",
       "Jira",
       "Daptiv",
       "Sharepoint",
       "Lucid",
       "Splunk (Basic)",
       "Python",
+      " "
 
     ],
   },
