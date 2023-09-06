@@ -87,13 +87,18 @@ export default function Cards({ stopTranslations }) {
 
       if (!stopTranslations && isTranslationsEnabled) {
         // Continue the animation using requestAnimationFrame
-        animationFrameId = requestAnimationFrame(moveTrack);
+    
+          animationFrameId = requestAnimationFrame(moveTrack);
+      
       }
     };
 
     // Start the animation loop
     if (!stopTranslations && isTranslationsEnabled) {
-      animationFrameId = requestAnimationFrame(moveTrack);
+      
+        animationFrameId = requestAnimationFrame(moveTrack);
+     
+      
     }
 
     return () => {
