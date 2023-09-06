@@ -75,11 +75,19 @@ const HomePage = () => {
     let prevScrollPos = 0; // Initialize the previous scroll position
 
     const handleScroll = () => {
+      if (windowWidth > 744){
       if (window.scrollY >= 200) {
         setWindowPos(200);
       } else {
         setWindowPos(window.scrollY);
       }
+    }else {
+      if (window.scrollY >= 150) {
+        setWindowPos(150);
+      } else {
+        setWindowPos(window.scrollY);
+    }
+  }
       const currentScrollPos = window.scrollY;
 
       if (currentScrollPos > prevScrollPos) {
