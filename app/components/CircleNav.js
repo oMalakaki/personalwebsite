@@ -12,16 +12,18 @@ function CircleNav({ activeCircleIndex, showNav }) {
 
   return (
     <div className={`navCircles ${showNav ? 'show' : ''}`}>
-      {circles.map((circle, index) => (
-        <Link key={index} to={circle.link} smooth={true} duration={500}>
-          <div
-            className={`circleNav ${activeCircleIndex === index ? 'active' : ''} ${
-              index === 0 ? 'home' : '' // Apply class to the first circle (Home)
-            }`}
-            title={circle.title}
-          ></div>
-        </Link>
-      ))}
+      <div className="circlesContainer">
+        {circles.map((circle, index) => (
+          <Link key={index} to={circle.link} smooth={true} duration={500}>
+            <div
+              className={`circleNav ${activeCircleIndex === index ? 'active' : ''} ${
+                index === 0 ? 'home' : '' // Apply class to the first circle (Home)
+              }`}
+              title={circle.title}
+            ></div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
