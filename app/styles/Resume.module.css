@@ -15,7 +15,6 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.75);
     gap: 2%;
-  
     position: fixed;
     top: 0;
     left: 0;
@@ -113,7 +112,7 @@
     white-space: normal;
   }
   .pair h4 {
-    width: 40%;
+    width: 50%;
     font-size: 1.25em;
   }
   

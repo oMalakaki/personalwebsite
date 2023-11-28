@@ -17,6 +17,7 @@ const data = [
   {
     title: "EXPERIENCE",
     content: {
+      PotomacWave: "Data Insight Generator",
       Sony: "Program Management Intern",
       MAG7: "Frontend Web Developer",
       Synack: "Product Management Intern",
