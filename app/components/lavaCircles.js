@@ -1,117 +1,96 @@
 "use client";
-import { useState, useLayoutEffect, useMemo } from "react";
+import { useState, useLayoutEffect, useMemo, useCallback } from "react";
 import { useWindowSize } from "rooks";
+
+const COLORS = ["#000000", "#229b63", "#12918b", "#f25d0a", "#380d54"];
+const MOVEMENT_SPEED = 0.75;
+const UPDATE_INTERVAL = 10;
 
 const getRandomDirection = () => ({
   x: Math.random() > 0.5 ? 1 : -1,
   y: Math.random() > 0.5 ? 1 : -1,
 });
 
-const getRandomColor = () => {
-  var colors = ["#000000", "#229b63", "#12918b", "#f25d0a", "#380d54"];
-  let color = colors[Math.floor(Math.random() * colors.length)];
-  return color;
-};
+const getRandomColor = () => COLORS[Math.floor(Math.random() * COLORS.length)];
 
 const RandomSquare = ({ stopTranslations }) => {
   const { innerWidth, innerHeight } = useWindowSize();
-  const [objectSize, setObjectSize] = useState(0);
-  const [position, setPosition] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [color, setColor] = useState("");
-  let intervalId;
 
-  useLayoutEffect(() => {
+  const initialState = useMemo(() => {
     const minSize = 500;
     const maxSize = innerWidth - innerWidth / 3;
-    const randomSize = Math.random() * (maxSize - minSize) + minSize;
-    setObjectSize(randomSize);
+    const objectSize = Math.random() * (maxSize - minSize) + minSize;
+    return {
+      objectSize,
+      position: {
+        x: Math.random() * (innerWidth - objectSize),
+        y: Math.random() * (innerHeight - objectSize),
+      },
+      direction: getRandomDirection(),
+      color: getRandomColor(),
+    };
+  }, [innerWidth, innerHeight]);
 
-    setPosition({
-      x: Math.random() * (innerWidth - randomSize),
-      y: Math.random() * (innerHeight - randomSize),
+  const [state, setState] = useState(initialState);
+
+  const moveSquare = useCallback(() => {
+    setState((prevState) => {
+      const newPosition = {
+        x: prevState.position.x + prevState.direction.x * MOVEMENT_SPEED,
+        y: prevState.position.y + prevState.direction.y * MOVEMENT_SPEED,
+      };
+
+      if (
+        newPosition.x < 0 - prevState.objectSize / 2 ||
+        newPosition.x > innerWidth - prevState.objectSize / 2 ||
+        newPosition.y < 0 - prevState.objectSize / 2 ||
+        newPosition.y > innerHeight - prevState.objectSize / 2
+      ) {
+        return { ...prevState, direction: getRandomDirection() };
+      }
+
+      return { ...prevState, position: newPosition };
     });
+  }, [innerWidth, innerHeight]);
 
-    setDirection(getRandomDirection());
-    setColor(getRandomColor());
-  }, []);
+  const handleResize = useCallback(() => {
+    setState((prevState) => ({
+      ...prevState,
+      position: {
+        x: Math.min(prevState.position.x, innerWidth - prevState.objectSize / 2),
+        y: Math.min(prevState.position.y, innerHeight - prevState.objectSize / 2),
+      },
+    }));
+  }, [innerWidth, innerHeight]);
 
   useLayoutEffect(() => {
-      const moveSquare = () => {
-      
-        const newPosition = {
-          x: position.x + direction.x * 0.75, // Adjust speed as needed
-          y: position.y + direction.y * 0.75,
-        };
+    if (typeof window === "undefined") return;
 
-        if (
-          newPosition.x < 0 - objectSize / 2 ||
-          newPosition.x > innerWidth - objectSize / 2 ||
-          newPosition.y < 0 - objectSize / 2 ||
-          newPosition.y > innerHeight - objectSize / 2
-        ) {
-          // If hitting the edge, change direction and continue moving
-          const newDirection = getRandomDirection();
-          setDirection(newDirection);
-        } else {
-          setPosition(newPosition);
-        }
-      
-    };
-
-
-    const handleResize = () => {
-      if (position.x > innerWidth - objectSize / 2) {
-        setPosition({ ...position, x: innerWidth - objectSize / 2 });
-      } else if (position.y > innerHeight - objectSize / 2) {
-        setPosition({ ...position, y: innerHeight - objectSize / 2 });
-      }
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-    }
-
-
-    // Function to start the interval
-    const startInterval = () => {
-      intervalId = setInterval(moveSquare, 10);
-    };
-
-    // Function to pause the interval
-    const pauseInterval = () => {
-      clearInterval(intervalId);
-    };
-
+    window.addEventListener("resize", handleResize);
+    
+    let intervalId;
     if (!stopTranslations) {
-      // Start the interval timer when stopTranslations is false
-      startInterval();
-    } else {
-      // Pause the interval timer when stopTranslations is true
-      pauseInterval();
+      intervalId = setInterval(moveSquare, UPDATE_INTERVAL);
     }
+
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleResize);
-   
-      }
+      window.removeEventListener("resize", handleResize);
       clearInterval(intervalId);
     };
-  }, [objectSize, position, direction, stopTranslations]);
+  }, [stopTranslations, moveSquare, handleResize]);
 
   return (
     <div
       id="blob"
       style={{
         position: "absolute",
-        width: objectSize,
-        height: objectSize,
-        backgroundColor: color,
+        width: state.objectSize,
+        height: state.objectSize,
+        backgroundColor: state.color,
         borderRadius: "100%",
-        transform: `translate(${position.x}px, ${position.y}px)`,
-    
+        transform: `translate(${state.position.x}px, ${state.position.y}px)`,
       }}
-    ></div>
+    />
   );
 };
 

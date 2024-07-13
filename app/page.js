@@ -190,7 +190,7 @@ const HomePage = () => {
         </div>
 
         <p>
-          Hi, I’m Alex! I recently graduated from George Washington University's
+          Hi, I’m Alex! In 2023, I graduated from George Washington University's
           School of Business, where I studied Information Systems. As a student
           in the School of Business, my studies provided me with a comprehensive
           foundation in a diverse range of technologies, and more importantly,
