@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #e61f3a;
+  overflow-x: hidden;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+
+.noise {
+  z-index: 9999999;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.6;
+  filter: brightness(150%);
+  background-image: url("https://uploads-ssl.webflow.com/604e45bd21701352c1131f56/604e45bd217013478e131f6a_5ffddb954a49ee060a580d5a_ezgif.com-gif-maker.gif");
+  background-position: 0 0;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  filter: brightness(120%);
+  background-size: 100px;
+  top: 0%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.cut-out-text h1 {
+  font-size: 12rem;
+  line-height: 0.8em;
+  letter-spacing: -0.05em;
+ 
+  
+}
+.cut-out-text {
+  color: white; /* Text color */
+  background-color: transparent; /* Transparent text background */
+  z-index: 1;
+  background-clip: text; /* Clip background to the text */
+  mix-blend-mode: difference;
+}
+
+.pageContainerSplash {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e61f3a;
+  display: flex;
+  z-index: 0;
+  gap: 1em;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+  justify-content: flex-end;
+  width: 760px;
+  z-index: 9;
+  
+}
+
+.menu h2 {
+  font-size: 2em;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: white;
+  
+}
+
+.menu h2:hover {
+  scale: 1.05;
+}
+
+.menu h2 a {
+  all: unset;
+}
+
+
+
+.name {
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.8em;
+}
+
+.animationBtn {
+  
+  all: unset;
+  position: fixed;
+  display: flex;
+  top: 0.5rem; /* Adjust this value to control the distance from the top */
+  right: 0.5rem; /* Adjust this value to control the distance from the right */
+  z-index: 999; /* Adjust the z-index as needed to control the stacking order */
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: white;
+  gap: 1rem;
+  cursor: pointer;
+  opacity: 0%;
+  transition: .5s;
+  visibility: hidden;
+}
+.animationBtn.visible {
+  opacity: 100%;
+  visibility: visible;
+}
+.sticky-button {
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+
+  border-radius: 2rem;
+}
+.sticky-button.on {
+  background-color: #4caf50;
+}
+
+.sticky-button.off {
+  background-color: #ccc;
+}
+
+.slider {
+  position: absolute;
+  top: 0.175em;
+  left: 0.175em;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.sticky-button.on .slider {
+  transform: translateX(1rem);
+}
+
+.sticky-button.off .slider {
+  transform: translateX(0.1em);
+}
+/* Add a media query for smaller screens */
+@media screen and (max-width: 915px) {
+  .pageContainerSplash h1 {
+    font-size: 5rem;
+    line-height: 0.8em;
+    text-align: center;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center;
+    width: 100%;
+  }
+  .menu h2 {
+    font-size: 1.5em;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+  }
+  .pageContainerSplash {
+    display: flex;
+    z-index: 0;
+    gap: 2em;
+    flex-direction: column-reverse;
+  }
+}
+
+.sectionHeader {
+  width: 7.6em;
+  background-color: pink;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageContainer h2 {
+  font-size: 4rem;
+  letter-spacing: -0.05em;
+  mix-blend-mode: difference;
+  margin-bottom: 3rem;
+  line-height: 1;
+  position: relative;
+  color: white;
+  opacity: 1;
+  width: 100%;
+  height: min-content;
+
+  filter: brightness(175%); /* Adjust the percentage as needed */
+}
+.sectionTitle {
+  position: relative;
+}
+.sectionTitle .titleDupe {
+  mix-blend-mode: normal;
+  
+  position: absolute;
+  color: white;
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+}
+
+p {
+  font-family: "Lato", sans-serif;
+  font-size: 1.25rem;
+  max-width: 42rem;
+  line-height: 1.9rem;
+}
+
+.pageContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: white;
+  margin-bottom: 5em;
+  max-width: 1200px;
+  padding: 4em 4em 0 4em;
+  align-self: center;
+  overflow: visible;
+  
+  
+}
+
+
+a {
+  all: unset;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pageContainer.connect h1 {
+  font-size: 5em;
+  line-height: 0.8em;
+  letter-spacing: -0.045em;
+  mix-blend-mode: difference;
+  margin-bottom: 1rem;
+}
+.pageContainer .connectionInfo {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.resumeText {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 4rem;
+}
+
+.navCircles {
+  opacity: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  transition: .5s;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.navCircles.show {
+  opacity: 100;
+  visibility: visible;
+}
+.circlesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  
+}
+.circleNav {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 100%;
+  background-color: white;
+  transition: .5s;
+  opacity: .5;
+  
+  
+}
+.circleNav:hover {
+  scale: 1.75;
+  
+}
+.circleNav.active {
+  scale: 1.5;
+  opacity: 1;
+  
+}
+.circleNav.home {
+  width: 1rem; /* Adjust the width as needed to fit your design */
+  height: 1rem; /* Adjust the height as needed to fit your design */
+  border-radius: 0%; /* To keep it a circle */
+  background-color: transparent;
+  background-image: url("/icons8-home.svg");
+  background-repeat: no-repeat;
+  background-size: contain; /* This will shrink the image to fit inside the circle */
+  background-position: center; /* Center the image inside the circle */
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  
+}
+.circleNav.home:hover{
+  
+    scale: 1.25;
+
+
+  
+}
+/* Add a media query for smaller screens */
+@media screen and (max-width: 700px) {
+  .pageContainer {
+    flex-direction: column; /* Switch container to column layout */
+    align-items: center; /* Center-align content in column layout */
+    padding: 2em;
+  }
+
+  .aboutText {
+    flex-direction: column; /* Switch aboutText to column layout */
+    align-items: center; /* Center-align content in column layout */
+  }
+
+  /* Adjust .about p width for smaller screens */
+  .about p {
+    width: 100%; /* Make the paragraph full width */
+    min-width: unset; /* Remove the minimum width */
+  }
+}
