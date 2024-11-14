@@ -17,6 +17,7 @@ const data = [
   {
     title: "EXPERIENCE",
     content: {
+      Deloitte: "Business Technology Solutions Analyst",
       PotomacWave: "Data Insight Generator",
       Sony: "Program Management Intern",
       MAG7: "Frontend Web Developer",
