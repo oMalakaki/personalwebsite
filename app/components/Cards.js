@@ -9,21 +9,18 @@ export default function Cards({ stopTranslations }) {
   const [isTranslationsEnabled, setTranslationsEnabled] = useState(true);
   let animationFrameId;
   const imageLinks = [
-    "https://i.imgur.com/Wwol4o6.jpg",
-    "https://i.imgur.com/KqvP7LG.jpg",
-    "https://i.imgur.com/RSJb66N.jpg",
-    "https://i.imgur.com/ErvLyef.jpg",
-    "https://i.imgur.com/ds0U0TT.jpg",
-    "https://i.imgur.com/Ol7AB9K.jpg",
-    "https://i.imgur.com/EKRJqHE.jpg",
-    "https://i.imgur.com/iuJwYU1.jpg",
-    "https://i.imgur.com/wSZ75M9.jpg",
-    "https://i.imgur.com/y5TUTWD.jpg",
-    "https://i.imgur.com/ldKSUfA.jpg",
-    "https://i.imgur.com/hHdxFbm.jpg",
-    "https://i.imgur.com/Oltuwk2.jpg",
-    "https://i.imgur.com/s2YQVFd.jpg",
-    "https://i.imgur.com/FwSMJvZ.jpg"
+    "https://i.imgur.com/G0vkfZ7.jpg",
+"https://i.imgur.com/ls4fphJ.jpg",
+"https://i.imgur.com/0vpSDJF.jpg",
+"https://i.imgur.com/PEyV8fY.jpg",
+"https://i.imgur.com/PtxK0cd.jpg",
+"https://i.imgur.com/83qUuwd.jpg",
+"https://i.imgur.com/i9dMcKL.jpg",
+"https://i.imgur.com/9WdgIB7.jpg",
+"https://i.imgur.com/tmpK5tH.jpg",
+"https://i.imgur.com/7xEr0qx.jpg",
+"https://i.imgur.com/iGPuLZY.jpg",
+"https://i.imgur.com/AxpwHAA.jpg"
   ];
   useEffect(() => {
     const container = scrollRef.current;
