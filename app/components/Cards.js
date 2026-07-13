@@ -162,7 +162,7 @@ export default function Cards({ stopTranslations }) {
     const mouseUpHandler = () => {
       container.removeEventListener("mousemove", mouseMoveHandler);
       if (Math.abs(state.velocity) >= 0.005) {
-        state.direction = state.velocity > 0 ? -1 : 1;
+        state.direction = state.velocity > 0 ? 1 : -1;
       }
       startInertia();
     };
@@ -185,12 +185,12 @@ export default function Cards({ stopTranslations }) {
       state.touchResumeTimer = setTimeout(() => {
         state.position = container.scrollLeft;
         if (state.position !== state.touchStartPosition) {
-          state.direction = state.position > state.touchStartPosition ? -1 : 1;
+          state.direction = state.position > state.touchStartPosition ? 1 : -1;
         }
         state.isPaused = false;
         state.touchResumeTimer = null;
         startAnimation();
-      }, 700);
+      }, 1200);
     };
 
     const resizeObserver = new ResizeObserver(measureTrack);
