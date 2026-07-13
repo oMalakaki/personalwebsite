@@ -14,7 +14,6 @@
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
-  -webkit-overflow-scrolling: touch;
   user-select: none;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -54,6 +53,7 @@
   margin-bottom: 5em;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   height: 30em;
   position: relative; 

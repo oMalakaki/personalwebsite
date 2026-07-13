@@ -141,7 +141,7 @@
     .closeModalBtn {
       top: auto;
       right: auto;
-      bottom: 10%;
+      bottom: .75rem;
       left: 50%;
       transform: translateX(-50%);
     }

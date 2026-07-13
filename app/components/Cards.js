@@ -34,13 +34,17 @@ export default function Cards({ stopTranslations }) {
     const track = container.firstElementChild;
     const state = {
       animationFrame: null,
+      inertiaFrame: null,
       direction: 1,
       isPaused: false,
       isVisible: false,
       maxScrollLeft: 0,
       position: container.scrollLeft,
+      velocity: 0,
+      touchResumeTimer: null,
+      touchStartPosition: 0,
     };
-    let dragStart = { left: 0, x: 0 };
+    let dragState = { lastX: 0, lastTime: 0 };
 
     const canAnimate = () =>
       !stopTranslations && !state.isPaused && state.isVisible && state.maxScrollLeft > 0;
@@ -50,6 +54,14 @@ export default function Cards({ stopTranslations }) {
         cancelAnimationFrame(state.animationFrame);
         state.animationFrame = null;
       }
+    };
+
+    const stopInertia = () => {
+      if (state.inertiaFrame !== null) {
+        cancelAnimationFrame(state.inertiaFrame);
+        state.inertiaFrame = null;
+      }
+      state.velocity = 0;
     };
 
     const moveTrack = () => {
@@ -73,9 +85,43 @@ export default function Cards({ stopTranslations }) {
     };
 
     const startAnimation = () => {
-      if (state.animationFrame === null && canAnimate()) {
+      if (state.animationFrame === null && state.inertiaFrame === null && canAnimate()) {
         state.animationFrame = requestAnimationFrame(moveTrack);
       }
+    };
+
+    const startInertia = () => {
+      if (Math.abs(state.velocity) < 0.05) return;
+
+      let previousTime = performance.now();
+      const continueInertia = (currentTime) => {
+        const elapsed = Math.min(currentTime - previousTime, 32);
+        previousTime = currentTime;
+        let nextPosition = state.position + state.velocity * elapsed;
+
+        if (nextPosition <= 0) {
+          nextPosition = 0;
+          state.velocity = 0;
+        } else if (nextPosition >= state.maxScrollLeft) {
+          nextPosition = state.maxScrollLeft;
+          state.velocity = 0;
+        } else {
+          state.velocity *= Math.pow(0.92, elapsed / 16.67);
+        }
+
+        state.position = nextPosition;
+        container.scrollLeft = nextPosition;
+
+        if (Math.abs(state.velocity) < 0.015) {
+          state.inertiaFrame = null;
+          if (!state.isPaused) startAnimation();
+          return;
+        }
+
+        state.inertiaFrame = requestAnimationFrame(continueInertia);
+      };
+
+      state.inertiaFrame = requestAnimationFrame(continueInertia);
     };
 
     const measureTrack = () => {
@@ -88,26 +134,37 @@ export default function Cards({ stopTranslations }) {
     const pauseForInteraction = () => {
       state.isPaused = true;
       stopAnimation();
+      stopInertia();
     };
 
     const mouseDownHandler = (event) => {
       pauseForInteraction();
-      dragStart = { left: container.scrollLeft, x: event.clientX };
+      state.position = container.scrollLeft;
+      dragState = { lastX: event.clientX, lastTime: performance.now() };
       container.addEventListener("mousemove", mouseMoveHandler);
       document.addEventListener("mouseup", mouseUpHandler, { once: true });
     };
 
     const mouseMoveHandler = (event) => {
+      const currentTime = performance.now();
+      const distance = event.clientX - dragState.lastX;
+      const elapsed = Math.max(currentTime - dragState.lastTime, 1);
       const nextPosition = Math.max(
         0,
-        Math.min(state.maxScrollLeft, dragStart.left - (event.clientX - dragStart.x))
+        Math.min(state.maxScrollLeft, state.position - distance)
       );
       state.position = nextPosition;
       container.scrollLeft = nextPosition;
+      state.velocity = state.velocity * 0.8 + (-distance / elapsed) * 0.2;
+      dragState = { lastX: event.clientX, lastTime: currentTime };
     };
 
     const mouseUpHandler = () => {
       container.removeEventListener("mousemove", mouseMoveHandler);
+      if (Math.abs(state.velocity) >= 0.005) {
+        state.direction = state.velocity > 0 ? -1 : 1;
+      }
+      startInertia();
     };
 
     const mouseEnterHandler = pauseForInteraction;
@@ -115,11 +172,25 @@ export default function Cards({ stopTranslations }) {
       state.isPaused = false;
       startAnimation();
     };
-    const touchStartHandler = pauseForInteraction;
+    const touchStartHandler = () => {
+      pauseForInteraction();
+      state.touchStartPosition = container.scrollLeft;
+    };
     const touchEndHandler = () => {
-      state.position = container.scrollLeft;
-      state.isPaused = false;
-      startAnimation();
+      if (state.touchResumeTimer !== null) {
+        clearTimeout(state.touchResumeTimer);
+      }
+
+      // Leave room for the browser's native touch momentum before resuming autoplay.
+      state.touchResumeTimer = setTimeout(() => {
+        state.position = container.scrollLeft;
+        if (state.position !== state.touchStartPosition) {
+          state.direction = state.position > state.touchStartPosition ? -1 : 1;
+        }
+        state.isPaused = false;
+        state.touchResumeTimer = null;
+        startAnimation();
+      }, 700);
     };
 
     const resizeObserver = new ResizeObserver(measureTrack);
@@ -130,7 +201,10 @@ export default function Cards({ stopTranslations }) {
       ([entry]) => {
         state.isVisible = entry.isIntersecting;
         if (state.isVisible) startAnimation();
-        else stopAnimation();
+        else {
+          stopAnimation();
+          stopInertia();
+        }
       },
       { threshold: 0 }
     );
@@ -145,6 +219,10 @@ export default function Cards({ stopTranslations }) {
 
     return () => {
       stopAnimation();
+      stopInertia();
+      if (state.touchResumeTimer !== null) {
+        clearTimeout(state.touchResumeTimer);
+      }
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
       container.removeEventListener("mousedown", mouseDownHandler);
