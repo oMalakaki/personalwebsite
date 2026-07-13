@@ -9,7 +9,7 @@ function Cardo({source}) {
         src={source}
         draggable="false"
         alt="Picture of Alex"
-        loading="lazy"
+        // loading="lazy"
       ></img>
     </div>
   );

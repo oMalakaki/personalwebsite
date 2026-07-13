@@ -20,19 +20,22 @@
     left: 0;
     z-index: 999;
   }
-  #closeModalBtn {
-    position: relative;
-    align-self: flex-start;
-    width: 48px;
-    height: 48px;
-    top: 2.5%;
-    background-repeat: no-repeat;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Cross_icon_%28white%29.svg/2048px-Cross_icon_%28white%29.svg.png");
-    background-size: contain;
+  .closeModalBtn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 1;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    background: transparent;
+    color: white;
     cursor: pointer;
     transition: 0.1s linear;
+    font-size: 3rem;
+    line-height: 1;
   }
-  #closeModalBtn:hover {
+  .closeModalBtn:hover {
     scale: 1.05;
   }
   #openModalBtn {
@@ -135,11 +138,12 @@
       flex-direction: column-reverse;
       gap: 0;
     }
-    #closeModalBtn {
-      position: relative;
-      align-self: center;
-      width: 50px;
-      height: 50px;
+    .closeModalBtn {
+      top: auto;
+      right: auto;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .pdfContainer {
       height: min-content;

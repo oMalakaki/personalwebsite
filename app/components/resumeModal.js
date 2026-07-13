@@ -55,7 +55,14 @@ export default function ResumeModal() {
 
       {modalVisible && (
         <div className={styles.modalBackground}>
-          <div id={styles.closeModalBtn} onClick={closeModal} />
+          <button
+            className={styles.closeModalBtn}
+            type="button"
+            onClick={closeModal}
+            aria-label="Close resume"
+          >
+            ×
+          </button>
 
           <div className={styles.pdfContainer}>
             {innerWidth >= 700 ? (

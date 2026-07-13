@@ -14,6 +14,49 @@ body {
   display: flex;
   align-content: center;
   flex-direction: column;
+  width: 100wv;
+}
+
+/* Decorative blobs animate entirely in the compositor: no timers or React renders. */
+.lava-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lava-blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--blob-size);
+  height: var(--blob-size);
+  border-radius: 50%;
+  background: var(--blob-color);
+  transform: translate3d(var(--start-x), var(--start-y), 0);
+  animation: lava-drift var(--duration) ease-in-out var(--delay) infinite alternate;
+}
+
+.lava-background.is-paused .lava-blob {
+  animation-play-state: paused;
+}
+
+@keyframes lava-drift {
+  0% {
+    transform: translate3d(var(--start-x), var(--start-y), 0) scale(1);
+  }
+  50% {
+    transform: translate3d(var(--mid-x), var(--mid-y), 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(var(--end-x), var(--end-y), 0) scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lava-blob {
+    animation: none;
+  }
 }
 
 .noise {

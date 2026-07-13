@@ -1,97 +1,37 @@
-"use client";
-import { useState, useLayoutEffect, useMemo, useCallback } from "react";
-import { useWindowSize } from "rooks";
+const BLOBS = [
+  { color: "#000000", size: "clamp(28rem, 52vw, 58rem)", startX: "-24vw", startY: "-28vh", midX: "25vw", midY: "18vh", endX: "5vw", endY: "58vh", duration: "26s", delay: "-12s" },
+  { color: "#229b63", size: "clamp(24rem, 46vw, 52rem)", startX: "58vw", startY: "-20vh", midX: "18vw", midY: "31vh", endX: "63vw", endY: "62vh", duration: "31s", delay: "-21s" },
+  { color: "#12918b", size: "clamp(22rem, 39vw, 46rem)", startX: "12vw", startY: "51vh", midX: "62vw", midY: "12vh", endX: "-14vw", endY: "20vh", duration: "29s", delay: "-7s" },
+  { color: "#f25d0a", size: "clamp(20rem, 36vw, 42rem)", startX: "73vw", startY: "44vh", midX: "-8vw", midY: "60vh", endX: "38vw", endY: "-18vh", duration: "34s", delay: "-27s" },
+  { color: "#380d54", size: "clamp(18rem, 31vw, 38rem)", startX: "37vw", startY: "-24vh", midX: "68vw", midY: "45vh", endX: "9vw", endY: "69vh", duration: "28s", delay: "-16s" },
+  { color: "#000000", size: "clamp(17rem, 28vw, 34rem)", startX: "-15vw", startY: "35vh", midX: "42vw", midY: "-12vh", endX: "71vw", endY: "33vh", duration: "36s", delay: "-5s" },
+  { color: "#229b63", size: "clamp(16rem, 25vw, 30rem)", startX: "64vw", startY: "69vh", midX: "-5vw", midY: "8vh", endX: "48vw", endY: "52vh", duration: "32s", delay: "-24s" },
+];
 
-const COLORS = ["#000000", "#229b63", "#12918b", "#f25d0a", "#380d54"];
-const MOVEMENT_SPEED = 0.75;
-const UPDATE_INTERVAL = 10;
-
-const getRandomDirection = () => ({
-  x: Math.random() > 0.5 ? 1 : -1,
-  y: Math.random() > 0.5 ? 1 : -1,
-});
-
-const getRandomColor = () => COLORS[Math.floor(Math.random() * COLORS.length)];
-
-const RandomSquare = ({ stopTranslations }) => {
-  const { innerWidth, innerHeight } = useWindowSize();
-
-  const initialState = useMemo(() => {
-    const minSize = 500;
-    const maxSize = innerWidth - innerWidth / 3;
-    const objectSize = Math.random() * (maxSize - minSize) + minSize;
-    return {
-      objectSize,
-      position: {
-        x: Math.random() * (innerWidth - objectSize),
-        y: Math.random() * (innerHeight - objectSize),
-      },
-      direction: getRandomDirection(),
-      color: getRandomColor(),
-    };
-  }, [innerWidth, innerHeight]);
-
-  const [state, setState] = useState(initialState);
-
-  const moveSquare = useCallback(() => {
-    setState((prevState) => {
-      const newPosition = {
-        x: prevState.position.x + prevState.direction.x * MOVEMENT_SPEED,
-        y: prevState.position.y + prevState.direction.y * MOVEMENT_SPEED,
-      };
-
-      if (
-        newPosition.x < 0 - prevState.objectSize / 2 ||
-        newPosition.x > innerWidth - prevState.objectSize / 2 ||
-        newPosition.y < 0 - prevState.objectSize / 2 ||
-        newPosition.y > innerHeight - prevState.objectSize / 2
-      ) {
-        return { ...prevState, direction: getRandomDirection() };
-      }
-
-      return { ...prevState, position: newPosition };
-    });
-  }, [innerWidth, innerHeight]);
-
-  const handleResize = useCallback(() => {
-    setState((prevState) => ({
-      ...prevState,
-      position: {
-        x: Math.min(prevState.position.x, innerWidth - prevState.objectSize / 2),
-        y: Math.min(prevState.position.y, innerHeight - prevState.objectSize / 2),
-      },
-    }));
-  }, [innerWidth, innerHeight]);
-
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    window.addEventListener("resize", handleResize);
-    
-    let intervalId;
-    if (!stopTranslations) {
-      intervalId = setInterval(moveSquare, UPDATE_INTERVAL);
-    }
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      clearInterval(intervalId);
-    };
-  }, [stopTranslations, moveSquare, handleResize]);
-
+export default function LavaCircles({ stopTranslations }) {
   return (
     <div
-      id="blob"
-      style={{
-        position: "absolute",
-        width: state.objectSize,
-        height: state.objectSize,
-        backgroundColor: state.color,
-        borderRadius: "100%",
-        transform: `translate(${state.position.x}px, ${state.position.y}px)`,
-      }}
-    />
+      className={`lava-background${stopTranslations ? " is-paused" : ""}`}
+      aria-hidden="true"
+    >
+      {BLOBS.map((blob, index) => (
+        <div
+          className="lava-blob"
+          key={index}
+          style={{
+            "--blob-color": blob.color,
+            "--blob-size": blob.size,
+            "--start-x": blob.startX,
+            "--start-y": blob.startY,
+            "--mid-x": blob.midX,
+            "--mid-y": blob.midY,
+            "--end-x": blob.endX,
+            "--end-y": blob.endY,
+            "--duration": blob.duration,
+            "--delay": blob.delay,
+          }}
+        />
+      ))}
+    </div>
   );
-};
-
-export default RandomSquare;
+}

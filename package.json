@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.0.2",
+    "@vercel/edge-config": "^1.4.0",
     "@vercel/og": "^0.5.11",
+    "browserslist": "^4.28.6",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "framer-motion": "^10.15.1",
